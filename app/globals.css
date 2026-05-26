@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  background: #ffffff;
+  color: #26324a;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.soft-gradient {
+  background:
+    radial-gradient(circle at 12% 18%, rgba(255, 111, 97, 0.14), transparent 28%),
+    linear-gradient(135deg, #ffffff 0%, #fff5e1 100%);
+}
+
+.focus-ring {
+  @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blueDeep;
+}
