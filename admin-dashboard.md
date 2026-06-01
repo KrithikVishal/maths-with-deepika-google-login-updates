@@ -1,0 +1,609 @@
+- generic [active] [ref=e1]:
+  - button "Open Next.js Dev Tools" [ref=e57] [cursor=pointer]:
+    - img [ref=e58]
+  - alert [ref=e61]
+  - banner [ref=e62]:
+    - generic [ref=e63]:
+      - link "Maths with Deepika home" [ref=e64] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e66]: Maths with Deepika
+      - link "Cart" [ref=e68] [cursor=pointer]:
+        - /url: /cart
+        - img [ref=e69]
+      - button "Open menu" [ref=e73] [cursor=pointer]:
+        - img [ref=e74]
+  - main [ref=e75]:
+    - generic [ref=e77]:
+      - generic [ref=e78]:
+        - paragraph [ref=e79]: Admin dashboard
+        - heading "Manage courses, products, orders, and access" [level=2] [ref=e80]
+        - paragraph [ref=e81]: A practical admin space with protected member management, order tracking, and course tools.
+      - generic [ref=e82]:
+        - generic [ref=e83]:
+          - link "Today" [ref=e84] [cursor=pointer]:
+            - /url: /admin/dashboard?range=today#orders
+            - img [ref=e85]
+            - text: Today
+          - link "Week" [ref=e87] [cursor=pointer]:
+            - /url: /admin/dashboard?range=week#orders
+            - img [ref=e88]
+            - text: Week
+          - link "Month" [ref=e90] [cursor=pointer]:
+            - /url: /admin/dashboard?range=month#orders
+            - img [ref=e91]
+            - text: Month
+          - button "Export orders" [ref=e93] [cursor=pointer]
+        - button "Logout" [ref=e95] [cursor=pointer]:
+          - img [ref=e96]
+          - text: Logout
+      - generic [ref=e99]:
+        - generic [ref=e100]:
+          - generic [ref=e102]:
+            - heading "Total users" [level=3] [ref=e103]
+            - paragraph [ref=e104]: "4"
+            - paragraph [ref=e105]: All registered accounts
+          - img [ref=e107]
+        - generic [ref=e112]:
+          - generic [ref=e114]:
+            - heading "Mothers" [level=3] [ref=e115]
+            - paragraph [ref=e116]: "1"
+            - paragraph [ref=e117]: Mother learners
+          - img [ref=e119]
+        - generic [ref=e121]:
+          - generic [ref=e123]:
+            - heading "Kids" [level=3] [ref=e124]
+            - paragraph [ref=e125]: "1"
+            - paragraph [ref=e126]: Kid learners
+          - img [ref=e128]
+        - generic [ref=e131]:
+          - generic [ref=e133]:
+            - heading "Total orders" [level=3] [ref=e134]
+            - paragraph [ref=e135]: "0"
+            - paragraph [ref=e136]: Physical and digital orders
+          - img [ref=e138]
+        - generic [ref=e141]:
+          - generic [ref=e143]:
+            - heading "Revenue" [level=3] [ref=e144]
+            - paragraph [ref=e145]: ₹0
+            - paragraph [ref=e146]: Paid orders
+          - img [ref=e148]
+        - generic [ref=e151]:
+          - generic [ref=e153]:
+            - heading "Active learners" [level=3] [ref=e154]
+            - paragraph [ref=e155]: "2"
+            - paragraph [ref=e156]: Partial or full access
+          - img [ref=e158]
+        - generic [ref=e161]:
+          - generic [ref=e163]:
+            - heading "Pending orders" [level=3] [ref=e164]
+            - paragraph [ref=e165]: "0"
+            - paragraph [ref=e166]: Placed or unpaid
+          - img [ref=e168]
+        - generic [ref=e171]:
+          - generic [ref=e173]:
+            - heading "Shipped orders" [level=3] [ref=e174]
+            - paragraph [ref=e175]: "0"
+            - paragraph [ref=e176]: Shipped or delivered
+          - img [ref=e178]
+      - generic [ref=e183]:
+        - generic [ref=e184]:
+          - heading "Recent activity" [level=3] [ref=e185]
+          - generic [ref=e186]:
+            - generic [ref=e187]:
+              - paragraph [ref=e188]: Test Admin joined
+              - paragraph [ref=e189]: admin · none access
+            - generic [ref=e190]:
+              - paragraph [ref=e191]: SampleKid joined
+              - paragraph [ref=e192]: kid · full access
+            - generic [ref=e193]:
+              - paragraph [ref=e194]: XYZ joined
+              - paragraph [ref=e195]: mother · full access
+        - generic [ref=e196]:
+          - heading "Learning insight" [level=3] [ref=e197]
+          - generic [ref=e198]:
+            - generic [ref=e200]:
+              - generic [ref=e201]: Learners with access
+              - generic [ref=e202]: 50%
+            - generic [ref=e205]: 1 completed lesson records
+    - generic [ref=e207]:
+      - generic [ref=e208]:
+        - paragraph [ref=e209]: Member management
+        - heading "Users and roles" [level=2] [ref=e210]
+      - generic [ref=e211]:
+        - generic [ref=e212]:
+          - generic [ref=e213]:
+            - img [ref=e214]
+            - generic [ref=e217]:
+              - heading "Add member" [level=3] [ref=e218]
+              - paragraph [ref=e219]: Create login access and assign the right role.
+          - generic [ref=e220]:
+            - textbox "Full name" [ref=e221]
+            - textbox "Email" [ref=e222]
+            - textbox "Username" [ref=e223]
+            - textbox "Phone" [ref=e224]
+            - combobox [ref=e225]:
+              - option "admin"
+              - option "mother" [selected]
+              - option "kid"
+            - combobox [ref=e226]:
+              - option "none access" [selected]
+              - option "partial access"
+              - option "full access"
+            - textbox "Temporary password" [ref=e227]
+            - combobox [ref=e228]:
+              - option "active" [selected]
+              - option "inactive"
+            - button "Add member" [ref=e229] [cursor=pointer]
+        - generic [ref=e230]:
+          - generic [ref=e231]:
+            - generic [ref=e232]:
+              - heading "Members" [level=3] [ref=e233]
+              - paragraph [ref=e234]: Search, filter, edit roles, and update account status.
+            - generic [ref=e235]:
+              - generic [ref=e236]:
+                - img
+                - textbox "Search users" [ref=e237]
+              - combobox [ref=e238]:
+                - option "All roles" [selected]
+                - option "admin"
+                - option "mother"
+                - option "kid"
+              - combobox [ref=e239]:
+                - option "All status" [selected]
+                - option "active"
+                - option "inactive"
+              - combobox [ref=e240]:
+                - option "All access" [selected]
+                - option "none"
+                - option "partial"
+                - option "full"
+              - button "Filter" [ref=e241] [cursor=pointer]
+          - generic [ref=e242]:
+            - generic [ref=e243]:
+              - generic [ref=e244]:
+                - textbox "Full name" [ref=e245]: Test Admin
+                - textbox "Email" [ref=e246]: admin@test.com
+                - textbox "Username" [ref=e247]: admin
+                - textbox "Phone" [ref=e248]: "9999999999"
+                - combobox "Role" [ref=e249]:
+                  - option "admin" [selected]
+                  - option "mother"
+                  - option "kid"
+                - combobox "Access level" [ref=e250]:
+                  - option "none" [selected]
+                  - option "partial"
+                  - option "full"
+                - combobox "Status" [ref=e251]:
+                  - option "active" [selected]
+                  - option "inactive"
+                - button "Save" [ref=e252] [cursor=pointer]
+              - generic [ref=e253]:
+                - generic [ref=e254]: active
+                - button "Deactivate" [ref=e255] [cursor=pointer]
+            - generic [ref=e256]:
+              - generic [ref=e257]:
+                - textbox "Full name" [ref=e258]: SampleKid
+                - textbox "Email" [ref=e259]: samplekid@gmail.com
+                - textbox "Username" [ref=e260]: ABC
+                - textbox "Phone" [ref=e261]: "07305921962"
+                - combobox "Role" [ref=e262]:
+                  - option "admin"
+                  - option "mother"
+                  - option "kid" [selected]
+                - combobox "Access level" [ref=e263]:
+                  - option "none"
+                  - option "partial"
+                  - option "full" [selected]
+                - combobox "Status" [ref=e264]:
+                  - option "active" [selected]
+                  - option "inactive"
+                - button "Save" [ref=e265] [cursor=pointer]
+              - generic [ref=e266]:
+                - generic [ref=e267]: active
+                - button "Deactivate" [ref=e268] [cursor=pointer]
+            - generic [ref=e269]:
+              - generic [ref=e270]:
+                - textbox "Full name" [ref=e271]: XYZ
+                - textbox "Email" [ref=e272]: sample@gmail.com
+                - textbox "Username" [ref=e273]: XYZ
+                - textbox "Phone" [ref=e274]: "07305921962"
+                - combobox "Role" [ref=e275]:
+                  - option "admin"
+                  - option "mother" [selected]
+                  - option "kid"
+                - combobox "Access level" [ref=e276]:
+                  - option "none"
+                  - option "partial"
+                  - option "full" [selected]
+                - combobox "Status" [ref=e277]:
+                  - option "active" [selected]
+                  - option "inactive"
+                - button "Save" [ref=e278] [cursor=pointer]
+              - generic [ref=e279]:
+                - generic [ref=e280]: active
+                - button "Deactivate" [ref=e281] [cursor=pointer]
+            - generic [ref=e282]:
+              - generic [ref=e283]:
+                - textbox "Full name" [ref=e284]: Shenbaga Krithika N
+                - textbox "Email" [ref=e285]: shenbagakrithika@gmail.com
+                - textbox "Username" [ref=e286]: krithika
+                - textbox "Phone" [ref=e287]: "7305921962"
+                - combobox "Role" [ref=e288]:
+                  - option "admin" [selected]
+                  - option "mother"
+                  - option "kid"
+                - combobox "Access level" [ref=e289]:
+                  - option "none" [selected]
+                  - option "partial"
+                  - option "full"
+                - combobox "Status" [ref=e290]:
+                  - option "active" [selected]
+                  - option "inactive"
+                - button "Save" [ref=e291] [cursor=pointer]
+              - generic [ref=e292]:
+                - generic [ref=e293]: active
+                - button "Deactivate" [ref=e294] [cursor=pointer]
+    - generic [ref=e296]:
+      - generic [ref=e297]:
+        - paragraph [ref=e298]: Uploads
+        - heading "Content and product upload area" [level=2] [ref=e299]
+      - generic [ref=e300]:
+        - generic [ref=e301]:
+          - generic [ref=e302]:
+            - img [ref=e303]
+            - heading "Create course" [level=3] [ref=e304]
+            - generic [ref=e305]:
+              - textbox "Course title" [ref=e306]
+              - textbox "Description" [ref=e307]
+              - generic [ref=e308]:
+                - combobox [ref=e309]:
+                  - option "mother" [selected]
+                  - option "kid"
+                - combobox [ref=e310]:
+                  - option "program" [selected]
+                  - option "topic"
+                - spinbutton [ref=e311]
+              - button "Save course" [ref=e312] [cursor=pointer]
+          - generic [ref=e313]:
+            - img [ref=e314]
+            - heading "Create module" [level=3] [ref=e317]
+            - generic [ref=e318]:
+              - combobox [ref=e319]:
+                - option "Select course" [selected]
+                - option "Course1"
+                - option "M2M - Mom to Math Mentor Model Program"
+                - option "Addition, Subtraction & Number Comparison"
+                - option "Multiplication, Division & Fractions Basics"
+                - option "Factors, Multiples, LCM & HCF"
+                - option "Algebra & Linear Equations"
+              - textbox "Module title" [ref=e320]
+              - textbox "Description" [ref=e321]
+              - spinbutton [ref=e322]
+              - button "Save module" [ref=e323] [cursor=pointer]
+        - generic [ref=e324]:
+          - generic [ref=e325]:
+            - img [ref=e326]
+            - heading "Add video" [level=3] [ref=e329]
+            - generic [ref=e330]:
+              - combobox [ref=e331]:
+                - option "Select module" [selected]
+                - option "Course1 - Module1"
+                - 'option "M2M - Mom to Math Mentor Model Program - Module 1: Number Basics"'
+                - 'option "M2M - Mom to Math Mentor Model Program - Module 2: Fast Addition"'
+                - 'option "M2M - Mom to Math Mentor Model Program - Module 3: Fast Subtraction"'
+                - 'option "M2M - Mom to Math Mentor Model Program - Module 4: Multiplication Tricks"'
+                - option "Addition, Subtraction & Number Comparison - Number Comparison Basics"
+                - option "Multiplication, Division & Fractions Basics - Multiplication Basics"
+                - option "Factors, Multiples, LCM & HCF - Factors and Multiples"
+                - option "Algebra & Linear Equations - Algebra Basics"
+              - textbox "Video title" [ref=e332]
+              - textbox "Description" [ref=e333]
+              - textbox "Video URL" [ref=e334]
+              - textbox "Thumbnail URL" [ref=e335]
+              - generic [ref=e336]:
+                - combobox [ref=e337]:
+                  - option "partial" [selected]
+                  - option "full"
+                - spinbutton [ref=e338]
+              - button "Save video" [ref=e339] [cursor=pointer]
+          - generic [ref=e340]:
+            - img [ref=e341]
+            - heading "Add worksheet/PDF" [level=3] [ref=e344]
+            - generic [ref=e345]:
+              - textbox "Resource title" [ref=e346]
+              - textbox "File URL" [ref=e347]
+              - textbox "pdf / worksheet" [ref=e348]
+              - combobox [ref=e349]:
+                - option "Attach to course" [selected]
+                - option "Course1"
+                - option "M2M - Mom to Math Mentor Model Program"
+                - option "Addition, Subtraction & Number Comparison"
+                - option "Multiplication, Division & Fractions Basics"
+                - option "Factors, Multiples, LCM & HCF"
+                - option "Algebra & Linear Equations"
+              - combobox [ref=e350]:
+                - option "Attach to module" [selected]
+                - option "Module1"
+                - 'option "Module 1: Number Basics"'
+                - 'option "Module 2: Fast Addition"'
+                - 'option "Module 3: Fast Subtraction"'
+                - 'option "Module 4: Multiplication Tricks"'
+                - option "Number Comparison Basics"
+                - option "Multiplication Basics"
+                - option "Factors and Multiples"
+                - option "Algebra Basics"
+              - combobox [ref=e351]:
+                - option "Attach to video" [selected]
+                - option "Video1"
+                - option "Friendly Numbers"
+                - option "Place Value Made Simple"
+                - option "Add From Left to Right"
+                - option "Carry Less, Think Clearly"
+                - option "Borrowing Without Stress"
+                - option "Check Your Answer"
+                - option "Multiply Near 10"
+                - option "Two Digit Shortcuts"
+                - option "Greater, Less, and Equal"
+                - option "Addition Through Story Questions"
+                - option "Repeated Addition"
+                - option "Fractions First Look"
+                - option "Factors Made Clear"
+                - option "What is a Variable?"
+              - combobox [ref=e352]:
+                - option "partial" [selected]
+                - option "full"
+              - button "Save resource" [ref=e353] [cursor=pointer]
+        - generic [ref=e354]:
+          - heading "Existing LMS content" [level=3] [ref=e355]
+          - generic [ref=e356]:
+            - generic [ref=e357]:
+              - generic [ref=e358]:
+                - generic [ref=e359]:
+                  - paragraph [ref=e360]: Course1
+                  - paragraph [ref=e361]: mother / program
+                - button "Delete" [ref=e363] [cursor=pointer]:
+                  - img [ref=e364]
+                  - text: Delete
+              - generic [ref=e368]:
+                - generic [ref=e369]:
+                  - paragraph [ref=e370]: Module1
+                  - button "Delete" [ref=e372] [cursor=pointer]:
+                    - img [ref=e373]
+                    - text: Delete
+                - generic [ref=e377]:
+                  - generic [ref=e378]: Video1 (full)
+                  - button "Delete" [ref=e380] [cursor=pointer]:
+                    - img [ref=e381]
+                    - text: Delete
+            - generic [ref=e384]:
+              - generic [ref=e385]:
+                - generic [ref=e386]:
+                  - paragraph [ref=e387]: M2M - Mom to Math Mentor Model Program
+                  - paragraph [ref=e388]: mother / program
+                - button "Delete" [ref=e390] [cursor=pointer]:
+                  - img [ref=e391]
+                  - text: Delete
+              - generic [ref=e394]:
+                - generic [ref=e395]:
+                  - generic [ref=e396]:
+                    - paragraph [ref=e397]: "Module 1: Number Basics"
+                    - button "Delete" [ref=e399] [cursor=pointer]:
+                      - img [ref=e400]
+                      - text: Delete
+                  - generic [ref=e403]:
+                    - generic [ref=e404]:
+                      - generic [ref=e405]: Friendly Numbers (partial)
+                      - button "Delete" [ref=e407] [cursor=pointer]:
+                        - img [ref=e408]
+                        - text: Delete
+                    - generic [ref=e411]:
+                      - generic [ref=e412]: Place Value Made Simple (partial)
+                      - button "Delete" [ref=e414] [cursor=pointer]:
+                        - img [ref=e415]
+                        - text: Delete
+                - generic [ref=e418]:
+                  - generic [ref=e419]:
+                    - paragraph [ref=e420]: "Module 2: Fast Addition"
+                    - button "Delete" [ref=e422] [cursor=pointer]:
+                      - img [ref=e423]
+                      - text: Delete
+                  - generic [ref=e426]:
+                    - generic [ref=e427]:
+                      - generic [ref=e428]: Add From Left to Right (partial)
+                      - button "Delete" [ref=e430] [cursor=pointer]:
+                        - img [ref=e431]
+                        - text: Delete
+                    - generic [ref=e434]:
+                      - generic [ref=e435]: Carry Less, Think Clearly (partial)
+                      - button "Delete" [ref=e437] [cursor=pointer]:
+                        - img [ref=e438]
+                        - text: Delete
+                - generic [ref=e441]:
+                  - generic [ref=e442]:
+                    - paragraph [ref=e443]: "Module 3: Fast Subtraction"
+                    - button "Delete" [ref=e445] [cursor=pointer]:
+                      - img [ref=e446]
+                      - text: Delete
+                  - generic [ref=e449]:
+                    - generic [ref=e450]:
+                      - generic [ref=e451]: Borrowing Without Stress (full)
+                      - button "Delete" [ref=e453] [cursor=pointer]:
+                        - img [ref=e454]
+                        - text: Delete
+                    - generic [ref=e457]:
+                      - generic [ref=e458]: Check Your Answer (full)
+                      - button "Delete" [ref=e460] [cursor=pointer]:
+                        - img [ref=e461]
+                        - text: Delete
+                - generic [ref=e464]:
+                  - generic [ref=e465]:
+                    - paragraph [ref=e466]: "Module 4: Multiplication Tricks"
+                    - button "Delete" [ref=e468] [cursor=pointer]:
+                      - img [ref=e469]
+                      - text: Delete
+                  - generic [ref=e472]:
+                    - generic [ref=e473]:
+                      - generic [ref=e474]: Multiply Near 10 (full)
+                      - button "Delete" [ref=e476] [cursor=pointer]:
+                        - img [ref=e477]
+                        - text: Delete
+                    - generic [ref=e480]:
+                      - generic [ref=e481]: Two Digit Shortcuts (full)
+                      - button "Delete" [ref=e483] [cursor=pointer]:
+                        - img [ref=e484]
+                        - text: Delete
+            - generic [ref=e487]:
+              - generic [ref=e488]:
+                - generic [ref=e489]:
+                  - paragraph [ref=e490]: Addition, Subtraction & Number Comparison
+                  - paragraph [ref=e491]: kid / topic
+                - button "Delete" [ref=e493] [cursor=pointer]:
+                  - img [ref=e494]
+                  - text: Delete
+              - generic [ref=e498]:
+                - generic [ref=e499]:
+                  - paragraph [ref=e500]: Number Comparison Basics
+                  - button "Delete" [ref=e502] [cursor=pointer]:
+                    - img [ref=e503]
+                    - text: Delete
+                - generic [ref=e506]:
+                  - generic [ref=e507]:
+                    - generic [ref=e508]: Greater, Less, and Equal (partial)
+                    - button "Delete" [ref=e510] [cursor=pointer]:
+                      - img [ref=e511]
+                      - text: Delete
+                  - generic [ref=e514]:
+                    - generic [ref=e515]: Addition Through Story Questions (partial)
+                    - button "Delete" [ref=e517] [cursor=pointer]:
+                      - img [ref=e518]
+                      - text: Delete
+            - generic [ref=e521]:
+              - generic [ref=e522]:
+                - generic [ref=e523]:
+                  - paragraph [ref=e524]: Multiplication, Division & Fractions Basics
+                  - paragraph [ref=e525]: kid / topic
+                - button "Delete" [ref=e527] [cursor=pointer]:
+                  - img [ref=e528]
+                  - text: Delete
+              - generic [ref=e532]:
+                - generic [ref=e533]:
+                  - paragraph [ref=e534]: Multiplication Basics
+                  - button "Delete" [ref=e536] [cursor=pointer]:
+                    - img [ref=e537]
+                    - text: Delete
+                - generic [ref=e540]:
+                  - generic [ref=e541]:
+                    - generic [ref=e542]: Repeated Addition (partial)
+                    - button "Delete" [ref=e544] [cursor=pointer]:
+                      - img [ref=e545]
+                      - text: Delete
+                  - generic [ref=e548]:
+                    - generic [ref=e549]: Fractions First Look (full)
+                    - button "Delete" [ref=e551] [cursor=pointer]:
+                      - img [ref=e552]
+                      - text: Delete
+            - generic [ref=e555]:
+              - generic [ref=e556]:
+                - generic [ref=e557]:
+                  - paragraph [ref=e558]: Factors, Multiples, LCM & HCF
+                  - paragraph [ref=e559]: kid / topic
+                - button "Delete" [ref=e561] [cursor=pointer]:
+                  - img [ref=e562]
+                  - text: Delete
+              - generic [ref=e566]:
+                - generic [ref=e567]:
+                  - paragraph [ref=e568]: Factors and Multiples
+                  - button "Delete" [ref=e570] [cursor=pointer]:
+                    - img [ref=e571]
+                    - text: Delete
+                - generic [ref=e575]:
+                  - generic [ref=e576]: Factors Made Clear (full)
+                  - button "Delete" [ref=e578] [cursor=pointer]:
+                    - img [ref=e579]
+                    - text: Delete
+            - generic [ref=e582]:
+              - generic [ref=e583]:
+                - generic [ref=e584]:
+                  - paragraph [ref=e585]: Algebra & Linear Equations
+                  - paragraph [ref=e586]: kid / topic
+                - button "Delete" [ref=e588] [cursor=pointer]:
+                  - img [ref=e589]
+                  - text: Delete
+              - generic [ref=e593]:
+                - generic [ref=e594]:
+                  - paragraph [ref=e595]: Algebra Basics
+                  - button "Delete" [ref=e597] [cursor=pointer]:
+                    - img [ref=e598]
+                    - text: Delete
+                - generic [ref=e602]:
+                  - generic [ref=e603]: What is a Variable? (full)
+                  - button "Delete" [ref=e605] [cursor=pointer]:
+                    - img [ref=e606]
+                    - text: Delete
+    - generic [ref=e610]:
+      - generic [ref=e611]:
+        - paragraph [ref=e612]: Orders
+        - heading "Orders" [level=2] [ref=e613]
+      - generic [ref=e616]:
+        - generic [ref=e617]:
+          - heading "All orders" [level=3] [ref=e618]
+          - paragraph [ref=e619]: No orders yet. Orders created from checkout will appear here.
+        - button "Export orders" [ref=e620] [cursor=pointer]
+    - generic [ref=e622]:
+      - generic [ref=e623]:
+        - paragraph [ref=e624]: Management
+        - heading "Inventory, tracking, and course access" [level=2] [ref=e625]
+      - generic [ref=e626]:
+        - generic [ref=e627]:
+          - generic [ref=e629]:
+            - heading "Inventory management" [level=3] [ref=e630]
+            - paragraph [ref=e631]: "128"
+            - paragraph [ref=e632]: Products available
+          - generic [ref=e634]:
+            - img [ref=e635]
+            - generic [ref=e639]: 6 products need restock review
+        - generic [ref=e640]:
+          - heading "Tracking ID management" [level=3] [ref=e643]
+          - generic [ref=e644]:
+            - paragraph [ref=e645]: Add Delhivery tracking IDs from each order card above.
+            - button "Ready in Orders" [ref=e646] [cursor=pointer]
+        - generic [ref=e647]:
+          - heading "Course access management" [level=3] [ref=e650]
+          - generic [ref=e652]:
+            - generic [ref=e653]: Set access from each member row above.
+            - generic [ref=e654]: Supports none, partial, and full access.
+            - generic [ref=e656]:
+              - generic [ref=e657]: Course completion
+              - generic [ref=e658]: 78%
+    - generic [ref=e662]:
+      - generic [ref=e663]:
+        - paragraph [ref=e664]: Payments
+        - heading "Payment records placeholder" [level=2] [ref=e665]
+      - generic [ref=e668]: No payment records yet. Razorpay payment and webhook records will appear here.
+  - contentinfo [ref=e669]:
+    - generic [ref=e670]:
+      - generic [ref=e671]:
+        - link "Maths with Deepika home" [ref=e672] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e674]: Maths with Deepika
+        - paragraph [ref=e675]: A gentle learning space for mothers and kids to make maths clear, joyful, and confidence-building.
+      - generic [ref=e676]:
+        - heading "Explore" [level=3] [ref=e677]
+        - generic [ref=e678]:
+          - link "Home" [ref=e679] [cursor=pointer]:
+            - /url: /
+          - link "About" [ref=e680] [cursor=pointer]:
+            - /url: /about
+          - link "For Mothers" [ref=e681] [cursor=pointer]:
+            - /url: /for-mothers
+          - link "For Kids" [ref=e682] [cursor=pointer]:
+            - /url: /for-kids
+          - link "Shop" [ref=e683] [cursor=pointer]:
+            - /url: /shop
+      - generic [ref=e684]:
+        - heading "Learning" [level=3] [ref=e685]
+        - generic [ref=e686]:
+          - link "Mother Login" [ref=e687] [cursor=pointer]:
+            - /url: /login?role=mother
+          - link "Kid Login" [ref=e688] [cursor=pointer]:
+            - /url: /login?role=kid
