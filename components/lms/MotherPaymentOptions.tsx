@@ -1,5 +1,7 @@
+"use client";
+
 import { CreditCard, ShieldCheck, Sparkles } from "lucide-react";
-import { activateMotherAccess } from "@/app/mother/dashboard/actions";
+import { activateMotherAccess } from "@/app/actions/mother";
 import { AccessLevel } from "@/lib/types";
 
 export function MotherPaymentOptions({ accessLevel }: { accessLevel: AccessLevel }) {

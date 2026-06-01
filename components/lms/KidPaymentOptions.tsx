@@ -1,5 +1,7 @@
+"use client";
+
 import { CreditCard, ShieldCheck, Sparkles } from "lucide-react";
-import { activateKidAccess } from "@/app/kid-dashboard/actions";
+import { activateKidAccess } from "@/app/actions/kid";
 import { AccessLevel } from "@/lib/types";
 
 export function KidPaymentOptions({ accessLevel }: { accessLevel: AccessLevel }) {

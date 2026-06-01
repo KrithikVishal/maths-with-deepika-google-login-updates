@@ -12,13 +12,24 @@
 # Error details
 
 ```
-Error: apiRequestContext.post: connect ECONNREFUSED ::1:3000
-Call log:
-  - → POST http://localhost:3000/api/validate
-    - user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.7778.96 Safari/537.36
-    - accept: */*
-    - accept-encoding: gzip,deflate,br
-    - content-type: application/json
-    - content-length: 16
+Error: expect(received).toBe(expected) // Object.is equality
 
+Expected: 400
+Received: 404
+```
+
+# Test source
+
+```ts
+  1  | import { test, expect } from '@playwright/test';
+  2  | 
+  3  | test('validation error returns 400', async ({ request }) => {
+  4  |   const response = await request.post('/api/validate', {
+  5  |     data: { invalid: true },
+  6  |   });
+> 7  |   expect(response.status()).toBe(400);
+     |                             ^ Error: expect(received).toBe(expected) // Object.is equality
+  8  | });
+  9  | 
+  10 | 
 ```

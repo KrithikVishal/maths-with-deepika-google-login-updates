@@ -87,6 +87,26 @@ export async function GET(request: Request) {
       return NextResponse.redirect(loginUrl(request, expectedRole, "oauth-email"));
     }
 
+    // Ensure the username is unique to prevent unique constraint violations on signup
+    let uniqueUsername = profilePayload.username;
+    let usernameExists = true;
+    let attempt = 0;
+
+    while (usernameExists && attempt < 10) {
+      const checkUsername = attempt === 0 ? uniqueUsername : `${uniqueUsername}-${Math.floor(Math.random() * 1000)}`;
+      const { data: existingUser } = await admin
+        .from("profiles")
+        .select("id")
+        .eq("username", checkUsername)
+        .maybeSingle();
+
+      if (!existingUser || existingUser.id === user.id) {
+        profilePayload.username = checkUsername;
+        usernameExists = false;
+      }
+      attempt++;
+    }
+
     const { data: createdProfile, error: profileError } = await admin
       .from("profiles")
       .upsert(profilePayload)

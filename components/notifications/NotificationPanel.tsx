@@ -1,3 +1,5 @@
+"use client";
+
 import { Bell, CheckCircle2 } from "lucide-react";
 import { markNotificationReadAction } from "@/app/notifications/actions";
 import type { UserNotification } from "@/lib/notifications";
