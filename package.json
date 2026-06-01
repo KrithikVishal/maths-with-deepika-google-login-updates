@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build --webpack",
+    "import:m2m-videos": "node scripts/import-m2m-videos.mjs",
+    "import:m2m-videos:dry": "node scripts/import-m2m-videos.mjs --dry-run",
     "start": "next start",
     "lint": "next lint"
   },

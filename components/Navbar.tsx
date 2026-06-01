@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ChevronDown, Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { navLinks } from "@/data/mock";
 import { BrandLogo } from "./BrandLogo";
@@ -11,8 +12,27 @@ import { CartLink } from "./cart/CartLink";
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const [loginOpen, setLoginOpen] = useState(false);
+  const pathname = usePathname();
   const primaryLinks = navLinks.filter((link) => link.href !== "/contact");
   const contactLink = navLinks.find((link) => link.href === "/contact");
+  const isActive = (href: string) => {
+    if (href === "/") {
+      return pathname === "/";
+    }
+
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
+  const navLinkClass = (href: string) =>
+    `relative rounded-full px-3 py-2 text-sm font-semibold transition-all duration-300 after:absolute after:bottom-1 after:left-1/2 after:h-0.5 after:rounded-full after:bg-coral after:transition-all after:duration-300 ${
+      isActive(href)
+        ? "bg-coral/10 text-blueDeep after:w-6 after:-translate-x-1/2"
+        : "text-ink/70 after:w-0 after:-translate-x-1/2 hover:bg-beige hover:text-blueDeep hover:after:w-6"
+    }`;
+  const mobileNavLinkClass = (href: string) =>
+    `rounded-2xl px-4 py-3 text-sm font-semibold transition ${
+      isActive(href) ? "bg-coral/10 text-blueDeep ring-1 ring-coral/15" : "text-blueDeep hover:bg-beige"
+    }`;
+  const loginActive = pathname.startsWith("/login") || pathname.startsWith("/mother-login");
 
   return (
     <header className="sticky top-0 z-40 border-b border-blueDeep/10 bg-white/90 backdrop-blur">
@@ -20,13 +40,17 @@ export function Navbar() {
         <BrandLogo compact />
         <nav className="hidden items-center gap-6 lg:flex">
           {primaryLinks.map((link) => (
-            <Link key={link.href} href={link.href} className="text-sm font-medium text-ink/70 transition hover:text-blueDeep">
+            <Link key={link.href} href={link.href} className={navLinkClass(link.href)}>
               {link.label}
             </Link>
           ))}
           <div className="relative">
             <button
-              className="focus-ring inline-flex items-center gap-1 text-sm font-medium text-ink/70 transition hover:text-blueDeep"
+              className={`focus-ring relative inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm font-semibold transition-all duration-300 after:absolute after:bottom-1 after:left-1/2 after:h-0.5 after:rounded-full after:bg-coral after:transition-all after:duration-300 ${
+                loginActive
+                  ? "bg-coral/10 text-blueDeep after:w-6 after:-translate-x-1/2"
+                  : "text-ink/70 after:w-0 after:-translate-x-1/2 hover:bg-beige hover:text-blueDeep hover:after:w-6"
+              }`}
               onClick={() => setLoginOpen((value) => !value)}
               type="button"
             >
@@ -45,7 +69,7 @@ export function Navbar() {
             ) : null}
           </div>
           {contactLink ? (
-            <Link href={contactLink.href} className="text-sm font-medium text-ink/70 transition hover:text-blueDeep">
+            <Link href={contactLink.href} className={navLinkClass(contactLink.href)}>
               {contactLink.label}
             </Link>
           ) : null}
@@ -64,7 +88,7 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="rounded-2xl px-4 py-3 text-sm font-semibold text-blueDeep hover:bg-beige"
+                className={mobileNavLinkClass(link.href)}
                 onClick={() => setOpen(false)}
               >
                 {link.label}
@@ -77,7 +101,7 @@ export function Navbar() {
               Kid Login
             </Link>
             {contactLink ? (
-              <Link href={contactLink.href} className="rounded-2xl px-4 py-3 text-sm font-semibold text-blueDeep hover:bg-beige" onClick={() => setOpen(false)}>
+              <Link href={contactLink.href} className={mobileNavLinkClass(contactLink.href)} onClick={() => setOpen(false)}>
                 {contactLink.label}
               </Link>
             ) : null}
