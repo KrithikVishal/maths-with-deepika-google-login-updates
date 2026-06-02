@@ -16,6 +16,19 @@ const nextConfig = {
     };
     return config;
   },
+  async headers() {
+    return [
+      {
+        source: "/(mother|kid)-dashboard/video/:path*",
+        headers: [
+          {
+            key: "Content-Security-Policy",
+            value: "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com;",
+          },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;

@@ -9,6 +9,19 @@ import { Section } from "@/components/Section";
 import { requireRole } from "@/lib/auth";
 import { canAccess, getCourseCollectionStats, getKidVideo, getResources, getVideoProgress, normalizeAccessLevel } from "@/lib/lms";
 
+function toEmbedUrl(url: string): string {
+  try {
+    const u = new URL(url);
+    if (u.pathname.startsWith("/embed/")) return url;
+    if (u.hostname === "youtu.be") return `https://www.youtube.com/embed${u.pathname}`;
+    const v = u.searchParams.get("v");
+    if (v) return `https://www.youtube.com/embed/${v}`;
+  } catch {
+    // not a valid URL – return as-is
+  }
+  return url;
+}
+
 export default async function KidVideoPage({ params }: { params: Promise<{ id: string }> }) {
   const profile = await requireRole("kid");
   const accessLevel = normalizeAccessLevel(profile.access_level);
@@ -49,7 +62,7 @@ export default async function KidVideoPage({ params }: { params: Promise<{ id: s
             <div className="overflow-hidden rounded-[2rem] bg-blueDeep shadow-soft">
               <div className="grid aspect-video place-items-center text-white">
                 {lesson.video.video_url ? (
-                  <iframe src={lesson.video.video_url} title={lesson.video.title} className="h-full w-full" allowFullScreen />
+                  <iframe src={toEmbedUrl(lesson.video.video_url)} title={lesson.video.title} className="h-full w-full" allowFullScreen />
                 ) : (
                   <div className="px-6 text-center">
                     <PlayCircle className="mx-auto h-16 w-16 text-gold" />
