@@ -67,12 +67,21 @@ export function HomeMagicEffects() {
       }
 
       lastTrailAt.current = now;
-      lastTrailAt.current = now;
+
+      for (let i = 0; i < 40; i++) {
+        addParticle({
+          x: mouseEvent.clientX + (Math.random() * 34 - 17),
+          y: mouseEvent.clientY + (Math.random() * 26 - 13),
+          color: sparkleColors[Math.floor(Math.random() * sparkleColors.length)],
+          size: 18 + Math.random() * 30,
+          shape: sparkleShapes[Math.floor(Math.random() * sparkleShapes.length)],
+          dx: Math.random() * 44 - 22,
+          dy: 180 + Math.random() * 220,
+        });
+      }
+    };
 
     const handleScroll = () => {
-      const centerX = window.innerWidth * 0.5;
-      const centerY = window.innerHeight * 0.4;
-
       for (let i = 0; i < 60; i++) {
         addParticle({
           x: Math.random() * window.innerWidth,
@@ -84,20 +93,6 @@ export function HomeMagicEffects() {
           dy: 180 + Math.random() * 220,
         });
       }
-    };
-
-for (let i = 0; i < 40; i++) {
-  addParticle({
-    x: mouseEvent.clientX + (Math.random() * 34 - 17),
-    y: mouseEvent.clientY + (Math.random() * 26 - 13),
-    color: sparkleColors[Math.floor(Math.random() * sparkleColors.length)],
-    size: 18 + Math.random() * 30,
-    shape: sparkleShapes[Math.floor(Math.random() * sparkleShapes.length)],
-    dx: Math.random() * 44 - 22,
-    dy: 180 + Math.random() * 220,
-  });
-}
-return;
     };
 
     const handleClick = (event: Event) => {
