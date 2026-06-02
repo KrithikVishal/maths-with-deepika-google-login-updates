@@ -15,7 +15,7 @@ type Particle = {
 };
 
 const sparkleColors = ["#FFD166", "#FF6B5F", "#CFF3E2", "#183A8F"];
-const sparkleShapes: Particle["shape"][] = ["star", "dot", "plus"];
+const sparkleShapes: Particle["shape"][] = ["star", "dot"];
 
 function canAnimate() {
   if (typeof window === "undefined") {
@@ -73,9 +73,9 @@ export function HomeMagicEffects() {
           x: mouseEvent.clientX + (Math.random() * 34 - 17),
           y: mouseEvent.clientY + (Math.random() * 26 - 13),
           color: sparkleColors[Math.floor(Math.random() * sparkleColors.length)],
-          size: 18 + Math.random() * 30,
+          size: 6 + Math.random() * 10,
           shape: sparkleShapes[Math.floor(Math.random() * sparkleShapes.length)],
-          dx: Math.random() * 44 - 22,
+          dx: Math.random() * 120 - 60,
           dy: 180 + Math.random() * 220,
         });
       }
@@ -87,9 +87,9 @@ export function HomeMagicEffects() {
           x: Math.random() * window.innerWidth,
           y: Math.random() * 200,
           color: sparkleColors[Math.floor(Math.random() * sparkleColors.length)],
-          size: 18 + Math.random() * 30,
+          size: 6 + Math.random() * 10,
           shape: sparkleShapes[Math.floor(Math.random() * sparkleShapes.length)],
-          dx: Math.random() * 44 - 22,
+          dx: Math.random() * 120 - 60,
           dy: 180 + Math.random() * 220,
         });
       }
@@ -148,7 +148,7 @@ export function HomeMagicEffects() {
           pointer-events: none;
           transform: translate(-50%, -50%);
           opacity: 1;
-          filter: drop-shadow(0 0 10px rgba(255, 209, 102, 0.95)) drop-shadow(0 0 22px rgba(255, 209, 102, 0.65));
+          filter: drop-shadow(0 0 10px rgba(255, 209, 102, 0.95)) drop-shadow(0 0 4px rgba(255,209,102,.8));
           animation: homeSparkleTrail 1800ms cubic-bezier(.16, 1, .3, 1) forwards;
         }
 
