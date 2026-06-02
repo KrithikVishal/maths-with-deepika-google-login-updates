@@ -3,7 +3,7 @@
 import { ExternalLink } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState, useTransition } from "react";
-import { updateOrderAction } from "@/app/admin/dashboard/actions";
+// We'll call the update API via fetch instead of importing a server action
 import { useCart } from "@/components/cart/CartProvider";
 import { StoredOrder } from "@/lib/types";
 
@@ -87,11 +87,19 @@ export function AdminOrderManagement({ initialOrders = [] }: { initialOrders?: S
   const todayCount = sourceOrders.filter((order) => new Date(order.createdAt).toDateString() === today).length;
 
   function saveOrder(orderId: string, updates: { status?: StoredOrder["status"]; trackingId?: string; courierName?: string; trackingUrl?: string }) {
+    const apiUpdateOrder = async (orderId: string, updates: any) => {
+      const res = await fetch('/api/update-order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ orderId, updates }),
+      });
+      return await res.json();
+    };
     updateOrder(orderId, updates);
     setManagedOrders((current) => current.map((order) => (order.id === orderId ? { ...order, ...updates } : order)));
     setMessage("Saving order...");
     startTransition(async () => {
-      const result = await updateOrderAction(orderId, updates);
+      const result = await apiUpdateOrder(orderId, updates);
       setMessage(result.message);
       router.refresh();
       window.setTimeout(() => setMessage(""), 2200);

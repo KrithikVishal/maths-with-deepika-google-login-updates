@@ -1,7 +1,8 @@
 "use client";
 
 import { CreditCard, ShieldCheck, Sparkles } from "lucide-react";
-import { activateKidAccess } from "@/app/actions/kid";
+// Server action replaced with API route
+
 import { AccessLevel } from "@/lib/types";
 
 export function KidPaymentOptions({ accessLevel }: { accessLevel: AccessLevel }) {
@@ -27,27 +28,36 @@ export function KidPaymentOptions({ accessLevel }: { accessLevel: AccessLevel })
         </div>
       </div>
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
-        <form action={activateKidAccess} className="rounded-[1.5rem] bg-beige/65 p-5">
-          <Sparkles className="h-6 w-6 text-gold" />
-          <h4 className="mt-3 font-bold text-blueDeep">Partial payment</h4>
-          <p className="mt-2 text-sm leading-6 text-ink/65">Unlock selected starter topic videos.</p>
-          <input type="hidden" name="payment_type" value="partial" />
-          <button
-            className="focus-ring mt-4 inline-flex w-full items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-blueDeep shadow-sm ring-1 ring-blueDeep/15 transition hover:bg-beige disabled:cursor-not-allowed disabled:opacity-50"
-            disabled={accessLevel === "partial"}
-          >
-            {accessLevel === "partial" ? "Partial Access Active" : "Pay Partial"}
-          </button>
-        </form>
-        <form action={activateKidAccess} className="rounded-[1.5rem] bg-blueDeep p-5 text-white">
-          <ShieldCheck className="h-6 w-6 text-gold" />
-          <h4 className="mt-3 font-bold">Full payment</h4>
-          <p className="mt-2 text-sm leading-6 text-white/75">Unlock all topic courses, videos, and resources.</p>
-          <input type="hidden" name="payment_type" value="full" />
-          <button className="focus-ring mt-4 inline-flex w-full items-center justify-center rounded-full bg-coral px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#ee5f52]">
-            Pay Full
-          </button>
-        </form>
+          <form onSubmit={async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.currentTarget);
+            await fetch('/api/activate-kid', { method: 'POST', body: formData });
+            // Optionally trigger revalidation or UI update
+          }} className="rounded-[1.5rem] bg-beige/65 p-5">
+            <Sparkles className="h-6 w-6 text-gold" />
+            <h4 className="mt-3 font-bold text-blueDeep">Partial payment</h4>
+            <p className="mt-2 text-sm leading-6 text-ink/65">Unlock selected starter topic videos.</p>
+            <input type="hidden" name="payment_type" value="partial" />
+            <button
+              className="focus-ring mt-4 inline-flex w-full items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-blueDeep shadow-sm ring-1 ring-blueDeep/15 transition hover:bg-beige disabled:cursor-not-allowed disabled:opacity-50"
+              disabled={accessLevel === "partial"}
+            >
+              {accessLevel === "partial" ? "Partial Access Active" : "Pay Partial"}
+            </button>
+          </form>
+          <form onSubmit={async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.currentTarget);
+            await fetch('/api/activate-kid', { method: 'POST', body: formData });
+          }} className="rounded-[1.5rem] bg-blueDeep p-5 text-white">
+            <ShieldCheck className="h-6 w-6 text-gold" />
+            <h4 className="mt-3 font-bold">Full payment</h4>
+            <p className="mt-2 text-sm leading-6 text-white/75">Unlock all topic courses, videos, and resources.</p>
+            <input type="hidden" name="payment_type" value="full" />
+            <button className="focus-ring mt-4 inline-flex w-full items-center justify-center rounded-full bg-coral px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#ee5f52]">
+              Pay Full
+            </button>
+          </form>
       </div>
     </div>
   );

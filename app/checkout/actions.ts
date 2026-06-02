@@ -79,7 +79,8 @@ function readCheckoutToken(token?: string): CheckoutSnapshot | null {
   if (signature.length !== expected.length) return null;
   if (!crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(expected))) return null;
   const snapshot = JSON.parse(decodeBase64Url(payload)) as CheckoutSnapshot;
-  const maxAgeMs = 24 * 60 * 60 * 1000;
+  const ttlSeconds = Number(process.env.CHECKOUT_TOKEN_TTL_SECONDS) || 86400;
+  const maxAgeMs = ttlSeconds * 1000;
   if (!snapshot.issuedAt || Date.now() - snapshot.issuedAt > maxAgeMs) return null;
   return snapshot;
 }
@@ -98,6 +99,7 @@ async function createCheckoutSnapshot(input: { orderId: string; amount: number; 
     .single<{ id: string }>();
 
   if (error || !data) {
+    console.error("checkout_snapshots insert failed:", JSON.stringify(error));
     throw new Error("Could not create checkout session.");
   }
 
@@ -193,6 +195,8 @@ export async function createRazorpayOrder(input: CheckoutInput) {
 
   try {
     trusted = buildTrustedCheckout(input);
+    // Debug – output Razorpay credentials to the server log (will appear in the terminal console)
+    console.info('Razorpay credentials', { keyId: keyId ? '***' : null, keySecret: keySecret ? '***' : null });
   } catch (error) {
     return { ok: false, message: error instanceof Error ? error.message : "Could not validate cart." };
   }
@@ -200,38 +204,7 @@ export async function createRazorpayOrder(input: CheckoutInput) {
   const amount = Math.round(trusted.total * 100);
 
   if (!keyId || !keySecret) {
-    if (!mockPaymentsAllowed()) {
-      return { ok: false, message: "Payment gateway is not configured." };
-    }
-
-    const mockOrderId = `mock_order_${crypto.randomUUID()}`;
-    let snapshotId: string;
-    try {
-      snapshotId = await createCheckoutSnapshot({
-        orderId: mockOrderId,
-        amount,
-        currency: "INR",
-        checkout: trusted,
-      });
-    } catch (error) {
-      return { ok: false, message: error instanceof Error ? error.message : "Could not create checkout session." };
-    }
-
-    return {
-      ok: true,
-      mock: true,
-      keyId: "mock",
-      orderId: mockOrderId,
-      amount,
-      currency: "INR",
-      checkoutToken: createCheckoutToken({
-        id: snapshotId,
-        orderId: mockOrderId,
-        amount,
-        currency: "INR",
-        issuedAt: Date.now(),
-      }),
-    };
+    return { ok: false, message: "Payment gateway is not configured." };
   }
 
   const response = await fetch("https://api.razorpay.com/v1/orders", {
@@ -312,7 +285,7 @@ async function runPostOrderNotifications(input: { userId: string | null; orderId
 
 async function createPaidOrder(input: CheckoutInput, payment: { razorpayOrderId?: string; razorpayPaymentId?: string; paymentContext?: "product" | "digital"; checkoutSnapshotId?: string }) {
   try {
-    const trusted = input;
+    const trusted = buildTrustedCheckout(input);
     const userId = await getCurrentUserId();
     const admin = createSupabaseAdminClient();
 
@@ -336,6 +309,12 @@ async function createPaidOrder(input: CheckoutInput, payment: { razorpayOrderId?
     }
 
     await runPostOrderNotifications({ userId, orderId: String(orderId), checkout: trusted });
+    if (payment.checkoutSnapshotId) {
+      await admin
+        .from("checkout_snapshots")
+        .update({ used_at: new Date().toISOString() })
+        .eq("id", payment.checkoutSnapshotId);
+    }
     return String(orderId);
   } catch (error) {
     console.error("Order creation failed", error);

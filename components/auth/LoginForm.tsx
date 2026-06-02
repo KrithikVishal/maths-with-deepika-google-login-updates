@@ -40,7 +40,7 @@ export function LoginForm({
   const [selectedRole, setSelectedRole] = useState<"mother" | "kid" | "admin">(initialRole);
   const [loginState, loginFormAction, loginPending] = useActionState(loginAction, initialState);
   const [registerState, registerFormAction, registerPending] = useActionState(registerStudentAction, initialState);
-  const loginMessage = loginState.message ?? (
+  const loginMessage = loginState?.message ?? (
     error === "inactive"
       ? "This account is inactive. Please contact the admin."
       : error === "auth-config"
