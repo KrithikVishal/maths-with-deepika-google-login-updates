@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { FounderPhotoFrame } from "@/components/FounderPhotoFrame";
+import { HomeMagicEffects } from "@/components/HomeMagicEffects";
 import { HomeTestimonialsCarousel, type HomeTestimonial } from "@/components/HomeTestimonialsCarousel";
 import { PageShell } from "@/components/PageShell";
 
@@ -520,35 +521,38 @@ function PlayfulCardBadge({ children, tone = "yellow" }: { children: React.React
 export default function HomePage() {
   return (
     <PageShell>
-      <section className="relative overflow-hidden bg-white">
-        <HeroDoodleLayer />
-        <div className="relative mx-auto grid min-h-[calc(100vh-72px)] max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[0.96fr_1.04fr] lg:px-8">
-          <div>
-            <p className="max-w-[40rem] text-xl font-medium leading-[1.6] text-[#183A8F] sm:text-2xl sm:leading-[1.55]">
-              <b>We are on a mission to make maths joyful for children and empowering for mothers who want to step into confidence, independence, and self-respect.</b>
-            </p>
-            <div className="mt-7 max-w-[38rem] space-y-4 text-base leading-8 text-[#102A56]/75 sm:text-lg sm:leading-9">
-              <p>
-                Whether you are here to help your child overcome maths fear or to rebuild your own journey as a Vedic Maths mentor, you are in the right place.
+      <div className="home-magic-scope">
+        <HomeMagicEffects />
+
+        <section className="relative overflow-hidden bg-white">
+          <HeroDoodleLayer />
+          <div className="relative mx-auto grid min-h-[calc(100vh-72px)] max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[0.96fr_1.04fr] lg:px-8">
+            <div>
+              <p className="max-w-[40rem] text-xl font-medium leading-[1.6] text-[#183A8F] sm:text-2xl sm:leading-[1.55]">
+                <b>We are on a mission to make maths joyful for children and empowering for mothers who want to step into confidence, independence, and self-respect.</b>
               </p>
-              <p>
-                Here, maths is not taught with pressure. It is taught with clarity, patience, practice, and joy.
-              </p>
-            </div>
-            <div className="relative mt-9 flex flex-wrap gap-3">
-              <div className="pointer-events-none absolute -right-8 -top-8 hidden lg:block" aria-hidden="true">
-                <DoodleIcon type="badge" className="h-12 w-12 rotate-6 opacity-55" />
+              <div className="mt-7 max-w-[38rem] space-y-4 text-base leading-8 text-[#102A56]/75 sm:text-lg sm:leading-9">
+                <p>
+                  Whether you are here to help your child overcome maths fear or to rebuild your own journey as a Vedic Maths mentor, you are in the right place.
+                </p>
+                <p>
+                  Here, maths is not taught with pressure. It is taught with clarity, patience, practice, and joy.
+                </p>
               </div>
-              <div className="pointer-events-none absolute -bottom-10 left-64 hidden lg:block" aria-hidden="true">
-                <DoodleIcon type="star" className="h-9 w-9 -rotate-12 opacity-50" />
+              <div className="relative mt-9 flex flex-wrap gap-3">
+                <div className="pointer-events-none absolute -right-8 -top-8 hidden lg:block" aria-hidden="true">
+                  <DoodleIcon type="badge" className="h-12 w-12 rotate-6 opacity-55" />
+                </div>
+                <div className="pointer-events-none absolute -bottom-10 left-64 hidden lg:block" aria-hidden="true">
+                  <DoodleIcon type="star" className="h-9 w-9 -rotate-12 opacity-50" />
+                </div>
+                <PlayfulButton href="/for-mothers" icon>I Want to Become a Vedic Maths Mentor</PlayfulButton>
+                <PlayfulButton href="/for-kids" variant="secondary" icon>I Want Maths Support for My Child</PlayfulButton>
               </div>
-              <PlayfulButton href="/for-mothers" icon>I Want to Become a Vedic Maths Mentor</PlayfulButton>
-              <PlayfulButton href="/for-kids" variant="secondary" icon>I Want Maths Support for My Child</PlayfulButton>
             </div>
+            <HeroImagePlaceholder />
           </div>
-          <HeroImagePlaceholder />
-        </div>
-      </section>
+        </section>
 
       <HomeSection
         tone="peach"
@@ -573,7 +577,7 @@ export default function HomePage() {
               </p>
               <PlayfulButton href="/for-mothers" className="mt-6 bg-[#FF6B5F] text-white hover:bg-[#f45e52]" icon>Explore M2M Program</PlayfulButton>
             </div>
-            <div className="relative grid min-h-[260px] place-items-center rounded-[1.75rem] border border-[#D8E2F3] bg-gradient-to-br from-[#FFF8EC] via-[#FFF0E8] to-white p-6 text-center shadow-[0_18px_45px_rgba(16,42,86,0.08)]">
+            <div className="home-tilt-card relative grid min-h-[260px] place-items-center rounded-[1.75rem] border border-[#D8E2F3] bg-gradient-to-br from-[#FFF8EC] via-[#FFF0E8] to-white p-6 text-center shadow-[0_18px_45px_rgba(16,42,86,0.08)]">
               <div>
                 <div className="mx-auto mb-4 h-12 w-12 rounded-[1.15rem] bg-white shadow-[0_10px_24px_rgba(16,42,86,0.08)]" />
                 <p className="text-base font-black text-[#183A8F]">M2M Course Mockup Image</p>
@@ -594,7 +598,7 @@ export default function HomePage() {
         </div>
         <div className="mt-8 grid gap-6 lg:grid-cols-3">
           {childOptions.map((item) => (
-            <article key={item.title} className="flex h-full flex-col rounded-[2rem] border border-[#D8E2F3] bg-white p-6 shadow-[0_18px_45px_rgba(16,42,86,0.08)] transition-all duration-300 hover:-translate-y-1 hover:rotate-[0.35deg] hover:scale-[1.01] hover:shadow-[0_24px_60px_rgba(16,42,86,0.12)]">
+            <article key={item.title} className="home-tilt-card flex h-full flex-col rounded-[2rem] border border-[#D8E2F3] bg-white p-6 shadow-[0_18px_45px_rgba(16,42,86,0.08)] transition-all duration-300">
               <div className="grid aspect-[4/3] place-items-center rounded-[1.6rem] border border-[#D8E2F3] bg-gradient-to-br from-[#FFF8EC] via-[#FFF0E8] to-[#EAF3FF] p-5 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]">
                 <div>
                   <div className="mx-auto mb-3 h-10 w-10 rounded-[1rem] bg-white shadow-[0_10px_24px_rgba(16,42,86,0.08)]" />
@@ -628,7 +632,7 @@ export default function HomePage() {
 
       <HomeSection tone="cream" eyebrow="Hey there!" title="Meet Deepika" scene="story">
         <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="rounded-[2rem] border border-[#D8E2F3] bg-white p-6 text-base leading-7 text-[#102A56]/75 shadow-[0_18px_45px_rgba(16,42,86,0.08)]">
+          <div className="home-tilt-card rounded-[2rem] border border-[#D8E2F3] bg-white p-6 text-base leading-7 text-[#102A56]/75 shadow-[0_18px_45px_rgba(16,42,86,0.08)]">
             <div className="space-y-5">
               <p>
                 I’m the founder of Maths with Deepika. I became a mother very young, and somewhere between responsibilities and expectations, I slowly lost my confidence and my own voice.
@@ -682,7 +686,7 @@ export default function HomePage() {
           {whyCards.map((card, index) => {
             const Icon = card.icon;
             return (
-              <div key={card.title} className="relative flex gap-4 rounded-[1.5rem] bg-white/80 p-4 text-left shadow-[0_12px_28px_rgba(16,42,86,0.06)] ring-1 ring-[#D8E2F3]/80 transition duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_18px_38px_rgba(16,42,86,0.1)] sm:p-5">
+              <div key={card.title} className="home-tilt-card relative flex gap-4 rounded-[1.5rem] bg-white/80 p-4 text-left shadow-[0_12px_28px_rgba(16,42,86,0.06)] ring-1 ring-[#D8E2F3]/80 sm:p-5">
                 {index < whyCards.length - 1 ? (
                   <div className="absolute left-6 top-16 h-6 border-l-2 border-dashed border-[#FF6B5F]/35 sm:hidden" />
                 ) : null}
@@ -727,6 +731,7 @@ export default function HomePage() {
           </div>
         </div>
       </HomeSection>
+      </div>
     </PageShell>
   );
 }

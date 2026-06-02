@@ -46,7 +46,7 @@ function TestimonialCard({
 
   return (
     <article
-      className="relative overflow-hidden rounded-[1.75rem] border border-[#D8E2F3] bg-white shadow-[0_14px_34px_rgba(16,42,86,0.08)] transition-all duration-300 hover:-translate-y-1 hover:scale-[1.01] hover:shadow-[0_24px_60px_rgba(16,42,86,0.12)]"
+      className="home-tilt-card relative overflow-hidden rounded-[1.75rem] border border-[#D8E2F3] bg-white shadow-[0_14px_34px_rgba(16,42,86,0.08)]"
     >
       {isVertical ? (
         <div className="pointer-events-none absolute inset-0 hidden sm:block" aria-hidden="true">
