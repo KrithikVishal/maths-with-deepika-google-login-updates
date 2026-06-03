@@ -23,7 +23,7 @@ export function Navbar() {
     return pathname === href || pathname.startsWith(`${href}/`);
   };
   const navLinkClass = (href: string) =>
-    `relative rounded-full px-3 py-2 text-sm font-semibold transition-all duration-300 after:absolute after:bottom-1 after:left-1/2 after:h-0.5 after:rounded-full after:bg-coral after:transition-all after:duration-300 ${
+    `relative rounded-full px-3 py-2 text-[0.95rem] font-medium transition-all duration-300 after:absolute after:bottom-1 after:left-1/2 after:h-0.5 after:rounded-full after:bg-coral after:transition-all after:duration-300 ${
       isActive(href)
         ? "bg-coral/10 text-blueDeep after:w-6 after:-translate-x-1/2"
         : "text-ink/70 after:w-0 after:-translate-x-1/2 hover:bg-beige hover:text-blueDeep hover:after:w-6"
@@ -35,7 +35,7 @@ export function Navbar() {
   const loginActive = pathname.startsWith("/login") || pathname.startsWith("/mother-login");
 
   return (
-    <header className="sticky top-0 z-40 border-b border-blueDeep/10 bg-white/90 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-borderSoft bg-white/90 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <BrandLogo compact />
         <nav className="hidden items-center gap-6 lg:flex">
@@ -46,7 +46,7 @@ export function Navbar() {
           ))}
           <div className="relative">
             <button
-              className={`focus-ring relative inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm font-semibold transition-all duration-300 after:absolute after:bottom-1 after:left-1/2 after:h-0.5 after:rounded-full after:bg-coral after:transition-all after:duration-300 ${
+              className={`focus-ring relative inline-flex items-center gap-1 rounded-full px-3 py-2 text-[0.95rem] font-medium transition-all duration-300 after:absolute after:bottom-1 after:left-1/2 after:h-0.5 after:rounded-full after:bg-coral after:transition-all after:duration-300 ${
                 loginActive
                   ? "bg-coral/10 text-blueDeep after:w-6 after:-translate-x-1/2"
                   : "text-ink/70 after:w-0 after:-translate-x-1/2 hover:bg-beige hover:text-blueDeep hover:after:w-6"
@@ -58,7 +58,7 @@ export function Navbar() {
               <ChevronDown className="h-4 w-4" />
             </button>
             {loginOpen ? (
-              <div className="absolute right-0 mt-3 grid w-44 gap-1 rounded-2xl border border-blueDeep/10 bg-white p-2 shadow-soft">
+              <div className="absolute right-0 mt-3 grid w-44 gap-1 rounded-2xl border border-borderSoft bg-white p-2 shadow-soft">
                 <Link href="/login?role=mother" className="rounded-xl px-3 py-2 text-sm font-semibold text-blueDeep hover:bg-beige" onClick={() => setLoginOpen(false)}>
                   Mother Login
                 </Link>
@@ -82,7 +82,7 @@ export function Navbar() {
         </button>
       </div>
       {open ? (
-        <div className="border-t border-blueDeep/10 bg-white px-4 py-4 shadow-soft lg:hidden">
+        <div className="border-t border-borderSoft bg-white px-4 py-4 shadow-soft lg:hidden">
           <nav className="mx-auto grid max-w-7xl gap-2">
             {primaryLinks.map((link) => (
               <Link

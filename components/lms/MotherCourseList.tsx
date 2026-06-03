@@ -17,7 +17,7 @@ export function MotherCourseList({
   return (
     <div className="grid gap-6">
       {courses.map((course) => (
-        <article key={course.id} className="rounded-[2rem] bg-white p-5 shadow-soft ring-1 ring-blueDeep/10 md:p-6">
+        <article key={course.id} className="rounded-[2rem] bg-white p-5 shadow-soft ring-1 ring-borderSoft md:p-6">
           <div className="mb-5 flex flex-wrap items-start justify-between gap-4">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.14em] text-coral">{course.course_type}</p>

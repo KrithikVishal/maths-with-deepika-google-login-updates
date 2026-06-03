@@ -64,7 +64,7 @@ export default async function MotherDashboard() {
               ["Learn by modules", "Lessons are grouped module by module, so you can move calmly without feeling lost."],
               ["Track progress", "Completed lessons, worksheets, and orders will stay visible in this dashboard."],
             ].map(([title, text]) => (
-              <div key={title} className="rounded-soft bg-white p-6 shadow-soft ring-1 ring-blueDeep/10">
+              <div key={title} className="rounded-soft bg-white p-6 shadow-soft ring-1 ring-borderSoft">
                 <p className="text-lg font-bold text-blueDeep">{title}</p>
                 <p className="mt-3 text-sm leading-6 text-ink/65">{text}</p>
               </div>
@@ -75,7 +75,7 @@ export default async function MotherDashboard() {
 
       <Section eyebrow="Continue learning" title="Pick up from your M2M journey">
         <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="rounded-[2rem] bg-white p-6 shadow-soft ring-1 ring-blueDeep/10">
+          <div className="rounded-[2rem] bg-white p-6 shadow-soft ring-1 ring-borderSoft">
             <div className="flex items-start gap-4">
               <div className="grid h-14 w-14 place-items-center rounded-2xl bg-coral/10">
                 <PlayCircle className="h-8 w-8 text-coral" />
@@ -95,14 +95,14 @@ export default async function MotherDashboard() {
             {firstUnlockedVideo ? (
               <a
                 href={`/mother-dashboard/video/${firstUnlockedVideo.id}`}
-                className="focus-ring mt-6 inline-flex items-center justify-center rounded-full bg-blueDeep px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#183174]"
+                className="focus-ring mt-6 inline-flex items-center justify-center rounded-full bg-blueDeep px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#102A56]"
               >
                 Continue Lesson
               </a>
             ) : (
               <a
                 href="#payment-status"
-                className="focus-ring mt-6 inline-flex items-center justify-center rounded-full bg-coral px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#ee5f52]"
+                className="focus-ring mt-6 inline-flex items-center justify-center rounded-full bg-coral px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:brightness-95"
               >
                 Unlock Lessons
               </a>

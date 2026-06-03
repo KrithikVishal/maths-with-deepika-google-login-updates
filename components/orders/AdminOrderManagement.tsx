@@ -46,7 +46,7 @@ export function ExportOrdersButton({ initialOrders = [] }: { initialOrders?: Sto
   const { orders } = useCart();
   const exportableOrders = initialOrders.length > 0 ? initialOrders : orders;
   return (
-    <button className="focus-ring inline-flex items-center gap-2 rounded-full bg-coral px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#ee5f52]" onClick={() => exportOrders(exportableOrders)}>
+    <button className="focus-ring inline-flex items-center gap-2 rounded-full bg-coral px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:brightness-95" onClick={() => exportOrders(exportableOrders)}>
       Export orders
     </button>
   );
@@ -127,13 +127,13 @@ export function AdminOrderManagement({ initialOrders = [] }: { initialOrders?: S
       </div>
       <div className="mb-5 grid gap-3 md:grid-cols-[1fr_220px]">
         <input
-          className="focus-ring rounded-full border border-blueDeep/10 px-4 py-3 text-sm"
+          className="focus-ring rounded-full border border-borderSoft px-4 py-3 text-sm"
           placeholder="Search by order id, customer, phone, email, or product"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
         />
         <select
-          className="focus-ring rounded-full border border-blueDeep/10 px-4 py-3 text-sm font-semibold text-blueDeep"
+          className="focus-ring rounded-full border border-borderSoft px-4 py-3 text-sm font-semibold text-blueDeep"
           value={statusFilter}
           onChange={(event) => setStatusFilter(event.target.value)}
         >
@@ -151,7 +151,7 @@ export function AdminOrderManagement({ initialOrders = [] }: { initialOrders?: S
           <div className="rounded-2xl bg-beige/60 p-4 text-sm font-semibold text-blueDeep">No orders found for this filter.</div>
         ) : null}
         {visibleOrders.map((order) => (
-          <div key={order.id} className="rounded-soft border border-blueDeep/10 p-4">
+          <div key={order.id} className="rounded-soft border border-borderSoft p-4">
             <div className="flex flex-wrap justify-between gap-3">
               <div>
                 <p className="text-sm font-bold text-coral">{order.id}</p>
@@ -172,15 +172,15 @@ export function AdminOrderManagement({ initialOrders = [] }: { initialOrders?: S
                 <span className="rounded-full bg-coral/10 px-3 py-1 text-xs font-bold text-coral">{order.status}</span>
               </div>
             </div>
-            <div className="mt-4 grid gap-3 md:grid-cols-[1fr_1fr_1fr_1fr_auto]">
-              <select className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3 text-sm disabled:opacity-60" value={order.status} disabled={isPending} onChange={(event) => saveOrder(order.id, { status: event.target.value as StoredOrder["status"] })}>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-[1fr_1fr_1fr_1fr_auto]">
+              <select className="focus-ring rounded-2xl border border-borderSoft px-4 py-3 text-sm disabled:opacity-60" value={order.status} disabled={isPending} onChange={(event) => saveOrder(order.id, { status: event.target.value as StoredOrder["status"] })}>
                 {["Placed", "Packed", "Shipped", "Delivered", "Cancelled"].map((status) => <option key={status}>{status}</option>)}
               </select>
-              <input className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3 text-sm disabled:opacity-60" placeholder="Courier name" defaultValue={order.courierName ?? ""} disabled={isPending} onBlur={(event) => saveOrder(order.id, { courierName: event.target.value.trim(), trackingId: order.trackingId, trackingUrl: order.trackingUrl })} />
-              <input className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3 text-sm disabled:opacity-60" placeholder="Tracking ID" defaultValue={order.trackingId ?? ""} disabled={isPending} onBlur={(event) => saveOrder(order.id, { trackingId: event.target.value.trim(), courierName: order.courierName, trackingUrl: order.trackingUrl })} />
-              <input className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3 text-sm disabled:opacity-60" placeholder="Tracking URL" defaultValue={order.trackingUrl ?? ""} disabled={isPending} onBlur={(event) => saveOrder(order.id, { trackingUrl: event.target.value.trim(), courierName: order.courierName, trackingId: order.trackingId })} />
+              <input className="focus-ring rounded-2xl border border-borderSoft px-4 py-3 text-sm disabled:opacity-60" placeholder="Courier name" defaultValue={order.courierName ?? ""} disabled={isPending} onBlur={(event) => saveOrder(order.id, { courierName: event.target.value.trim(), trackingId: order.trackingId, trackingUrl: order.trackingUrl })} />
+              <input className="focus-ring rounded-2xl border border-borderSoft px-4 py-3 text-sm disabled:opacity-60" placeholder="Tracking ID" defaultValue={order.trackingId ?? ""} disabled={isPending} onBlur={(event) => saveOrder(order.id, { trackingId: event.target.value.trim(), courierName: order.courierName, trackingUrl: order.trackingUrl })} />
+              <input className="focus-ring rounded-2xl border border-borderSoft px-4 py-3 text-sm disabled:opacity-60" placeholder="Tracking URL" defaultValue={order.trackingUrl ?? ""} disabled={isPending} onBlur={(event) => saveOrder(order.id, { trackingUrl: event.target.value.trim(), courierName: order.courierName, trackingId: order.trackingId })} />
               {order.trackingUrl ? (
-                <a className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-white px-4 py-3 text-sm font-bold text-blueDeep shadow-sm ring-1 ring-blueDeep/15" href={order.trackingUrl} target="_blank">
+                <a className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-white px-4 py-3 text-sm font-bold text-blueDeep shadow-sm ring-1 ring-borderSoft sm:col-span-2 xl:col-span-1" href={order.trackingUrl} target="_blank">
                   Track <ExternalLink className="h-4 w-4" />
                 </a>
               ) : null}

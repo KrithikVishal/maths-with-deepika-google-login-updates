@@ -221,7 +221,7 @@ export default async function AdminDashboard({
           </DashboardCard>
           <DashboardCard title="Tracking ID management">
             <p className="text-sm leading-6 text-ink/65">Add Delhivery tracking IDs from each order card above.</p>
-            <button className="focus-ring mt-3 w-full rounded-full bg-white px-5 py-3 text-sm font-semibold text-blueDeep shadow-sm ring-1 ring-blueDeep/15" type="button">
+            <button className="focus-ring mt-3 w-full rounded-full bg-white px-5 py-3 text-sm font-semibold text-blueDeep shadow-sm ring-1 ring-borderSoft" type="button">
               Ready in Orders
             </button>
           </DashboardCard>
@@ -244,7 +244,7 @@ export default async function AdminDashboard({
               </div>
             ) : null}
             {(paymentRows ?? []).map((payment) => (
-              <div key={payment.id} className="grid gap-3 rounded-2xl border border-blueDeep/10 p-4 text-sm md:grid-cols-[1fr_0.7fr_0.7fr_0.7fr]">
+              <div key={payment.id} className="grid gap-3 rounded-2xl border border-borderSoft p-4 text-sm md:grid-cols-[1fr_0.7fr_0.7fr_0.7fr]">
                 <div>
                   <p className="font-bold text-blueDeep">{payment.profiles?.full_name ?? "Learner"}</p>
                   <p className="text-ink/60">{payment.profiles?.email ?? payment.user_id}</p>

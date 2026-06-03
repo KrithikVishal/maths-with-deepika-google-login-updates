@@ -61,7 +61,7 @@ export default async function KidDashboardPage() {
               ["Unlock lessons", "Partial access opens selected topics. Full access opens everything."],
               ["Build small wins", "Watch, practise, mark lessons complete, and slowly build confidence."],
             ].map(([title, text]) => (
-              <div key={title} className="rounded-soft bg-white p-6 shadow-soft ring-1 ring-blueDeep/10">
+              <div key={title} className="rounded-soft bg-white p-6 shadow-soft ring-1 ring-borderSoft">
                 <p className="text-lg font-bold text-blueDeep">{title}</p>
                 <p className="mt-3 text-sm leading-6 text-ink/65">{text}</p>
               </div>
@@ -72,7 +72,7 @@ export default async function KidDashboardPage() {
 
       <Section eyebrow="Continue learning" title="Pick a topic and keep going">
         <div className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="rounded-[2rem] bg-white p-6 shadow-soft ring-1 ring-blueDeep/10">
+          <div className="rounded-[2rem] bg-white p-6 shadow-soft ring-1 ring-borderSoft">
             <div className="flex items-start gap-4">
               <div className="grid h-14 w-14 place-items-center rounded-2xl bg-coral/10">
                 <PlayCircle className="h-8 w-8 text-coral" />
@@ -90,11 +90,11 @@ export default async function KidDashboardPage() {
               <ProgressBar value={completion.progress || stats.progress} label="Overall topic progress" />
             </div>
             {firstUnlockedVideo ? (
-              <a href={`/kid-dashboard/video/${firstUnlockedVideo.id}`} className="focus-ring mt-6 inline-flex items-center justify-center rounded-full bg-blueDeep px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#183174]">
+              <a href={`/kid-dashboard/video/${firstUnlockedVideo.id}`} className="focus-ring mt-6 inline-flex items-center justify-center rounded-full bg-blueDeep px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#102A56]">
                 Continue Lesson
               </a>
             ) : (
-              <a href="#kid-payment-status" className="focus-ring mt-6 inline-flex items-center justify-center rounded-full bg-coral px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#ee5f52]">
+              <a href="#kid-payment-status" className="focus-ring mt-6 inline-flex items-center justify-center rounded-full bg-coral px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:brightness-95">
                 Unlock Lessons
               </a>
             )}

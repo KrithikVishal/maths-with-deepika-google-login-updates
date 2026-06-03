@@ -59,7 +59,7 @@ export default function ContactPage() {
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <p className="mb-3 text-sm font-bold uppercase tracking-[0.16em] text-coral">Contact Us</p>
-            <h1 className="text-4xl font-bold leading-tight tracking-tight text-blueDeep sm:text-5xl">
+            <h1 className="text-3xl font-bold leading-tight tracking-tight text-blueDeep sm:text-4xl lg:text-5xl">
               We&apos;re happy to help.
             </h1>
             <div className="mt-5 max-w-2xl space-y-3 text-base leading-7 text-ink/72">
@@ -72,11 +72,11 @@ export default function ContactPage() {
 
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <div className="grid items-stretch gap-6 md:grid-cols-3">
+          <div className="grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {contactOptions.map(({ platform, handle, button, href, icon: Icon, note }) => (
               <article
                 key={platform}
-                className="group flex h-full flex-col rounded-soft bg-white p-6 shadow-soft ring-1 ring-blueDeep/10 transition hover:-translate-y-1 hover:shadow-lg"
+                className="group flex h-full flex-col rounded-soft bg-white p-6 shadow-soft ring-1 ring-borderSoft transition hover:-translate-y-1 hover:shadow-[0_22px_50px_rgba(16,42,86,0.12)]"
               >
                 <div className="grid h-14 w-14 place-items-center rounded-2xl bg-coral/10 text-coral">
                   <Icon className="h-7 w-7" />
@@ -89,7 +89,7 @@ export default function ContactPage() {
                     href={href}
                     target={href.startsWith("mailto:") ? undefined : "_blank"}
                     rel={href.startsWith("mailto:") ? undefined : "noreferrer"}
-                    className="focus-ring mt-6 inline-flex items-center justify-center rounded-full bg-blueDeep px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#183174]"
+                    className="focus-ring mt-6 inline-flex items-center justify-center rounded-full bg-blueDeep px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#102A56]"
                   >
                     {button}
                   </a>
@@ -98,7 +98,7 @@ export default function ContactPage() {
             ))}
           </div>
 
-          <div className="mx-auto mt-10 max-w-3xl rounded-[2rem] bg-beige/70 px-6 py-7 text-center shadow-soft ring-1 ring-blueDeep/10">
+          <div className="mx-auto mt-10 max-w-3xl rounded-[2rem] bg-beige/70 px-6 py-7 text-center shadow-soft ring-1 ring-borderSoft">
             <p className="text-lg font-bold leading-8 text-blueDeep">
               We&apos;ll be happy to help you choose the right learning support for you or your child.
             </p>

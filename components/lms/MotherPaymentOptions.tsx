@@ -14,7 +14,7 @@ export function MotherPaymentOptions({ accessLevel }: { accessLevel: AccessLevel
   }
 
   return (
-    <div className="rounded-soft bg-white p-6 shadow-soft ring-1 ring-blueDeep/10">
+    <div className="rounded-soft bg-white p-6 shadow-soft ring-1 ring-borderSoft">
       <div className="flex items-start gap-3">
         <CreditCard className="h-7 w-7 text-coral" />
         <div>
@@ -32,7 +32,7 @@ export function MotherPaymentOptions({ accessLevel }: { accessLevel: AccessLevel
           <p className="mt-2 text-sm leading-6 text-ink/65">Unlock the starter lessons and begin learning at your own pace.</p>
           <input type="hidden" name="payment_type" value="partial" />
           <button
-            className="focus-ring mt-4 inline-flex w-full items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-blueDeep shadow-sm ring-1 ring-blueDeep/15 transition hover:bg-beige disabled:cursor-not-allowed disabled:opacity-50"
+            className="focus-ring mt-4 inline-flex w-full items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-blueDeep shadow-sm ring-1 ring-borderSoft transition hover:bg-beige disabled:cursor-not-allowed disabled:opacity-50"
             disabled={accessLevel === "partial"}
           >
             {accessLevel === "partial" ? "Partial Access Active" : "Pay Partial"}
@@ -44,7 +44,7 @@ export function MotherPaymentOptions({ accessLevel }: { accessLevel: AccessLevel
           <h4 className="mt-3 font-bold">Full payment</h4>
           <p className="mt-2 text-sm leading-6 text-white/75">Unlock every module, full lessons, worksheets, and all learning resources.</p>
           <input type="hidden" name="payment_type" value="full" />
-          <button className="focus-ring mt-4 inline-flex w-full items-center justify-center rounded-full bg-coral px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#ee5f52]">
+          <button className="focus-ring mt-4 inline-flex w-full items-center justify-center rounded-full bg-coral px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:brightness-95">
             Pay Full
           </button>
         </form>

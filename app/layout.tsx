@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { HomeMagicEffects } from "@/components/HomeMagicEffects";
 import { CartProvider } from "@/components/cart/CartProvider";
 import "./globals.css";
 
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className="font-sans antialiased">
+        <HomeMagicEffects />
         <CartProvider>{children}</CartProvider>
       </body>
     </html>

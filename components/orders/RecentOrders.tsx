@@ -32,7 +32,7 @@ export function RecentOrders({ initialOrders = [] }: { initialOrders?: StoredOrd
               {order.trackingId ? <p className="mt-1 text-sm text-ink/65">{order.courierName ?? "Courier"}: {order.trackingId}</p> : null}
             </div>
             {order.trackingUrl ? (
-              <a className="focus-ring inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-xs font-bold text-blueDeep shadow-sm ring-1 ring-blueDeep/15" href={order.trackingUrl} target="_blank">
+              <a className="focus-ring inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-xs font-bold text-blueDeep shadow-sm ring-1 ring-borderSoft" href={order.trackingUrl} target="_blank">
                 Track Order <ExternalLink className="h-3.5 w-3.5" />
               </a>
             ) : null}

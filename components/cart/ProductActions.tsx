@@ -14,7 +14,7 @@ export function ProductActions({ product }: { product: Product }) {
   return (
     <div className="mt-6 flex flex-wrap gap-3">
       <button
-        className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-blueDeep px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#183174] disabled:cursor-not-allowed disabled:opacity-50"
+        className="jolly-button-secondary focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-blueDeep px-5 py-3 text-sm font-semibold text-white transition-all duration-300 ease-out hover:bg-[#102A56] disabled:cursor-not-allowed disabled:opacity-50"
         disabled={outOfStock}
         onClick={() => addItem(product)}
       >
@@ -22,7 +22,7 @@ export function ProductActions({ product }: { product: Product }) {
         {outOfStock ? "Out of Stock" : added ? "Added" : "Add to Cart"}
       </button>
       <button
-        className="focus-ring inline-flex items-center justify-center rounded-full bg-coral px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#ee5f52] disabled:cursor-not-allowed disabled:opacity-50"
+        className="jolly-button-primary focus-ring inline-flex items-center justify-center rounded-full bg-coral px-5 py-3 text-sm font-semibold text-white transition-all duration-300 ease-out hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-50"
         disabled={outOfStock}
         onClick={() => {
           addItem(product);

@@ -20,7 +20,7 @@ export function DigitalProductGrid() {
             <div className="mt-5 flex items-center justify-between">
               <span className="font-bold text-blueDeep">{product.price}</span>
               <button
-                className="focus-ring inline-flex items-center justify-center rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-blueDeep shadow-sm ring-1 ring-blueDeep/15 transition hover:bg-beige"
+                className="focus-ring inline-flex items-center justify-center rounded-full bg-white px-4 py-2.5 text-sm font-semibold text-blueDeep shadow-sm ring-1 ring-borderSoft transition hover:bg-beige"
                 onClick={() => {
                   setAdded(product.name);
                   window.setTimeout(() => setAdded(""), 1600);

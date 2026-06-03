@@ -13,18 +13,18 @@ export function CourseManagement({ courses, resources }: { courses: LmsCourse[];
           <Plus className="h-7 w-7 text-coral" />
           <h3 className="mt-4 text-xl font-bold text-blueDeep">Create course</h3>
           <div className="mt-5 grid gap-3">
-            <input name="title" required placeholder="Course title" className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3" />
-            <textarea name="description" placeholder="Description" className="focus-ring min-h-24 rounded-2xl border border-blueDeep/10 px-4 py-3" />
+            <input name="title" required placeholder="Course title" className="focus-ring rounded-2xl border border-borderSoft px-4 py-3" />
+            <textarea name="description" placeholder="Description" className="focus-ring min-h-24 rounded-2xl border border-borderSoft px-4 py-3" />
             <div className="grid gap-3 sm:grid-cols-3">
-              <select name="audience" className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3">
+              <select name="audience" className="focus-ring rounded-2xl border border-borderSoft px-4 py-3">
                 <option value="mother">mother</option>
                 <option value="kid">kid</option>
               </select>
-              <select name="course_type" className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3">
+              <select name="course_type" className="focus-ring rounded-2xl border border-borderSoft px-4 py-3">
                 <option value="program">program</option>
                 <option value="topic">topic</option>
               </select>
-              <input name="order_index" type="number" placeholder="Order" className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3" />
+              <input name="order_index" type="number" placeholder="Order" className="focus-ring rounded-2xl border border-borderSoft px-4 py-3" />
             </div>
             <button className="focus-ring rounded-full bg-blueDeep px-5 py-3 text-sm font-semibold text-white">Save course</button>
           </div>
@@ -34,13 +34,13 @@ export function CourseManagement({ courses, resources }: { courses: LmsCourse[];
           <BookOpenCheck className="h-7 w-7 text-coral" />
           <h3 className="mt-4 text-xl font-bold text-blueDeep">Create module</h3>
           <div className="mt-5 grid gap-3">
-            <select name="course_id" required className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3">
+            <select name="course_id" required className="focus-ring rounded-2xl border border-borderSoft px-4 py-3">
               <option value="">Select course</option>
               {courses.map((course) => <option key={course.id} value={course.id}>{course.title}</option>)}
             </select>
-            <input name="title" required placeholder="Module title" className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3" />
-            <textarea name="description" placeholder="Description" className="focus-ring min-h-24 rounded-2xl border border-blueDeep/10 px-4 py-3" />
-            <input name="order_index" type="number" placeholder="Order index" className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3" />
+            <input name="title" required placeholder="Module title" className="focus-ring rounded-2xl border border-borderSoft px-4 py-3" />
+            <textarea name="description" placeholder="Description" className="focus-ring min-h-24 rounded-2xl border border-borderSoft px-4 py-3" />
+            <input name="order_index" type="number" placeholder="Order index" className="focus-ring rounded-2xl border border-borderSoft px-4 py-3" />
             <button className="focus-ring rounded-full bg-blueDeep px-5 py-3 text-sm font-semibold text-white">Save module</button>
           </div>
         </form>
@@ -51,20 +51,20 @@ export function CourseManagement({ courses, resources }: { courses: LmsCourse[];
           <PlayCircle className="h-7 w-7 text-coral" />
           <h3 className="mt-4 text-xl font-bold text-blueDeep">Add video</h3>
           <div className="mt-5 grid gap-3">
-            <select name="module_id" required className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3">
+            <select name="module_id" required className="focus-ring rounded-2xl border border-borderSoft px-4 py-3">
               <option value="">Select module</option>
               {modules.map((module) => <option key={module.id} value={module.id}>{module.courseTitle} - {module.title}</option>)}
             </select>
-            <input name="title" required placeholder="Video title" className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3" />
-            <textarea name="description" placeholder="Description" className="focus-ring min-h-24 rounded-2xl border border-blueDeep/10 px-4 py-3" />
-            <input name="video_url" placeholder="Video URL" className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3" />
-            <input name="thumbnail_url" placeholder="Thumbnail URL" className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3" />
+            <input name="title" required placeholder="Video title" className="focus-ring rounded-2xl border border-borderSoft px-4 py-3" />
+            <textarea name="description" placeholder="Description" className="focus-ring min-h-24 rounded-2xl border border-borderSoft px-4 py-3" />
+            <input name="video_url" placeholder="Video URL" className="focus-ring rounded-2xl border border-borderSoft px-4 py-3" />
+            <input name="thumbnail_url" placeholder="Thumbnail URL" className="focus-ring rounded-2xl border border-borderSoft px-4 py-3" />
             <div className="grid gap-3 sm:grid-cols-2">
-              <select name="required_access" className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3">
+              <select name="required_access" className="focus-ring rounded-2xl border border-borderSoft px-4 py-3">
                 <option value="partial">partial</option>
                 <option value="full">full</option>
               </select>
-              <input name="order_index" type="number" placeholder="Order index" className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3" />
+              <input name="order_index" type="number" placeholder="Order index" className="focus-ring rounded-2xl border border-borderSoft px-4 py-3" />
             </div>
             <button className="focus-ring rounded-full bg-blueDeep px-5 py-3 text-sm font-semibold text-white">Save video</button>
           </div>
@@ -74,22 +74,22 @@ export function CourseManagement({ courses, resources }: { courses: LmsCourse[];
           <FileText className="h-7 w-7 text-coral" />
           <h3 className="mt-4 text-xl font-bold text-blueDeep">Add worksheet/PDF</h3>
           <div className="mt-5 grid gap-3">
-            <input name="title" required placeholder="Resource title" className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3" />
-            <input name="file_url" required placeholder="File URL" className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3" />
-            <input name="file_type" placeholder="pdf / worksheet" className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3" />
-            <select name="course_id" className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3">
+            <input name="title" required placeholder="Resource title" className="focus-ring rounded-2xl border border-borderSoft px-4 py-3" />
+            <input name="file_url" required placeholder="File URL" className="focus-ring rounded-2xl border border-borderSoft px-4 py-3" />
+            <input name="file_type" placeholder="pdf / worksheet" className="focus-ring rounded-2xl border border-borderSoft px-4 py-3" />
+            <select name="course_id" className="focus-ring rounded-2xl border border-borderSoft px-4 py-3">
               <option value="">Attach to course</option>
               {courses.map((course) => <option key={course.id} value={course.id}>{course.title}</option>)}
             </select>
-            <select name="module_id" className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3">
+            <select name="module_id" className="focus-ring rounded-2xl border border-borderSoft px-4 py-3">
               <option value="">Attach to module</option>
               {modules.map((module) => <option key={module.id} value={module.id}>{module.title}</option>)}
             </select>
-            <select name="video_id" className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3">
+            <select name="video_id" className="focus-ring rounded-2xl border border-borderSoft px-4 py-3">
               <option value="">Attach to video</option>
               {videos.map((video) => <option key={video.id} value={video.id}>{video.title}</option>)}
             </select>
-            <select name="required_access" className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3">
+            <select name="required_access" className="focus-ring rounded-2xl border border-borderSoft px-4 py-3">
               <option value="partial">partial</option>
               <option value="full">full</option>
             </select>
@@ -154,7 +154,7 @@ function DeleteButton({ table, id, small = false }: { table: string; id: string;
     <form action={deleteLmsItemAction}>
       <input type="hidden" name="table" value={table} />
       <input type="hidden" name="id" value={id} />
-      <button className={`focus-ring inline-flex items-center gap-2 rounded-full bg-white font-bold text-blueDeep shadow-sm ring-1 ring-blueDeep/15 ${small ? "px-3 py-1.5 text-xs" : "px-4 py-2 text-sm"}`}>
+      <button className={`focus-ring inline-flex items-center gap-2 rounded-full bg-white font-bold text-blueDeep shadow-sm ring-1 ring-borderSoft ${small ? "px-3 py-1.5 text-xs" : "px-4 py-2 text-sm"}`}>
         <Trash2 className="h-3.5 w-3.5 text-coral" />
         Delete
       </button>

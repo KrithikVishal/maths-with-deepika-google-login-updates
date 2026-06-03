@@ -1,211 +1,92 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-
-type Particle = {
-  id: number;
-  x: number;
-  y: number;
-  color: string;
-  size: number;
-  shape: "star";
-  dx?: number;
-  dy?: number;
-};
-
-const sparkleColors = ["#FFD166", "#FF6B5F", "#CFF3E2", "#183A8F"];
-
-function canAnimate() {
-  if (typeof window === "undefined") {
-    return false;
-  }
-
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const touchDevice = window.matchMedia("(pointer: coarse)").matches;
-
-  return !prefersReducedMotion && !touchDevice;
-}
-
 export function HomeMagicEffects() {
-  const [enabled, setEnabled] = useState(false);
-  const [particles, setParticles] = useState<Particle[]>([]);
-  const lastTrailAt = useRef(0);
-
-  useEffect(() => {
-    setEnabled(canAnimate());
-  }, []);
-
-  useEffect(() => {
-    if (!enabled) {
-      return;
-    }
-
-    const scope = document.querySelector(".home-magic-scope");
-    if (!scope) {
-      return;
-    }
-
-    const handleMove = (event: Event) => {
-      const mouseEvent = event as MouseEvent;
-      const now = performance.now();
-
-      if (now - lastTrailAt.current < 55) {
-        return;
-      }
-
-      lastTrailAt.current = now;
-
-      setParticles([
-  {
-    id: 1,
-    x: mouseEvent.clientX - 8,
-    y: mouseEvent.clientY - 8,
-    color: "#FFD166",
-    size: 10,
-    shape: "star",
-  },
-  {
-    id: 2,
-    x: mouseEvent.clientX + 8,
-    y: mouseEvent.clientY + 8,
-    color: "#FF6B5F",
-    size: 8,
-    shape: "star",
-  },
-]);
-    };
-
-    scope.addEventListener("mousemove", handleMove, { passive: true });
-
-    return () => {
-      scope.removeEventListener("mousemove", handleMove);
-    };
-  }, [enabled]);
-
   return (
-    <>
-      <style>{`
-        @media (hover: hover) and (pointer: fine) {
-          .home-magic-scope,
-          .home-magic-scope * {
-            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 36 36'%3E%3Cpath d='M7 29 24 12' stroke='%23183A8F' stroke-width='4.2' stroke-linecap='round'/%3E%3Cpath d='M8.5 30.5 5.5 27.5' stroke='%23FF6B5F' stroke-width='3.2' stroke-linecap='round'/%3E%3Cpath d='m25 3 3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7Z' fill='%23FFD166' stroke='%23183A8F' stroke-width='1.8' stroke-linejoin='round'/%3E%3Cpath d='M12 5v5M9.5 7.5h5M31 21v4M29 23h4' stroke='%23FF6B5F' stroke-width='2.4' stroke-linecap='round'/%3E%3Ccircle cx='17' cy='22' r='2.2' fill='%23CFF3E2' stroke='%23183A8F' stroke-width='1'/%3E%3C/svg%3E") 7 29, auto;
-          }
+    <style>{`
+      @media (hover: hover) and (pointer: fine) {
+        body,
+        body * {
+          cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M5 27l3.3-8.2L22.5 4.6a3 3 0 0 1 4.2 4.2L12.5 23 5 27Z' fill='%23FFD166' stroke='%23102A56' stroke-width='1.8' stroke-linejoin='round'/%3E%3Cpath d='M21 6l5 5' stroke='%23102A56' stroke-width='1.8' stroke-linecap='round'/%3E%3Cpath d='M23.6 3.6 28.4 8.4 26.2 10.6 21.4 5.8Z' fill='%23FF6B5F' stroke='%23102A56' stroke-width='1.6' stroke-linejoin='round'/%3E%3Cpath d='M5 27l2.2-5.3 3.1 3.1L5 27Z' fill='%23FFFFFF' stroke='%23102A56' stroke-width='1.5' stroke-linejoin='round'/%3E%3Cpath d='M7.2 21.7 10.3 24.8' stroke='%23102A56' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E") 5 27, auto;
         }
 
-        .home-sparkle-particle {
-  position: fixed;
-  z-index: 80;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-}
-
-        .home-sparkle-particle::before {
-          content: "";
-          display: block;
-          width: 100%;
-          height: 100%;
-          background: currentColor;
-          clip-path: polygon(50% 0%, 62% 34%, 98% 35%, 69% 56%, 79% 92%, 50% 70%, 21% 92%, 31% 56%, 2% 35%, 38% 34%);
-          filter: drop-shadow(0 4px 8px rgba(16, 42, 86, 0.12));
-        }
-
-        .home-magic-scope .pointer-events-none svg.absolute,
-        .home-magic-scope .pointer-events-none div.absolute {
-          animation: homeFloatSoft 7.5s ease-in-out infinite;
-        }
-
-        .home-magic-scope .pointer-events-none svg.absolute:nth-child(2n),
-        .home-magic-scope .pointer-events-none div.absolute:nth-child(2n) {
-          animation-duration: 8.8s;
-          animation-delay: -1.4s;
-        }
-
-        .home-magic-scope .pointer-events-none svg.absolute:nth-child(3n),
-        .home-magic-scope .pointer-events-none div.absolute:nth-child(3n) {
-          animation-duration: 6.4s;
-          animation-delay: -2.2s;
-        }
-
-        .home-tilt-card {
-          transition-property: transform, box-shadow, background-color, border-color;
-          transition-duration: 280ms;
-          transition-timing-function: ease;
+        .home-tilt-card,
+        .brand-card {
           transform-origin: center;
+          transition: transform 300ms ease, box-shadow 300ms ease, border-color 300ms ease, background-color 300ms ease;
         }
 
-        .home-tilt-card:hover {
-          transform: translateY(-4px) rotate(0.45deg) scale(1.01);
+        .home-tilt-card:hover,
+        .brand-card:hover {
+          transform: translateY(-5px) rotate(0.25deg) scale(1.01);
           box-shadow: 0 24px 60px rgba(16, 42, 86, 0.12);
         }
 
-        @keyframes homeFloatSoft {
-          0%, 100% {
-            translate: 0 0;
-            rotate: 0deg;
-          }
-          50% {
-            translate: 0 -7px;
-            rotate: 1deg;
-          }
+        a.rounded-full,
+        button.rounded-full {
+          transition: transform 240ms ease, box-shadow 240ms ease, background-color 240ms ease, color 240ms ease, border-color 240ms ease;
         }
 
-        @keyframes homeSparkleTrail {
-          0% {
-            opacity: 0;
-            scale: 0.45;
-            rotate: 0deg;
-          }
-          12% {
-            opacity: 1;
-            scale: 1.15;
-          }
-          45% {
-            opacity: 0.95;
-            scale: 0.95;
-          }
-          100% {
-            opacity: 0;
-            scale: 0.55;
-            rotate: 18deg;
-            translate: calc(var(--burst-x) * 0.65) calc(var(--burst-y) + 120px);
-          }
+        a.rounded-full:hover,
+        button.rounded-full:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 20px 42px rgba(16, 42, 86, 0.14);
         }
 
-        @media (prefers-reduced-motion: reduce), (pointer: coarse) {
-          .home-magic-scope,
-          .home-magic-scope *,
-          .home-magic-scope .pointer-events-none svg.absolute,
-          .home-magic-scope .pointer-events-none div.absolute,
-          .home-tilt-card,
-          .home-tilt-card:hover {
-            cursor: auto;
-            animation: none !important;
-            transition: none !important;
-            transform: none !important;
-          }
+        a.rounded-full:active,
+        button.rounded-full:active {
+          transform: translateY(1px);
+          box-shadow: 0 10px 24px rgba(16, 42, 86, 0.1);
         }
-      `}</style>
 
-      {enabled
-  ? particles.map((particle) => (
-      <span
-        key={particle.id}
-        className="home-sparkle-particle"
-        style={
-          {
-            left: particle.x,
-            top: particle.y,
-            width: particle.size,
-            height: particle.size,
-            color: particle.color,
-            "--burst-x": `${particle.dx ?? 0}px`,
-            "--burst-y": `${particle.dy ?? 0}px`,
-          } as React.CSSProperties
+        .pointer-events-none svg.absolute,
+        .pointer-events-none div.absolute,
+        .site-doodle {
+          animation: homeSoftFloat 7.5s ease-in-out infinite;
         }
-        aria-hidden="true"
-      />
-    ))
-  : null}
-    </>
+
+        .pointer-events-none svg.absolute:nth-child(2n),
+        .pointer-events-none div.absolute:nth-child(2n),
+        .site-doodle:nth-child(2n) {
+          animation-duration: 8.8s;
+          animation-delay: -1.6s;
+        }
+
+        .pointer-events-none svg.absolute:nth-child(3n),
+        .pointer-events-none div.absolute:nth-child(3n),
+        .site-doodle:nth-child(3n) {
+          animation-duration: 6.6s;
+          animation-delay: -2.4s;
+        }
+      }
+
+      @keyframes homeSoftFloat {
+        0%, 100% {
+          translate: 0 0;
+          rotate: 0deg;
+        }
+        50% {
+          translate: 0 -6px;
+          rotate: 0.8deg;
+        }
+      }
+
+      @media (pointer: coarse) {
+        body,
+        body * {
+          cursor: auto;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        .pointer-events-none svg.absolute,
+        .pointer-events-none div.absolute,
+        .site-doodle {
+          animation: none !important;
+          transition: none !important;
+          transform: none !important;
+        }
+      }
+    `}</style>
   );
 }

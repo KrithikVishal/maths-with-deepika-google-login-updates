@@ -44,10 +44,10 @@ export function LoginForm({
           </div>
         ) : null}
         <input type="hidden" name="expected_role" value={loginKind === "admin" ? "admin" : selectedRole} />
-        <input className="focus-ring mt-6 w-full rounded-2xl border border-blueDeep/10 px-4 py-3" name="email" placeholder="Email" type="email" autoComplete="email" required />
-        <input className="focus-ring mt-3 w-full rounded-2xl border border-blueDeep/10 px-4 py-3" name="password" placeholder="Password" type="password" autoComplete="current-password" required />
+        <input className="focus-ring mt-6 w-full rounded-2xl border border-borderSoft px-4 py-3" name="email" placeholder="Email" type="email" autoComplete="email" required />
+        <input className="focus-ring mt-3 w-full rounded-2xl border border-borderSoft px-4 py-3" name="password" placeholder="Password" type="password" autoComplete="current-password" required />
         {loginMessage ? <p className="mt-4 rounded-2xl bg-alert/10 px-4 py-3 text-sm font-semibold text-alert">{loginMessage}</p> : null}
-        <button className="focus-ring mt-5 inline-flex w-full items-center justify-center rounded-full bg-blueDeep px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#183174] disabled:cursor-not-allowed disabled:opacity-70" disabled={loginPending}>
+        <button className="focus-ring mt-5 inline-flex w-full items-center justify-center rounded-full bg-blueDeep px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#102A56] disabled:cursor-not-allowed disabled:opacity-70" disabled={loginPending}>
           {loginPending ? "Logging in..." : "Login"}
         </button>
       </form>
@@ -59,7 +59,7 @@ export function LoginForm({
           <p className="mt-4 leading-7 text-ink/70">
             Mothers and kids can create an account and start learning. Existing students can use the login details shared by the admin.
           </p>
-          <button className="focus-ring mt-6 w-full rounded-full bg-coral px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#ee5f52]" onClick={() => setMode("register")}>
+          <button className="focus-ring mt-6 w-full rounded-full bg-coral px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:brightness-95" onClick={() => setMode("register")}>
             Create New Account
           </button>
         </div>
@@ -80,19 +80,19 @@ export function LoginForm({
             ))}
           </div>
           <input type="hidden" name="role" value={selectedRole} />
-          <input className="focus-ring mt-6 w-full rounded-2xl border border-blueDeep/10 px-4 py-3" name="full_name" placeholder="Full name" required />
-          <input className="focus-ring mt-3 w-full rounded-2xl border border-blueDeep/10 px-4 py-3" name="email" placeholder="Email" type="email" required />
-          <input className="focus-ring mt-3 w-full rounded-2xl border border-blueDeep/10 px-4 py-3" name="phone" placeholder="Phone" required />
-          <input className="focus-ring mt-3 w-full rounded-2xl border border-blueDeep/10 px-4 py-3" name="username" placeholder="Username" required />
-          <input className="focus-ring mt-3 w-full rounded-2xl border border-blueDeep/10 px-4 py-3" name="password" placeholder="Password" type="password" required />
-          <input className="focus-ring mt-3 w-full rounded-2xl border border-blueDeep/10 px-4 py-3" name="confirm_password" placeholder="Confirm password" type="password" required />
+          <input className="focus-ring mt-6 w-full rounded-2xl border border-borderSoft px-4 py-3" name="full_name" placeholder="Full name" required />
+          <input className="focus-ring mt-3 w-full rounded-2xl border border-borderSoft px-4 py-3" name="email" placeholder="Email" type="email" required />
+          <input className="focus-ring mt-3 w-full rounded-2xl border border-borderSoft px-4 py-3" name="phone" placeholder="Phone" required />
+          <input className="focus-ring mt-3 w-full rounded-2xl border border-borderSoft px-4 py-3" name="username" placeholder="Username" required />
+          <input className="focus-ring mt-3 w-full rounded-2xl border border-borderSoft px-4 py-3" name="password" placeholder="Password" type="password" required />
+          <input className="focus-ring mt-3 w-full rounded-2xl border border-borderSoft px-4 py-3" name="confirm_password" placeholder="Confirm password" type="password" required />
           <div className="mt-3 rounded-2xl bg-beige/70 p-3 text-sm font-semibold text-blueDeep">Role: {selectedRole === "mother" ? "Mother" : "Kid"}</div>
           {registerMessage ? <p className="mt-4 rounded-2xl bg-alert/10 px-4 py-3 text-sm font-semibold text-alert">{registerMessage}</p> : null}
           <div className="mt-5 grid gap-3 sm:grid-cols-2">
-            <button className="focus-ring rounded-full bg-white px-5 py-3 text-sm font-semibold text-blueDeep shadow-sm ring-1 ring-blueDeep/15 transition hover:bg-beige" type="button" onClick={() => setMode("login")}>
+            <button className="focus-ring rounded-full bg-white px-5 py-3 text-sm font-semibold text-blueDeep shadow-sm ring-1 ring-borderSoft transition hover:bg-beige" type="button" onClick={() => setMode("login")}>
               Cancel
             </button>
-            <button className="focus-ring rounded-full bg-coral px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#ee5f52] disabled:opacity-70" disabled={registerPending}>
+            <button className="focus-ring rounded-full bg-coral px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:brightness-95 disabled:opacity-70" disabled={registerPending}>
               {registerPending ? "Creating..." : "Create Account"}
             </button>
           </div>

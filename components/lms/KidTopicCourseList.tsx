@@ -23,7 +23,7 @@ export function KidTopicCourseList({
         const courseProgress = videos.length ? Math.round((unlockedCount / videos.length) * 100) : 0;
 
         return (
-          <article key={course.id} className="flex h-full flex-col rounded-soft bg-white p-6 shadow-soft ring-1 ring-blueDeep/10">
+          <article key={course.id} className="flex h-full flex-col rounded-soft bg-white p-6 shadow-soft ring-1 ring-borderSoft">
             <div className="flex items-start justify-between gap-4">
               <div className="grid h-12 w-12 place-items-center rounded-2xl bg-coral/10">
                 <Sparkles className="h-7 w-7 text-coral" />
@@ -61,17 +61,17 @@ export function KidTopicCourseList({
                           </div>
                           <div className="mt-3 flex flex-wrap gap-2">
                             {unlocked ? (
-                              <Link href={`/kid-dashboard/video/${video.id}`} className="focus-ring inline-flex items-center gap-2 rounded-full bg-blueDeep px-3 py-2 text-xs font-bold text-white transition hover:bg-[#183174]">
+                              <Link href={`/kid-dashboard/video/${video.id}`} className="focus-ring inline-flex items-center gap-2 rounded-full bg-blueDeep px-3 py-2 text-xs font-bold text-white transition hover:bg-[#102A56]">
                                 <PlayCircle className="h-3.5 w-3.5" />
                                 Watch
                               </Link>
                             ) : (
-                              <a href="#kid-payment-status" className="focus-ring inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-xs font-bold text-blueDeep ring-1 ring-blueDeep/15 transition hover:bg-beige">
+                              <a href="#kid-payment-status" className="focus-ring inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-xs font-bold text-blueDeep ring-1 ring-borderSoft transition hover:bg-beige">
                                 <Lock className="h-3.5 w-3.5" />
                                 Upgrade
                               </a>
                             )}
-                            <button disabled={!unlocked} className="focus-ring inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-xs font-bold text-blueDeep ring-1 ring-blueDeep/15 disabled:cursor-not-allowed disabled:opacity-45">
+                            <button disabled={!unlocked} className="focus-ring inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-xs font-bold text-blueDeep ring-1 ring-borderSoft disabled:cursor-not-allowed disabled:opacity-45">
                               {completed ? <CheckCircle2 className="h-3.5 w-3.5" /> : <FileText className="h-3.5 w-3.5" />}
                               {completed ? "Completed" : "Worksheet"}
                             </button>

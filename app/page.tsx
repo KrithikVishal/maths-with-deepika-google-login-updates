@@ -8,8 +8,6 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { FounderPhotoFrame } from "@/components/FounderPhotoFrame";
-import { HomeMagicEffects } from "@/components/HomeMagicEffects";
-import { HomeTestimonialsCarousel, type HomeTestimonial } from "@/components/HomeTestimonialsCarousel";
 import { PageShell } from "@/components/PageShell";
 
 const childOptions = [
@@ -20,7 +18,7 @@ const childOptions = [
     button: "Enroll Now!",
     href: "/bootcamp",
     mockupLabel: "Bootcamp Mockup",
-    buttonClass: "bg-[#FF6B5F] text-white hover:bg-[#f45e52]",
+    buttonClass: "bg-[#FF6B5F] text-white hover:brightness-95",
   },
   {
     title: "Jolly Maths Pack",
@@ -29,7 +27,7 @@ const childOptions = [
     button: "Order Now!",
     href: "/jolly-maths-pack",
     mockupLabel: "Jolly Maths Pack Mockup",
-    buttonClass: "bg-[#FFD166] text-[#102A56] hover:bg-[#ffc247]",
+    buttonClass: "bg-[#FFD166] text-[#102A56] hover:brightness-95",
   },
   {
     title: "Maths Starter Kit",
@@ -38,71 +36,59 @@ const childOptions = [
     button: "Download Now!",
     href: "/digital-products",
     mockupLabel: "Starter Kit Mockup",
-    buttonClass: "bg-[#CFF3E2] text-[#102A56] hover:bg-[#b9ead2]",
-  },
-];
-
-const homeTestimonialVideos = [
-  {
-    src: "/Testimonials-Home Page/Video-01.mp4",
-    label: "Parent video feedback",
-    objectPosition: "center center",
-  },
-  {
-    src: "/Testimonials-Home Page/Video-02.mp4",
-    label: "Student learning moment",
-    objectPosition: "center 25%",
+    buttonClass: "bg-[#CFF3E2] text-[#102A56] hover:brightness-95",
   },
 ];
 
 const homeTestimonialImages = [
   {
-    src: "/Testimonials-Home Page/Image-08.jpeg",
-    alt: "Parent feedback about an interactive Vedic Maths session",
-    label: "Bootcamp parent message",
-    tall: false,
-  },
-  {
-    src: "/Testimonials-Home Page/Image-09.jpeg",
-    alt: "Parent feedback about confidence after the first class",
-    label: "Confidence after class",
-    tall: true,
+    src: "/Testimonials-Home Page/Image-01.jpg",
+    alt: "Parent testimonial screenshot for Maths with Deepika",
   },
   {
     src: "/Testimonials-Home Page/Image-02.jpg",
-    alt: "Parent sharing child practice progress after lessons",
-    label: "Practice progress",
-    tall: true,
+    alt: "Parent testimonial screenshot for Maths with Deepika",
   },
   {
-    src: "/Testimonials-Home Page/Image-05.jpeg",
-    alt: "Parent appreciation message about maths support",
-    label: "Parent appreciation",
-    tall: false,
+    src: "/Testimonials-Home Page/Image-03.jpg",
+    alt: "Parent testimonial screenshot for Maths with Deepika",
   },
   {
-    src: "/Testimonials-Home Page/Image-06.jpeg",
-    alt: "Parent message saying the child enjoyed the video",
-    label: "Child enjoyed learning",
-    tall: true,
+    src: "/Testimonials-Home Page/Image-04.jpg",
+    alt: "Parent testimonial screenshot for Maths with Deepika",
   },
   {
-    src: "/Testimonials-Home Page/Image-01.jpg",
-    alt: "Parent thanks for teaching tables clearly",
-    label: "Clear teaching",
-    tall: false,
+    src: "/Testimonials-Home Page/Image-05.jpg",
+    alt: "Parent testimonial screenshot for Maths with Deepika",
   },
-];
-
-const homeTestimonials: HomeTestimonial[] = [
-  ...homeTestimonialVideos.map((testimonial) => ({
-    type: "video" as const,
-    ...testimonial,
-  })),
-  ...homeTestimonialImages.map((testimonial) => ({
-    type: "image" as const,
-    ...testimonial,
-  })),
+  {
+    src: "/Testimonials-Home Page/Image-06.jpg",
+    alt: "Parent testimonial screenshot for Maths with Deepika",
+  },
+  {
+    src: "/Testimonials-Home Page/Image-07.jpg",
+    alt: "Parent testimonial screenshot for Maths with Deepika",
+  },
+  {
+    src: "/Testimonials-Home Page/Image-08.jpg",
+    alt: "Parent testimonial screenshot for Maths with Deepika",
+  },
+  {
+    src: "/Testimonials-Home Page/Image-09.jpg",
+    alt: "Parent testimonial screenshot for Maths with Deepika",
+  },
+  {
+    src: "/Testimonials-Home Page/Image-10.jpg",
+    alt: "Parent testimonial screenshot for Maths with Deepika",
+  },
+  {
+    src: "/Testimonials-Home Page/Image-11.jpg",
+    alt: "Parent testimonial screenshot for Maths with Deepika",
+  },
+  {
+    src: "/Testimonials-Home Page/Image-12.jpg",
+    alt: "Parent testimonial screenshot for Maths with Deepika",
+  },
 ];
 
 const whyCards = [
@@ -159,14 +145,14 @@ function HomeSection({
   const toneClass = {
     white: "bg-white",
     cream: "bg-[#FFF8EC]",
-    blue: "bg-[#EAF3FF]",
+    blue: "bg-[#FFF8EC]",
     peach: "bg-gradient-to-br from-[#FFF8EC] via-[#FFF0E8] to-[#EAF3FF]",
   }[tone];
 
   return (
     <section className={`relative overflow-hidden ${toneClass}`}>
       {scene ? <LayeredSectionScene variant={scene} /> : null}
-      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
         {(eyebrow || title || text) && (
           <div className={`${headerClassName ?? "mb-10"} ${center ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}`}>
             {eyebrow ? (
@@ -176,8 +162,8 @@ function HomeSection({
                 <span className="h-1.5 w-8 rounded-full bg-[#CFF3E2]" />
               </div>
             ) : null}
-            {title ? <h2 className="text-3xl font-black tracking-tight text-[#183A8F] sm:text-4xl">{title}</h2> : null}
-            {text ? <p className={`mt-4 text-base leading-7 text-[#102A56]/75 ${textClassName ?? ""}`}>{text}</p> : null}
+            {title ? <h2 className="text-2xl font-bold leading-tight tracking-tight text-[#183A8F] sm:text-3xl lg:text-4xl">{title}</h2> : null}
+            {text ? <p className={`mt-4 text-base leading-8 text-[#102A56]/75 ${textClassName ?? ""}`}>{text}</p> : null}
           </div>
         )}
         {children}
@@ -333,18 +319,17 @@ function PlayfulButton({
   className?: string;
 }) {
   const variantClass = {
-    primary: "bg-[#FF6B5F] text-white shadow-[0_16px_35px_rgba(255,107,95,0.24)] hover:bg-[#f45e52]",
-    secondary: "bg-[#183A8F] text-white shadow-[0_16px_35px_rgba(24,58,143,0.18)] hover:bg-[#102A56]",
+    primary: "bg-[#FF6B5F] text-white shadow-[0_12px_28px_rgba(16,42,86,0.12)] hover:brightness-95",
+    secondary: "bg-[#183A8F] text-white shadow-[0_12px_28px_rgba(16,42,86,0.12)] hover:bg-[#102A56]",
     ghost: "border border-[#D8E2F3] bg-white text-[#183A8F] shadow-[0_14px_30px_rgba(16,42,86,0.08)] hover:bg-[#FFF8EC]",
   }[variant];
 
   return (
     <Link
       href={href}
-      className={`focus-ring inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-black transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_45px_rgba(16,42,86,0.16)] active:translate-y-0.5 active:shadow-[0_10px_24px_rgba(16,42,86,0.1)] ${variantClass} ${className}`}
+      className={`focus-ring inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-semibold leading-none transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_45px_rgba(16,42,86,0.16)] active:translate-y-0.5 active:shadow-[0_10px_24px_rgba(16,42,86,0.1)] ${variantClass} ${className}`}
     >
       {children}
-      {icon ? <span className="h-2 w-2 rounded-full bg-current opacity-70" /> : null}
     </Link>
   );
 }
@@ -405,18 +390,10 @@ function DashedPath({ className = "" }: { className?: string }) {
 function HeroDoodleLayer() {
   return (
     <div className="pointer-events-none absolute inset-0 hidden overflow-hidden lg:block" aria-hidden="true">
-      <div className="absolute -left-28 top-20 h-72 w-72 rounded-[42%_58%_65%_35%] bg-[#EAF3FF]/55" />
-
-      <div className="absolute bottom-10 left-[10%] h-52 w-72 rounded-[60%_40%_45%_55%] bg-[#FFE8DD]/45 rotate-6" />
-      <div className="absolute right-[2%] top-16 h-[32rem] w-[32rem] rounded-[45%_55%_58%_42%] bg-[#EAF3FF]/55 rotate-6" />
-      <div className="absolute right-[12%] bottom-16 h-64 w-80 rounded-[55%_45%_38%_62%] bg-[#CFF3E2]/38 rotate-[-10deg]" />
-      <svg className="absolute left-[38%] top-[45%] h-28 w-[28rem] text-[#FF6B5F]/24" viewBox="0 0 360 110" fill="none">
-        <path d="M5 78C70 20 132 18 178 56c46 38 94 38 177-20" stroke="currentColor" strokeWidth="4" strokeDasharray="10 13" strokeLinecap="round" />
-      </svg>
-      <div className="absolute right-[8%] top-24 h-7 w-7 rounded-full bg-[#FFD166]/35" />
-      <div className="absolute right-[36%] bottom-28 h-5 w-5 rounded-full bg-[#CFF3E2]/70" />
-      <div className="absolute right-[25%] top-32 h-4 w-4 rounded-full bg-[#FF6B5F]/20" />
-      <div className="absolute right-[6%] bottom-32 h-10 w-10 rounded-full bg-[#FFE8DD]/70" />
+      <DoodleIcon type="book" className="absolute left-[1.25%] top-20 h-10 w-14 -rotate-6 opacity-28" />
+      <DoodleIcon type="worksheet" className="absolute left-[2.5%] bottom-20 h-11 w-11 rotate-6 opacity-26" />
+      <DoodleIcon type="blocks" className="absolute left-[21%] bottom-8 h-10 w-14 -rotate-3 opacity-24" />
+      <DoodleIcon type="star" className="absolute left-[25%] top-10 h-7 w-7 rotate-12 opacity-30" />
     </div>
   );
 }
@@ -433,17 +410,16 @@ function LayeredSectionScene({ variant }: { variant: SceneVariant }) {
     ),
     children: (
       <>
-        <DoodleIcon type="book" className="absolute left-[5%] top-10 h-16 w-20 -rotate-6 opacity-55" />
-        <DoodleIcon type="blocks" className="absolute right-[6%] top-40 h-16 w-20 rotate-6 opacity-75" />
-        <DoodleIcon type="pencil" className="absolute left-[34%] bottom-14 h-14 w-14 -rotate-12 opacity-55" />
-        <DoodleIcon type="worksheet" className="absolute right-[31%] bottom-24 h-14 w-14 rotate-6 opacity-55" />
+        <DoodleIcon type="book" className="absolute left-[4%] top-8 h-12 w-16 -rotate-6 opacity-35" />
+        <DoodleIcon type="blocks" className="absolute right-[4%] top-28 h-14 w-18 rotate-6 opacity-55" />
+        <DoodleIcon type="pencil" className="absolute left-[7%] bottom-12 h-12 w-12 -rotate-12 opacity-35" />
+        <DoodleIcon type="worksheet" className="absolute right-[6%] bottom-24 h-12 w-12 rotate-6 opacity-38" />
       </>
     ),
     story: (
       <>
         <DoodleIcon type="book" className="absolute right-[7%] top-24 h-16 w-20 rotate-6 opacity-60" />
         <DoodleIcon type="star" className="absolute left-[8%] bottom-24 h-12 w-12 -rotate-12 opacity-70" />
-        <MathNote className="right-[8%] bottom-44 rotate-3">small steps</MathNote>
       </>
     ),
     testimonials: (
@@ -457,7 +433,10 @@ function LayeredSectionScene({ variant }: { variant: SceneVariant }) {
       <>
         <DoodleIcon type="abacus" className="absolute right-[6%] top-20 h-16 w-20 rotate-6 opacity-75" />
         <DoodleIcon type="book" className="absolute left-[5%] bottom-16 h-16 w-20 -rotate-3 opacity-65" />
-        <DoodleIcon type="badge" className="absolute left-[44%] top-24 h-14 w-14 rotate-6 opacity-55" />
+        <DoodleIcon type="badge" className="absolute right-[18%] top-28 h-14 w-14 rotate-6 opacity-55" />
+        <DoodleIcon type="star" className="absolute left-[23%] top-28 h-9 w-9 -rotate-12 opacity-45" />
+        <DoodleIcon type="pencil" className="absolute left-[16%] top-44 h-12 w-12 rotate-[-18deg] opacity-38" />
+        <div className="absolute left-[20%] top-20 h-5 w-5 rounded-full bg-[#FFD166]/45" />
         <DashedPath className="right-[25%] bottom-24 h-20 w-48 -rotate-6" />
       </>
     ),
@@ -473,9 +452,16 @@ function LayeredSectionScene({ variant }: { variant: SceneVariant }) {
 
   return (
     <div className="pointer-events-none absolute inset-0 hidden overflow-hidden lg:block" aria-hidden="true">
-      <div className="absolute -left-24 top-16 h-56 w-56 rounded-[40%_60%_55%_45%] bg-[#EAF3FF]/70" />
-      <div className="absolute -right-16 bottom-8 h-64 w-64 rounded-[55%_45%_35%_65%] bg-[#FFE8DD]/80" />
-      <div className="absolute right-[8%] top-20 h-28 w-44 rounded-[2rem] bg-[#CFF3E2]/45 rotate-[-8deg]" />
+      {variant === "children" ? (
+        <>
+  
+        </>
+      ) : (
+        <>
+          <div className="absolute -left-24 top-16 h-56 w-56 rounded-[40%_60%_55%_45%] bg-[#183A8F]/18" />
+          <div className="absolute right-[8%] top-20 h-28 w-44 rounded-[2rem] bg-[#FFD166]/35 rotate-[-8deg]" />
+        </>
+      )}
       {scenes[variant]}
     </div>
   );
@@ -483,26 +469,21 @@ function LayeredSectionScene({ variant }: { variant: SceneVariant }) {
 
 function HeroImagePlaceholder() {
   return (
-    <div className="relative">
+    <div className="relative min-h-[260px] sm:min-h-[360px] lg:min-h-[500px]">
       <div className="pointer-events-none absolute inset-0 z-0 hidden lg:block" aria-hidden="true">
-        <div className="absolute -inset-10 rounded-[42%_58%_52%_48%] bg-[#EAF3FF]/72 blur-[1px]" />
-        <div className="absolute -left-14 top-8 h-72 w-80 rounded-[60%_40%_45%_55%] bg-[#FFE8DD]/58 rotate-[-10deg]" />
-        <div className="absolute -right-10 bottom-2 h-72 w-72 rounded-[45%_55%_62%_38%] bg-[#CFF3E2]/45 rotate-12" />
-        <div className="absolute right-20 -top-8 h-40 w-56 rounded-[56%_44%_48%_52%] bg-[#FFF0E8]/85 rotate-6" />
-        <DashedPath className="-left-10 top-8 h-24 w-[34rem] rotate-6 opacity-45" />
-        <DoodleIcon type="book" className="absolute -left-5 top-20 h-14 w-20 -rotate-6 opacity-28" />
-        <DoodleIcon type="pencil" className="absolute left-[24%] top-4 h-12 w-12 rotate-12 opacity-24" />
-        <DoodleIcon type="star" className="absolute right-[20%] top-10 h-10 w-10 rotate-12 opacity-30" />
-        <DoodleIcon type="badge" className="absolute -right-3 top-32 h-14 w-14 rotate-6 opacity-28" />
-        <div className="absolute right-12 bottom-20 h-6 w-6 rounded-full bg-[#FFD166]/35" />
-        <div className="absolute left-8 bottom-12 h-4 w-4 rounded-full bg-[#FF6B5F]/20" />
-        <div className="absolute right-2 top-10 h-5 w-5 rounded-full bg-[#183A8F]/10" />
+        <div className="absolute -right-10 top-4 h-[26rem] w-[28rem] rounded-[42%_58%_52%_48%] bg-[#183A8F]/16 blur-[1px]" />
+        <div className="absolute -right-14 bottom-4 h-72 w-72 rounded-[45%_55%_62%_38%] bg-[#FFD166]/34 rotate-12" />
+        <div className="absolute right-10 -top-6 h-36 w-52 rounded-[56%_44%_48%_52%] bg-[#FF6B5F]/18 rotate-6" />
+        <DoodleIcon type="pencil" className="absolute right-4 top-20 h-12 w-12 rotate-12 opacity-24" />
+        <DoodleIcon type="star" className="absolute right-[18%] top-0 h-10 w-10 rotate-12 opacity-30" />
+        <DoodleIcon type="badge" className="absolute right-2 bottom-28 h-14 w-14 rotate-6 opacity-28" />
+        <div className="absolute right-14 bottom-20 h-6 w-6 rounded-full bg-[#FFD166]/35" />
+        <div className="absolute right-8 top-52 h-5 w-5 rounded-full bg-[#183A8F]/10" />
       </div>
-      <div className="relative z-10 grid min-h-[420px] place-items-center rounded-[2rem] border border-[#D8E2F3] bg-gradient-to-br from-[#FFF8EC] via-white to-[#EAF3FF] p-8 text-center shadow-[0_24px_60px_rgba(16,42,86,0.12)] sm:min-h-[500px]">
-        <div>
-          <div className="mx-auto mb-4 h-14 w-14 rounded-[1.25rem] bg-[#FFE8DD]" />
-          <p className="text-base font-black text-[#183A8F]">Image can be added here</p>
-        </div>
+      <div className="relative z-10 grid min-h-[260px] place-items-center p-6 text-center sm:min-h-[360px] sm:p-8 lg:min-h-[500px]">
+        <p className="rounded-full bg-white/70 px-5 py-3 text-sm font-black text-[#183A8F] shadow-[0_12px_30px_rgba(16,42,86,0.08)]">
+          Image Placeholder
+        </p>
       </div>
     </div>
   );
@@ -518,33 +499,57 @@ function PlayfulCardBadge({ children, tone = "yellow" }: { children: React.React
   return <span className={`inline-flex rounded-full px-3 py-1 text-xs font-black ${toneClass}`}>{children}</span>;
 }
 
+function HomeTestimonialsGallery() {
+  return (
+    <div className="columns-1 gap-6 sm:columns-2 lg:columns-3">
+      <article className="home-tilt-card mb-6 break-inside-avoid rounded-[1.75rem] border border-[#D8E2F3] bg-white p-3 shadow-[0_14px_34px_rgba(16,42,86,0.08)]">
+        <div className="grid aspect-video place-items-center rounded-[1.35rem] bg-gradient-to-br from-[#FFF8EC] via-[#FFF0E8] to-[#EAF3FF] px-5 text-center">
+          <p className="text-base font-black text-[#183A8F]">Video Testimonial Placeholder</p>
+        </div>
+      </article>
+
+      {homeTestimonialImages.map((testimonial) => (
+        <article key={testimonial.src} className="home-tilt-card mb-6 break-inside-avoid rounded-[1.75rem] border border-[#D8E2F3] bg-white p-3 shadow-[0_14px_34px_rgba(16,42,86,0.08)]">
+          <img
+            src={testimonial.src}
+            alt={testimonial.alt}
+            className="h-auto w-full rounded-[1.35rem] object-contain"
+            loading="lazy"
+          />
+        </article>
+      ))}
+
+      <article className="home-tilt-card mb-6 break-inside-avoid rounded-[1.75rem] border border-[#D8E2F3] bg-white p-3 shadow-[0_14px_34px_rgba(16,42,86,0.08)]">
+        <div className="grid aspect-video place-items-center rounded-[1.35rem] bg-gradient-to-br from-[#EAF3FF] via-white to-[#CFF3E2] px-5 text-center">
+          <p className="text-base font-black text-[#183A8F]">Video Testimonial Placeholder</p>
+        </div>
+      </article>
+    </div>
+  );
+}
+
 export default function HomePage() {
   return (
     <PageShell>
       <div className="home-magic-scope">
-        <HomeMagicEffects />
-
         <section className="relative overflow-hidden bg-white">
           <HeroDoodleLayer />
-          <div className="relative mx-auto grid min-h-[calc(100vh-72px)] max-w-7xl items-center gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[0.96fr_1.04fr] lg:px-8">
+          <div className="relative mx-auto grid min-h-[auto] max-w-7xl items-center gap-10 px-4 py-12 sm:px-6 sm:py-14 lg:min-h-[calc(100vh-72px)] lg:grid-cols-[0.96fr_1.04fr] lg:gap-12 lg:px-8 lg:py-16">
             <div>
-              <p className="max-w-[40rem] text-xl font-medium leading-[1.6] text-[#183A8F] sm:text-2xl sm:leading-[1.55]">
+              <p className="max-w-[42rem] text-lg font-medium leading-[1.7] text-[#183A8F] sm:text-xl sm:leading-[1.6] lg:text-[1.75rem]">
                 <b>We are on a mission to make maths joyful for children and empowering for mothers who want to step into confidence, independence, and self-respect.</b>
               </p>
-              <div className="mt-7 max-w-[38rem] space-y-4 text-base leading-8 text-[#102A56]/75 sm:text-lg sm:leading-9">
+              <div className="mt-7 max-w-[39rem] space-y-4 text-base font-normal leading-8 text-[#102A56]/78 sm:text-lg sm:leading-9">
                 <p>
                   Whether you are here to help your child overcome maths fear or to rebuild your own journey as a Vedic Maths mentor, you are in the right place.
                 </p>
-                <p>
-                  Here, maths is not taught with pressure. It is taught with clarity, patience, practice, and joy.
-                </p>
               </div>
-              <div className="relative mt-9 flex flex-wrap gap-3">
-                <div className="pointer-events-none absolute -right-8 -top-8 hidden lg:block" aria-hidden="true">
-                  <DoodleIcon type="badge" className="h-12 w-12 rotate-6 opacity-55" />
+              <div className="relative mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                <div className="pointer-events-none absolute -right-20 -top-16 hidden lg:block" aria-hidden="true">
+                  <DoodleIcon type="badge" className="h-10 w-10 rotate-6 opacity-38" />
                 </div>
-                <div className="pointer-events-none absolute -bottom-10 left-64 hidden lg:block" aria-hidden="true">
-                  <DoodleIcon type="star" className="h-9 w-9 -rotate-12 opacity-50" />
+                <div className="pointer-events-none absolute -bottom-16 left-72 hidden lg:block" aria-hidden="true">
+                  <DoodleIcon type="star" className="h-8 w-8 -rotate-12 opacity-34" />
                 </div>
                 <PlayfulButton href="/for-mothers" icon>I Want to Become a Vedic Maths Mentor</PlayfulButton>
                 <PlayfulButton href="/for-kids" variant="secondary" icon>I Want Maths Support for My Child</PlayfulButton>
@@ -562,20 +567,18 @@ export default function HomePage() {
         scene="program"
       >
         <div className="relative rounded-[2rem] border border-[#D8E2F3] bg-white p-6 shadow-[0_20px_50px_rgba(16,42,86,0.1)] md:p-8">
-          <div className="pointer-events-none absolute -right-7 top-8 hidden h-20 w-20 rounded-[55%_45%_40%_60%] bg-[#CFF3E2]/70 lg:block" />
-          <div className="pointer-events-none absolute -bottom-5 left-10 hidden h-16 w-28 rounded-[2rem] bg-[#EAF3FF]/80 rotate-[-6deg] lg:block" />
-          <svg className="pointer-events-none absolute right-12 bottom-10 hidden h-20 w-40 text-[#FF6B5F]/25 lg:block" viewBox="0 0 160 80" fill="none" aria-hidden="true">
-            <path d="M4 60C38 18 76 18 96 44c16 20 34 20 60-6" stroke="currentColor" strokeWidth="3" strokeDasharray="8 9" strokeLinecap="round" />
-          </svg>
+          <div className="pointer-events-none absolute -right-10 -top-8 hidden h-20 w-20 rounded-[55%_45%_40%_60%] bg-[#183A8F]/24 lg:block" />
+          <div className="pointer-events-none absolute -bottom-10 -left-8 hidden h-14 w-24 rounded-[2rem] bg-[#FF6B5F]/28 rotate-[-6deg] lg:block" />
+          <div className="pointer-events-none absolute -right-14 bottom-10 hidden h-28 w-36 rounded-[56%_44%_38%_62%] bg-[#FFD166]/32 lg:block" />
           <div className="grid gap-8 lg:grid-cols-[1fr_0.9fr]">
             <div>
-              <p className="mt-5 text-base leading-7 text-[#102A56]/75">
+              <p className="mt-5 text-base leading-8 text-[#102A56]/75"><b>
                 M2M(Mom to Math Mentor Model) is my signature Vedic Maths mentor program created to help you learn Vedic Maths step by step, build teaching confidence, and start your journey as a Maths Mentor from home.
+              </b></p>
+              <p className="mt-5 text-base leading-8 text-[#102A56]/75">
+                <b>You get recorded lessons, weekly live revision sessions, worksheets, teaching guidance, certification support, lifetime access, and 1 year WhatsApp support from me.</b>
               </p>
-              <p className="mt-5 text-base leading-7 text-[#102A56]/75">
-                You get recorded lessons, weekly live revision sessions, worksheets, teaching guidance, certification support, lifetime access, and 1 year WhatsApp support from me.
-              </p>
-              <PlayfulButton href="/for-mothers" className="mt-6 bg-[#FF6B5F] text-white hover:bg-[#f45e52]" icon>Explore M2M Program</PlayfulButton>
+              <PlayfulButton href="/for-mothers" className="mt-6 bg-[#FF6B5F] text-white hover:brightness-95" icon>Explore M2M Program</PlayfulButton>
             </div>
             <div className="home-tilt-card relative grid min-h-[260px] place-items-center rounded-[1.75rem] border border-[#D8E2F3] bg-gradient-to-br from-[#FFF8EC] via-[#FFF0E8] to-white p-6 text-center shadow-[0_18px_45px_rgba(16,42,86,0.08)]">
               <div>
@@ -587,52 +590,51 @@ export default function HomePage() {
         </div>
       </HomeSection>
 
-      <HomeSection eyebrow="For children" title="Maths Support for Children" scene="children" headerClassName="mb-6">
-        <div className="max-w-3xl space-y-5 text-base leading-7 text-[#102A56]/75">
+      <HomeSection title="Choose the Right Maths Support for Your Child" scene="children" headerClassName="mb-6" center>
+        <div className="mx-auto max-w-3xl space-y-5 text-center text-base leading-7 text-[#102A56]/75">
           <p className="text-xl font-bold leading-8 text-[#FF6B5F]">
-            Choose the Right Maths Support for Your Child
-          </p>
-          <p>
-            Whether your child needs topic-wise learning, regular practice, or early foundation activities, we have simple and joyful options to support them.
+            Simple & Joyful options for topic-wise learning, regular practice, or early foundation activities
           </p>
         </div>
         <div className="mt-8 grid gap-6 lg:grid-cols-3">
           {childOptions.map((item) => (
-            <article key={item.title} className="home-tilt-card flex h-full flex-col rounded-[2rem] border border-[#D8E2F3] bg-white p-6 shadow-[0_18px_45px_rgba(16,42,86,0.08)] transition-all duration-300">
-              <div className="grid aspect-[4/3] place-items-center rounded-[1.6rem] border border-[#D8E2F3] bg-gradient-to-br from-[#FFF8EC] via-[#FFF0E8] to-[#EAF3FF] p-5 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]">
+            <article key={item.title} className="home-tilt-card flex h-full flex-col rounded-[2rem] border border-[#D8E2F3] bg-white p-5 shadow-[0_18px_45px_rgba(16,42,86,0.08)] transition-all duration-300">
+              <div className="grid aspect-[4/2.55] place-items-center rounded-[1.45rem] border border-[#D8E2F3] bg-gradient-to-br from-[#FFF8EC] via-[#FFF0E8] to-[#EAF3FF] p-4 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]">
                 <div>
                   <div className="mx-auto mb-3 h-10 w-10 rounded-[1rem] bg-white shadow-[0_10px_24px_rgba(16,42,86,0.08)]" />
                   <p className="text-sm font-black text-[#183A8F]">{item.mockupLabel}</p>
                 </div>
               </div>
-              <h3 className="mt-6 text-xl font-black text-[#183A8F]">{item.title}</h3>
-              <p className="mt-3 text-sm leading-6 text-[#102A56]/70">{item.description}</p>
-              <ul className="mt-5 space-y-3 text-sm font-bold leading-5 text-[#102A56]/75">
+              <h3 className="mt-5 text-xl font-bold leading-snug text-[#183A8F]">{item.title}</h3>
+              <p className="mt-3 text-base leading-7 text-[#102A56]/72">{item.description}</p>
+              <ul className="mt-4 space-y-2 text-[0.95rem] font-semibold leading-5 text-[#102A56]/78">
                 {item.bullets.map((bullet) => (
                   <li key={bullet} className="flex gap-3">
-                    <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-[#FF6B5F]" />
+                    <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-[#FFE8DD] text-xs font-black leading-none text-[#FF6B5F]">✓</span>
                     <span>{bullet}</span>
                   </li>
                 ))}
               </ul>
               <Link
                 href={item.href}
-                className={`mt-8 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-black shadow-[0_16px_35px_rgba(16,42,86,0.12)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_45px_rgba(16,42,86,0.16)] active:translate-y-0.5 active:shadow-[0_10px_24px_rgba(16,42,86,0.1)] ${item.buttonClass}`}
+                className={`mt-5 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-semibold leading-none shadow-[0_12px_28px_rgba(16,42,86,0.12)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_45px_rgba(16,42,86,0.16)] active:translate-y-0.5 active:shadow-[0_10px_24px_rgba(16,42,86,0.1)] ${item.buttonClass}`}
               >
                 {item.button}
-                <span className="h-2 w-2 rounded-full bg-current opacity-70" />
               </Link>
             </article>
           ))}
         </div>
-        <p className="mt-6 rounded-[1.5rem] border border-[#D8E2F3] bg-[#EAF3FF] p-5 text-sm font-bold leading-6 text-[#183A8F]">
-          These learning options are created mainly for children from Class 1 to Class 8. Older children can also use them if they need stronger basics and foundation support.
-        </p>
+        <div className="mt-4 flex justify-center">
+          <p className="inline-block max-w-3xl rounded-[1.25rem] border border-[#D8E2F3] bg-[#EAF3FF] px-6 py-4 text-center text-sm font-bold leading-6 text-[#183A8F] shadow-[0_12px_28px_rgba(16,42,86,0.06)]">
+            <span className="block">These learning options are created mainly for children from Class 1 to Class 8.</span>
+            <span className="block">Older children can also use them if they need stronger basics and foundation support.</span>
+          </p>
+        </div>
       </HomeSection>
 
-      <HomeSection tone="cream" eyebrow="Hey there!" title="Meet Deepika" scene="story">
-        <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="home-tilt-card rounded-[2rem] border border-[#D8E2F3] bg-white p-6 text-base leading-7 text-[#102A56]/75 shadow-[0_18px_45px_rgba(16,42,86,0.08)]">
+      <HomeSection tone="cream" eyebrow="Hey there!" title="I'm Deepika" scene="story">
+        <div className="grid items-start gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="home-tilt-card rounded-[2rem] border border-[#D8E2F3] bg-white px-6 pt-6 pb-10 text-base leading-7 text-[#102A56]/75 shadow-[0_18px_45px_rgba(16,42,86,0.08)]">
             <div className="space-y-5">
               <p>
                 I’m the founder of Maths with Deepika. I became a mother very young, and somewhere between responsibilities and expectations, I slowly lost my confidence and my own voice.
@@ -644,12 +646,17 @@ export default function HomePage() {
               <p>
                 Today, Maths with Deepika is my way of passing that confidence forward to children who need maths to feel simple, and to mothers who want to believe in themselves again.
               </p>
-              <div className="space-y-4 pt-4">
-                <p className="text-xl font-black leading-8 text-[#183A8F]">I want more children to feel, “Maths easy dhaan!”</p>
-                <p className="text-xl font-black leading-8 text-[#183A8F]">And I want more mothers to feel, “I can start again.”</p>
-              </div>
+              <div className="mt-5 border-l-4 border-[#FF6B5F] pl-5">
+                <p className="text-xl font-black leading-snug text-[#183A8F]">
+                  I want more children to feel, “Maths easy dhaan!”
+                </p>
+
+                 <p className="mt-2 text-xl font-black leading-snug text-[#183A8F]">
+                  And I want more mothers to feel, “I can start again.”
+                 </p>
+                </div>
             </div>
-            <PlayfulButton href="/about" variant="secondary" className="mt-6">Read My Full Story →</PlayfulButton>
+            <PlayfulButton href="/about" className="mt-6">Read My Full Story →</PlayfulButton>
           </div>
           <div className="text-center">
             <FounderPhotoFrame className="mx-auto max-w-md shadow-[0_18px_45px_rgba(16,42,86,0.1)]" />
@@ -666,10 +673,9 @@ export default function HomePage() {
       <HomeSection
         eyebrow="Testimonials"
         title="Hear it from My Moms, Parents & Kutties"
-        text="Small wins. Real progress. Growing confidence."
-        scene="testimonials"
+        scene="testimonials" center
       >
-        <HomeTestimonialsCarousel testimonials={homeTestimonials} />
+        <HomeTestimonialsGallery />
       </HomeSection>
 
       <HomeSection tone="blue" eyebrow="Why choose us?" title="Maths learning should feel clear, supported, and confidence-building." scene="benefits" center>
@@ -704,21 +710,9 @@ export default function HomePage() {
         </div>
       </HomeSection>
 
-      <HomeSection eyebrow="Choose your path" title="Take your first step today!" tone="peach" center scene="cta">
+      <HomeSection eyebrow="Choose your path" title="Take your first step today!" tone="white" center scene="cta">
         <div className="relative overflow-hidden rounded-[2rem] bg-[#183A8F] p-6 text-center text-white shadow-[0_24px_60px_rgba(24,58,143,0.18)] md:p-10">
-          <div className="absolute -bottom-10 -left-8 h-36 w-36 rounded-full bg-[#CFF3E2]/20 blur-2xl" />
-          <div className="pointer-events-none absolute inset-0 hidden lg:block" aria-hidden="true">
-            <DoodleIcon type="book" className="absolute left-10 top-8 h-16 w-20 -rotate-6 opacity-15" />
-            <DoodleIcon type="pencil" className="absolute bottom-8 left-20 h-16 w-16 rotate-12 opacity-15" />
-            <DoodleIcon type="badge" className="absolute left-[22%] top-14 h-14 w-14 rotate-6 opacity-15" />
-            <DoodleIcon type="star" className="absolute bottom-12 left-[30%] h-11 w-11 -rotate-12 opacity-15" />
-            <DoodleIcon type="worksheet" className="absolute right-12 top-8 h-16 w-16 rotate-6 opacity-15" />
-            <DoodleIcon type="plane" className="absolute bottom-8 right-16 h-20 w-20 -rotate-12 opacity-15" />
-            <DoodleIcon type="star" className="absolute right-[28%] top-16 h-10 w-10 rotate-12 opacity-15" />
-            <svg className="absolute bottom-14 right-[24%] h-16 w-40 text-white/15" viewBox="0 0 160 64" fill="none">
-              <path d="M4 44C28 10 58 10 78 34c18 22 44 21 78-12" stroke="currentColor" strokeWidth="3" strokeDasharray="7 9" strokeLinecap="round" />
-            </svg>
-          </div>
+          <div className="absolute -bottom-10 -left-8 h-36 w-36 rounded-full bg-[#FFD166]/28 blur-2xl" />
           <div className="mx-auto max-w-3xl space-y-5 text-lg leading-8 text-white/84">
             <p>You don’t have to figure it out alone.</p>
             <p>

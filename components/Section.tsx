@@ -1,3 +1,5 @@
+import { DecorativeDoodles } from "./DecorativeDoodles";
+
 export function Section({
   eyebrow,
   title,
@@ -12,13 +14,14 @@ export function Section({
   tone?: "white" | "beige";
 }) {
   return (
-    <section className={tone === "beige" ? "bg-beige/55" : "bg-white"}>
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <section className={`relative overflow-hidden ${tone === "beige" ? "bg-beige" : "bg-white"}`}>
+      <DecorativeDoodles />
+      <div className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
         {(eyebrow || title || text) && (
           <div className="mb-10 max-w-2xl">
-            {eyebrow ? <p className="mb-3 text-sm font-bold uppercase tracking-[0.16em] text-coral">{eyebrow}</p> : null}
-            {title ? <h2 className="text-3xl font-bold tracking-tight text-blueDeep sm:text-4xl">{title}</h2> : null}
-            {text ? <p className="mt-4 text-base leading-7 text-ink/70">{text}</p> : null}
+            {eyebrow ? <p className="mb-3 text-sm font-semibold uppercase tracking-[0.16em] text-coral">{eyebrow}</p> : null}
+            {title ? <h2 className="text-2xl font-bold leading-tight tracking-tight text-blueDeep sm:text-3xl lg:text-4xl">{title}</h2> : null}
+            {text ? <p className="mt-4 text-base leading-8 text-ink/75">{text}</p> : null}
           </div>
         )}
         {children}

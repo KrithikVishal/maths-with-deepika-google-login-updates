@@ -53,7 +53,7 @@ export default async function MotherVideoPage({ params }: { params: Promise<{ id
       <section className="bg-white">
         <div className="mx-auto grid max-w-7xl gap-7 px-4 py-10 sm:px-6 lg:grid-cols-[minmax(0,0.68fr)_minmax(320px,0.32fr)] lg:px-8">
           <div className="grid content-start gap-5">
-            <div className="overflow-hidden rounded-[1.5rem] bg-black shadow-soft ring-1 ring-blueDeep/10">
+            <div className="overflow-hidden rounded-[1.5rem] bg-black shadow-soft ring-1 ring-borderSoft">
               <div className="aspect-video text-white">
                 {embedUrl ? (
                   <iframe
@@ -75,7 +75,7 @@ export default async function MotherVideoPage({ params }: { params: Promise<{ id
               </div>
             </div>
 
-            <div className="rounded-soft bg-white p-5 shadow-soft ring-1 ring-blueDeep/10">
+            <div className="rounded-soft bg-white p-5 shadow-soft ring-1 ring-borderSoft">
               <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                 <div>
                   <p className="text-xs font-bold uppercase tracking-[0.14em] text-coral">{lesson.video.module.title}</p>
@@ -87,14 +87,14 @@ export default async function MotherVideoPage({ params }: { params: Promise<{ id
                 <form action={markVideoCompleteAction} className="shrink-0">
                   <input type="hidden" name="role" value="mother" />
                   <input type="hidden" name="video_id" value={lesson.video.id} />
-                  <button className="focus-ring inline-flex items-center gap-2 rounded-full bg-blueDeep px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#183174]">
+                  <button className="focus-ring inline-flex items-center gap-2 rounded-full bg-blueDeep px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#102A56]">
                     <CheckCircle2 className="h-4 w-4" />
                     {currentProgress?.completed ? "Completed" : "Mark as complete"}
                   </button>
                 </form>
               </div>
 
-              <div className="mt-5 grid gap-3 border-t border-blueDeep/10 pt-4 md:grid-cols-2">
+              <div className="mt-5 grid gap-3 border-t border-borderSoft pt-4 md:grid-cols-2">
                 <div className="rounded-2xl bg-beige/60 p-4">
                   <div className="flex items-center gap-2 text-sm font-bold text-blueDeep">
                     <FileText className="h-4 w-4 text-coral" />
@@ -124,13 +124,13 @@ export default async function MotherVideoPage({ params }: { params: Promise<{ id
 
             <div className="flex flex-wrap items-center justify-between gap-3">
               {lesson.previousVideo ? (
-                <Link href={`/mother-dashboard/video/${lesson.previousVideo.id}`} className="focus-ring inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-blueDeep shadow-sm ring-1 ring-blueDeep/15 hover:bg-beige">
+                <Link href={`/mother-dashboard/video/${lesson.previousVideo.id}`} className="focus-ring inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-blueDeep shadow-sm ring-1 ring-borderSoft hover:bg-beige">
                   <ArrowLeft className="h-4 w-4" />
                   Previous lesson
                 </Link>
               ) : <span />}
               {lesson.nextVideo && canAccess(lesson.nextVideo.required_access, accessLevel) ? (
-                <Link href={`/mother-dashboard/video/${lesson.nextVideo.id}`} className="focus-ring inline-flex items-center gap-2 rounded-full bg-blueDeep px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-[#183174]">
+                <Link href={`/mother-dashboard/video/${lesson.nextVideo.id}`} className="focus-ring inline-flex items-center gap-2 rounded-full bg-blueDeep px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-[#102A56]">
                   Next lesson
                   <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -139,7 +139,7 @@ export default async function MotherVideoPage({ params }: { params: Promise<{ id
           </div>
 
           <aside className="grid gap-5 self-start lg:sticky lg:top-24">
-            <div className="rounded-soft bg-white p-6 shadow-soft ring-1 ring-blueDeep/10">
+            <div className="rounded-soft bg-white p-6 shadow-soft ring-1 ring-borderSoft">
               <h3 className="font-bold text-blueDeep">Course progress</h3>
               <div className="mt-4">
                 <ProgressBar value={stats.progress} />
@@ -147,13 +147,13 @@ export default async function MotherVideoPage({ params }: { params: Promise<{ id
               <p className="mt-3 text-sm text-ink/65">{stats.unlocked} of {stats.total} lessons unlocked</p>
             </div>
 
-            <div className="max-h-[calc(100vh-9rem)] overflow-y-auto rounded-soft bg-white p-5 shadow-soft ring-1 ring-blueDeep/10">
+            <div className="max-h-[calc(100vh-9rem)] overflow-y-auto rounded-soft bg-white p-5 shadow-soft ring-1 ring-borderSoft">
               <h3 className="font-bold text-blueDeep">Module navigation</h3>
               <div className="mt-4 grid gap-3">
                 {sidebarModules.map((module) => {
                   const isActiveModule = module.id === lesson.video.module.id;
                   return (
-                  <details key={module.id} open={isActiveModule} className={`rounded-2xl p-3 ${isActiveModule ? "bg-beige/70 ring-1 ring-coral/20" : "bg-white ring-1 ring-blueDeep/10"}`}>
+                  <details key={module.id} open={isActiveModule} className={`rounded-2xl p-3 ${isActiveModule ? "bg-beige/70 ring-1 ring-coral/20" : "bg-white ring-1 ring-borderSoft"}`}>
                     <summary className="cursor-pointer list-none text-sm font-bold leading-5 text-blueDeep">
                       {module.title}
                       <span className="mt-1 block text-xs font-semibold text-ink/55">{module.videos.length} lessons</span>

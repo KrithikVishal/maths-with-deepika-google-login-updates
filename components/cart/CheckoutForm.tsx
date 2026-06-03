@@ -129,21 +129,21 @@ export function CheckoutForm() {
         <script src="https://checkout.razorpay.com/v1/checkout.js" async />
         <h3 className="text-xl font-bold text-blueDeep">Delivery details</h3>
         <div className="mt-5 grid gap-4 md:grid-cols-2">
-          <input className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3" name="fullName" placeholder="Full name" required />
-          <input className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3" name="email" placeholder="Email" type="email" required />
-          <input className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3" name="phone" placeholder="Phone" required />
-          <input className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3" name="pincode" placeholder="Pincode" required />
-          <input className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3 md:col-span-2" name="address" placeholder="Address" required />
-          <input className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3" name="city" placeholder="City" required />
-          <input className="focus-ring rounded-2xl border border-blueDeep/10 px-4 py-3" name="state" placeholder="State" required />
-          <textarea className="focus-ring min-h-28 rounded-2xl border border-blueDeep/10 px-4 py-3 md:col-span-2" name="notes" placeholder="Order notes optional" />
+          <input className="focus-ring rounded-2xl border border-borderSoft px-4 py-3" name="fullName" placeholder="Full name" required />
+          <input className="focus-ring rounded-2xl border border-borderSoft px-4 py-3" name="email" placeholder="Email" type="email" required />
+          <input className="focus-ring rounded-2xl border border-borderSoft px-4 py-3" name="phone" placeholder="Phone" required />
+          <input className="focus-ring rounded-2xl border border-borderSoft px-4 py-3" name="pincode" placeholder="Pincode" required />
+          <input className="focus-ring rounded-2xl border border-borderSoft px-4 py-3 md:col-span-2" name="address" placeholder="Address" required />
+          <input className="focus-ring rounded-2xl border border-borderSoft px-4 py-3" name="city" placeholder="City" required />
+          <input className="focus-ring rounded-2xl border border-borderSoft px-4 py-3" name="state" placeholder="State" required />
+          <textarea className="focus-ring min-h-28 rounded-2xl border border-borderSoft px-4 py-3 md:col-span-2" name="notes" placeholder="Order notes optional" />
         </div>
         <div className="mt-5 rounded-2xl bg-beige/70 p-4 text-sm leading-6 text-blueDeep">
           Razorpay will open after you confirm the details. If keys are not configured, a safe mock success flow is used for testing.
         </div>
         {error ? <p className="mt-4 rounded-2xl bg-alert/10 px-4 py-3 text-sm font-semibold text-alert">{error}</p> : null}
         {success ? <p className="mt-4 rounded-2xl bg-gold/20 px-4 py-3 text-sm font-semibold text-blueDeep">{success}</p> : null}
-        <button className="focus-ring mt-5 w-full rounded-full bg-blueDeep px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#183174] disabled:opacity-60" disabled={pending}>
+        <button className="focus-ring mt-5 w-full rounded-full bg-blueDeep px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#102A56] disabled:opacity-60" disabled={pending}>
           {pending ? "Processing..." : "Pay with Razorpay"}
         </button>
       </form>
@@ -158,7 +158,7 @@ export function CheckoutForm() {
             </div>
           ))}
         </div>
-        <div className="grid gap-3 border-t border-blueDeep/10 pt-4 text-sm">
+        <div className="grid gap-3 border-t border-borderSoft pt-4 text-sm">
           <div className="flex justify-between"><span>Subtotal</span><b>{money(subtotal)}</b></div>
           <div className="flex justify-between"><span>Shipping</span><b>{money(shipping)}</b></div>
           <div className="flex justify-between text-lg text-blueDeep"><span>Total</span><b>{money(subtotal + shipping)}</b></div>

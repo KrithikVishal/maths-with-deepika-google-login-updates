@@ -80,15 +80,15 @@ const parentReasons = [
 export default function ForKidsPage() {
   return (
     <PageShell>
-      <a href="#choose-support" className="focus-ring fixed bottom-4 left-1/2 z-50 -translate-x-1/2 rounded-full bg-coral px-5 py-3 text-sm font-bold text-white shadow-soft transition hover:bg-[#ee5f52]">
+      <a href="#choose-support" className="focus-ring fixed bottom-4 left-1/2 z-50 max-w-[calc(100vw-2rem)] -translate-x-1/2 rounded-full bg-coral px-5 py-3 text-center text-sm font-bold text-white shadow-soft transition hover:brightness-95">
         Find the Right Option for My Child
       </a>
 
       <section className="soft-gradient">
-        <div className="mx-auto grid min-h-[calc(100vh-72px)] max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:px-8">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-12 sm:px-6 sm:py-14 lg:min-h-[calc(100vh-72px)] lg:grid-cols-[1fr_0.9fr] lg:px-8 lg:py-16">
           <div>
             <p className="mb-3 text-sm font-bold uppercase tracking-[0.16em] text-coral">For Kids</p>
-            <h1 className="max-w-3xl text-4xl font-bold leading-tight text-blueDeep sm:text-5xl">What if your child could understand maths without fear or pressure?</h1>
+            <h1 className="max-w-3xl text-3xl font-bold leading-tight text-blueDeep sm:text-4xl lg:text-5xl">What if your child could understand maths without fear or pressure?</h1>
             <div className="mt-6 max-w-2xl space-y-5 text-base leading-8 text-ink/75">
               <p>If your child feels maths is difficult, confusing, or boring, I want you to know this first:</p>
               <p className="rounded-2xl bg-white p-4 text-xl font-bold text-blueDeep shadow-sm">Your child is not “weak” in maths.</p>
@@ -98,7 +98,7 @@ export default function ForKidsPage() {
             </div>
             <Button href="#choose-support" className="mt-8" icon>Find the Right Option for My Child</Button>
           </div>
-          <div className="rounded-[2rem] border border-blueDeep/10 bg-white p-5 shadow-soft">
+          <div className="rounded-[2rem] border border-borderSoft bg-white p-5 shadow-soft">
             <div className="rounded-[1.5rem] bg-beige/70 p-6">
               <Heart className="h-9 w-9 text-coral" />
               <h2 className="mt-5 text-2xl font-bold leading-snug text-blueDeep">A calm way to help maths feel simple again.</h2>
@@ -127,7 +127,7 @@ export default function ForKidsPage() {
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {learningCards.map(([title, Icon]) => (
-              <div key={title as string} className="rounded-soft border border-blueDeep/10 bg-white p-5 shadow-soft">
+              <div key={title as string} className="rounded-soft border border-borderSoft bg-white p-5 shadow-soft">
                 <Icon className="h-6 w-6 text-coral" />
                 <p className="mt-4 text-sm font-bold leading-6 text-blueDeep">{title as string}</p>
               </div>
@@ -167,7 +167,7 @@ export default function ForKidsPage() {
     </div>
   ))}
 </div>
-                <div className="mt-5 rounded-[1.5rem] bg-white ring-1 ring-blueDeep/10 p-4">
+                <div className="mt-5 rounded-[1.5rem] bg-white ring-1 ring-borderSoft p-4">
   <p className="text-xs font-bold uppercase tracking-[0.14em] text-coral">
     Why children enjoy this
   </p>
@@ -186,7 +186,7 @@ export default function ForKidsPage() {
                   <div className="mt-5">
                     <p className="text-sm font-bold text-blueDeep">Available Bootcamp Topics:</p>
                     <div className="mt-3 grid gap-2">
-                      {option.topics.map((topic) => <div key={topic} className="rounded-xl border border-blueDeep/10 px-3 py-2 text-sm text-ink/70">{topic}</div>)}
+                      {option.topics.map((topic) => <div key={topic} className="rounded-xl border border-borderSoft px-3 py-2 text-sm text-ink/70">{topic}</div>)}
                     </div>
                   </div>
                 ) : null}
@@ -211,13 +211,13 @@ export default function ForKidsPage() {
 
       <Section eyebrow="Decision helper" title="Not Sure Which One to Choose?">
         <p className="mb-6 max-w-3xl text-base leading-8 text-ink/75">Let me make it simple for you.</p>
-        <div className="grid gap-5 md:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {[
             ["If your child needs help with a specific topic, choose:", "5-Day Maths Bootcamps"],
             ["If your child needs regular maths practice through a hard copy book, choose:", "Jolly Maths Pack"],
             ["If your child is 5–8 years old and needs early foundation activities, choose:", "Maths Starter Kit"],
           ].map(([text, choice]) => (
-            <div key={choice} className="rounded-soft border border-blueDeep/10 bg-white p-6 shadow-soft">
+            <div key={choice} className="rounded-soft border border-borderSoft bg-white p-6 shadow-soft">
               <HelpCircle className="h-7 w-7 text-coral" />
               <p className="mt-4 text-sm leading-6 text-ink/70">{text}</p>
               <p className="mt-3 text-xl font-bold text-blueDeep">{choice}</p>
@@ -235,7 +235,7 @@ export default function ForKidsPage() {
           <p>At Maths with Deepika, we don’t believe in making children feel pressured or scared.</p>
           <p>We believe children learn better when they feel safe to try, make mistakes, think again, and practise with encouragement.</p>
         </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {parentReasons.map(([title, text, Icon]) => (
             <div key={title as string} className="rounded-soft bg-white p-5 shadow-soft">
               <Icon className="h-7 w-7 text-coral" />
