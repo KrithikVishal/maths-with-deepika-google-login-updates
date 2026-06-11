@@ -48,23 +48,25 @@ export async function getCurrentProfile(): Promise<Profile | null> {
   return profile;
 }
 
-export async function requireRole(expectedRole: UserRole): Promise<Profile> {
+export async function requireRole(expectedRole: UserRole | UserRole[]): Promise<Profile> {
   const profile = await getCurrentProfile();
+  const roles = Array.isArray(expectedRole) ? expectedRole : [expectedRole];
+  const primaryExpected = roles[0]; // For redirects
 
   if (!profile) {
-    redirect(expectedRole === "admin" ? "/admin-login" : `/login?role=${expectedRole}`);
+    redirect(primaryExpected === "admin" ? "/admin-login" : "/login");
   }
 
   if (profile.status !== "active") {
     const supabase = await createSupabaseServerClient();
     await supabase.auth.signOut();
-    redirect(expectedRole === "admin" ? "/admin-login?error=inactive" : `/login?role=${expectedRole}&error=inactive`);
+    redirect(primaryExpected === "admin" ? "/admin-login?error=inactive" : "/login?error=inactive");
   }
 
-  if (profile.role !== expectedRole) {
+  if (!roles.includes(profile.role)) {
     const supabase = await createSupabaseServerClient();
     await supabase.auth.signOut();
-    redirect(expectedRole === "admin" ? "/admin-login?error=role-mismatch" : `/login?role=${expectedRole}&error=role-mismatch`);
+    redirect(primaryExpected === "admin" ? "/admin-login?error=role-mismatch" : "/login?error=role-mismatch");
   }
 
   return profile;

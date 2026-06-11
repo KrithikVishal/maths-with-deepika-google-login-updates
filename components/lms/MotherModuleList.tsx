@@ -9,12 +9,15 @@ export function MotherModuleList({
   accessLevel,
   progress = {},
   resources = [],
+  dashboardPath,
 }: {
   modules: CourseModule[];
   accessLevel: AccessLevel;
   progress?: Record<string, VideoProgress>;
   resources?: CourseResource[];
+  dashboardPath?: string;
 }) {
+  const basePath = dashboardPath || "/mother-dashboard";
   return (
     <div className="grid gap-5">
       {modules.map((module, index) => {
@@ -66,7 +69,7 @@ export function MotherModuleList({
                         <p className="mt-3 text-sm leading-6 text-ink/65">{video.description}</p>
                         <div className="mt-4 flex flex-wrap gap-2">
                           {unlocked ? (
-                            <Link href={`/mother-dashboard/video/${video.id}`} className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-blueDeep px-4 py-2.5 text-xs font-bold text-white transition hover:bg-[#183174]">
+                            <Link href={`${basePath}/video/${video.id}`} className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-blueDeep px-4 py-2.5 text-xs font-bold text-white transition hover:bg-[#183174]">
                               <PlayCircle className="h-3.5 w-3.5" />
                               Watch lesson
                             </Link>

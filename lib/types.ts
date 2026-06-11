@@ -13,6 +13,7 @@ export type Profile = {
   role: UserRole;
   status: UserStatus;
   access_level?: AccessLevel;
+  avatar_url?: string | null;
   created_at: string;
   updated_at: string;
 };
@@ -65,8 +66,8 @@ export type StoredOrder = {
 
 export const roleDashboard: Record<UserRole, string> = {
   admin: "/admin/dashboard",
-  mother: "/mother/dashboard",
-  kid: "/kid-dashboard",
+  mother: "/student-dashboard",
+  kid: "/student-dashboard",
 };
 
 export const roles: UserRole[] = ["admin", "mother", "kid"];

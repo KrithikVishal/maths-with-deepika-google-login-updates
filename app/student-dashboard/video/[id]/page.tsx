@@ -2,31 +2,33 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { ArrowLeft, ArrowRight, CheckCircle2, Download, FileText, Lock, PlayCircle } from "lucide-react";
 import { markVideoCompleteAction } from "@/app/lms/actions";
+import { CompletionButton } from "@/components/lms/CompletionButton";
 import { Button } from "@/components/Button";
 import { PageShell } from "@/components/PageShell";
 import { ProgressBar } from "@/components/ProgressBar";
 import { Section } from "@/components/Section";
 import { requireRole } from "@/lib/auth";
-import { canAccess, getCourseCollectionStats, getKidVideo, getResources, getVideoProgress, normalizeAccessLevel } from "@/lib/lms";
+import { canAccess, getCourseStats, getStudentVideo, getResources, getVideoProgress, normalizeAccessLevel } from "@/lib/lms";
 
 function toEmbedUrl(url: string): string {
   try {
     const u = new URL(url);
     if (u.pathname.startsWith("/embed/")) return url;
-    if (u.hostname === "youtu.be") return `https://www.youtube.com/embed${u.pathname}`;
+    if (u.hostname === "youtu.be") {
+      return `https://www.youtube.com/embed${u.pathname}`;
+    }
     const v = u.searchParams.get("v");
     if (v) return `https://www.youtube.com/embed/${v}`;
   } catch {
-    // not a valid URL – return as-is
   }
   return url;
 }
 
-export default async function KidVideoPage({ params }: { params: Promise<{ id: string }> }) {
-  const profile = await requireRole("kid");
+export default async function StudentVideoPage({ params }: { params: Promise<{ id: string }> }) {
+  const profile = await requireRole(["mother", "kid"]);
   const accessLevel = normalizeAccessLevel(profile.access_level);
   const { id } = await params;
-  const lesson = await getKidVideo(id);
+  const lesson = await getStudentVideo(id);
 
   if (!lesson) {
     notFound();
@@ -35,22 +37,21 @@ export default async function KidVideoPage({ params }: { params: Promise<{ id: s
   const unlocked = canAccess(lesson.video.required_access, accessLevel);
 
   if (!unlocked) {
-    redirect("/kid-dashboard#kid-payment-status");
+    redirect("/student-dashboard#payment-status");
   }
 
-  const stats = getCourseCollectionStats(lesson.courses, accessLevel);
-  const progress = await getVideoProgress(profile.id, lesson.courses.flatMap((course) => course.modules.flatMap((module) => module.videos.map((video) => video.id))));
+  const stats = getCourseStats(lesson.modules, accessLevel);
+  const progress = await getVideoProgress(profile.id, lesson.modules.flatMap((module) => module.videos.map((video) => video.id)));
   const currentProgress = progress[lesson.video.id];
   const resources = await getResources({
-    courseIds: [lesson.video.course.id],
     moduleIds: [lesson.video.module.id],
     videoIds: [lesson.video.id],
   });
 
   return (
     <PageShell>
-      <Section tone="beige" eyebrow={lesson.video.course.title} title={lesson.video.title} text={lesson.video.description ?? "Watch the lesson, practise gently, and come back whenever you need revision."}>
-        <Button href="/kid-dashboard" variant="ghost">
+      <Section tone="beige" eyebrow="Lesson player" title={lesson.video.title} text={lesson.video.description ?? "Watch the lesson, revise gently, and use the resources when they are ready."}>
+        <Button href="/student-dashboard" variant="ghost">
           <ArrowLeft className="h-4 w-4" />
           Back to dashboard
         </Button>
@@ -76,26 +77,24 @@ export default async function KidVideoPage({ params }: { params: Promise<{ id: s
             <div className="grid gap-6 md:grid-cols-2">
               <div className="rounded-soft bg-white p-6 shadow-soft ring-1 ring-blueDeep/10">
                 <FileText className="h-7 w-7 text-coral" />
-                <h3 className="mt-4 text-xl font-bold text-blueDeep">Practice notes</h3>
-                <p className="mt-3 text-sm leading-6 text-ink/68">Small reminders, solved examples, and practice notes can be added here.</p>
-                <form action={markVideoCompleteAction} className="mt-5">
-                  <input type="hidden" name="role" value="kid" />
-                  <input type="hidden" name="video_id" value={lesson.video.id} />
-                  <button className="focus-ring inline-flex items-center gap-2 rounded-full bg-blueDeep px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-[#183174]">
-                    <CheckCircle2 className="h-4 w-4" />
-                    {currentProgress?.completed ? "Completed" : "Mark as complete"}
-                  </button>
-                </form>
+                <h3 className="mt-4 text-xl font-bold text-blueDeep">Notes</h3>
+                <p className="mt-3 text-sm leading-6 text-ink/68">Lesson notes, teaching points, and practice reminders can be added here.</p>
+                <CompletionButton
+                  isCompleted={Boolean(currentProgress?.completed)}
+                  videoId={lesson.video.id}
+                  role={profile.role}
+                  markCompleteAction={markVideoCompleteAction}
+                />
               </div>
               <div className="rounded-soft bg-white p-6 shadow-soft ring-1 ring-blueDeep/10">
                 <Download className="h-7 w-7 text-coral" />
-                <h3 className="mt-4 text-xl font-bold text-blueDeep">Worksheet</h3>
+                <h3 className="mt-4 text-xl font-bold text-blueDeep">Resources</h3>
                 <div className="mt-3 grid gap-2 text-sm leading-6 text-ink/68">
-                  {resources.length === 0 ? <p>Topic worksheets and answer keys will appear here when uploaded.</p> : null}
+                  {resources.length === 0 ? <p>PDFs, worksheets, answer keys, and revision files will appear here.</p> : null}
                   {resources.map((resource) => {
                     const resourceUnlocked = canAccess(resource.required_access, accessLevel);
                     return (
-                      <a key={resource.id} href={resourceUnlocked ? resource.file_url : "/kid-dashboard#kid-payment-status"} className={`rounded-2xl px-4 py-3 font-bold ${resourceUnlocked ? "bg-beige text-blueDeep" : "bg-beige/60 text-ink/45"}`}>
+                      <a key={resource.id} href={resourceUnlocked ? resource.file_url : "/student-dashboard#payment-status"} className={`rounded-2xl px-4 py-3 font-bold ${resourceUnlocked ? "bg-beige text-blueDeep" : "bg-beige/60 text-ink/45"}`}>
                         {resourceUnlocked ? resource.title : `${resource.title} - locked`}
                       </a>
                     );
@@ -105,14 +104,14 @@ export default async function KidVideoPage({ params }: { params: Promise<{ id: s
             </div>
 
             <div className="flex flex-wrap items-center justify-between gap-3 rounded-soft bg-beige/65 p-5">
-              {lesson.previousVideo && canAccess(lesson.previousVideo.required_access, accessLevel) ? (
-                <Link href={`/kid-dashboard/video/${lesson.previousVideo.id}`} className="focus-ring inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-blueDeep shadow-sm ring-1 ring-blueDeep/15 hover:bg-beige">
+              {lesson.previousVideo ? (
+                <Link href={`/student-dashboard/video/${lesson.previousVideo.id}`} className="focus-ring inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-blueDeep shadow-sm ring-1 ring-blueDeep/15 hover:bg-beige">
                   <ArrowLeft className="h-4 w-4" />
                   Previous lesson
                 </Link>
               ) : <span />}
               {lesson.nextVideo && canAccess(lesson.nextVideo.required_access, accessLevel) ? (
-                <Link href={`/kid-dashboard/video/${lesson.nextVideo.id}`} className="focus-ring inline-flex items-center gap-2 rounded-full bg-blueDeep px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-[#183174]">
+                <Link href={`/student-dashboard/video/${lesson.nextVideo.id}`} className="focus-ring inline-flex items-center gap-2 rounded-full bg-blueDeep px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-[#183174]">
                   Next lesson
                   <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -122,7 +121,7 @@ export default async function KidVideoPage({ params }: { params: Promise<{ id: s
 
           <aside className="grid gap-5 self-start lg:sticky lg:top-24">
             <div className="rounded-soft bg-white p-6 shadow-soft ring-1 ring-blueDeep/10">
-              <h3 className="font-bold text-blueDeep">Topic progress</h3>
+              <h3 className="font-bold text-blueDeep">Course progress</h3>
               <div className="mt-4">
                 <ProgressBar value={stats.progress} />
               </div>
@@ -130,20 +129,20 @@ export default async function KidVideoPage({ params }: { params: Promise<{ id: s
             </div>
 
             <div className="rounded-soft bg-white p-5 shadow-soft ring-1 ring-blueDeep/10">
-              <h3 className="font-bold text-blueDeep">Topic sidebar</h3>
+              <h3 className="font-bold text-blueDeep">Module navigation</h3>
               <div className="mt-4 grid gap-3">
-                {lesson.courses.map((course) => (
-                  <div key={course.id} className="rounded-2xl bg-beige/55 p-3">
-                    <p className="text-sm font-bold text-blueDeep">{course.title}</p>
+                {lesson.modules.map((module) => (
+                  <div key={module.id} className="rounded-2xl bg-beige/55 p-3">
+                    <p className="text-sm font-bold text-blueDeep">{module.title}</p>
                     <div className="mt-3 grid gap-2">
-                      {course.modules.flatMap((module) => module.videos).map((video) => {
+                      {module.videos.map((video) => {
                         const isUnlocked = canAccess(video.required_access, accessLevel);
                         const isCurrent = video.id === lesson.video.id;
 
                         return (
                           <Link
                             key={video.id}
-                            href={isUnlocked ? `/kid-dashboard/video/${video.id}` : "/kid-dashboard#kid-payment-status"}
+                            href={isUnlocked ? `/student-dashboard/video/${video.id}` : "/student-dashboard#payment-status"}
                             className={`flex items-center gap-2 rounded-xl px-3 py-2 text-xs font-bold transition ${isCurrent ? "bg-blueDeep text-white" : "bg-white text-blueDeep hover:bg-beige"}`}
                           >
                             {progress[video.id]?.completed ? <CheckCircle2 className="h-3.5 w-3.5" /> : isUnlocked ? <PlayCircle className="h-3.5 w-3.5" /> : <Lock className="h-3.5 w-3.5" />}

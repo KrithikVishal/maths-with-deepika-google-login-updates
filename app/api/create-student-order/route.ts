@@ -1,8 +1,15 @@
 import Razorpay from "razorpay";
-import { createSupabaseAdminClient } from "@/lib/supabase/server";
+import { createSupabaseAdminClient, createSupabaseServerClient } from "@/lib/supabase/server";
 import { NextResponse, NextRequest } from "next/server";
 
 export async function POST(request: NextRequest) {
+  const serverClient = await createSupabaseServerClient();
+  const { data: { user } } = await serverClient.auth.getUser();
+
+  if (!user) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   const formData = await request.formData();
   const paymentType = String(formData.get("payment_type"));
 
@@ -18,19 +25,17 @@ export async function POST(request: NextRequest) {
   });
 
   const order = await razorpay.orders.create({
-  amount: amountPaise,
-  currency: "INR",
-  receipt: `order_${Date.now()}`,
-  payment_capture: true,
-}) as any;
+    amount: amountPaise,
+    currency: "INR",
+    receipt: `order_${Date.now()}`,
+    payment_capture: true,
+  }) as any;
 
   const supabase = createSupabaseAdminClient();
-  // TODO: Retrieve user profile (e.g., from request headers / auth token) to associate payment with a user.
-  // For now we store without a user_id.
   await supabase.from("payments").insert({
-    // user_id: <user-id>
+    user_id: user.id,
     payment_type: paymentType,
-    audience: "mother",
+    audience: "mother", // Treat all unified students as mother audience internally
     amount: amountPaise / 100,
     razorpay_order_id: order.id,
     status: "created",

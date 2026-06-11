@@ -9,12 +9,15 @@ export function KidTopicCourseList({
   accessLevel,
   progress = {},
   resources = [],
+  dashboardPath,
 }: {
   courses: LmsCourse[];
   accessLevel: AccessLevel;
   progress?: Record<string, VideoProgress>;
   resources?: CourseResource[];
+  dashboardPath?: string;
 }) {
+  const basePath = dashboardPath || "/kid-dashboard";
   return (
     <div className="grid gap-6 md:grid-cols-2">
       {courses.map((course) => {
@@ -61,12 +64,12 @@ export function KidTopicCourseList({
                           </div>
                           <div className="mt-3 flex flex-wrap gap-2">
                             {unlocked ? (
-                              <Link href={`/kid-dashboard/video/${video.id}`} className="focus-ring inline-flex items-center gap-2 rounded-full bg-blueDeep px-3 py-2 text-xs font-bold text-white transition hover:bg-[#183174]">
+                              <Link href={`${basePath}/video/${video.id}`} className="focus-ring inline-flex items-center gap-2 rounded-full bg-blueDeep px-3 py-2 text-xs font-bold text-white transition hover:bg-[#183174]">
                                 <PlayCircle className="h-3.5 w-3.5" />
                                 Watch
                               </Link>
                             ) : (
-                              <a href="#kid-payment-status" className="focus-ring inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-xs font-bold text-blueDeep ring-1 ring-blueDeep/15 transition hover:bg-beige">
+                              <a href="#payment-status" className="focus-ring inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-xs font-bold text-blueDeep ring-1 ring-blueDeep/15 transition hover:bg-beige">
                                 <Lock className="h-3.5 w-3.5" />
                                 Upgrade
                               </a>
@@ -83,7 +86,7 @@ export function KidTopicCourseList({
                                 return (
                                   <a
                                     key={resource.id}
-                                    href={resourceUnlocked ? resource.file_url : "#kid-payment-status"}
+                                    href={resourceUnlocked ? resource.file_url : "#payment-status"}
                                     className={`rounded-2xl px-3 py-2 text-xs font-bold ${resourceUnlocked ? "bg-beige text-blueDeep" : "bg-beige/60 text-ink/45"}`}
                                     aria-disabled={!resourceUnlocked}
                                   >

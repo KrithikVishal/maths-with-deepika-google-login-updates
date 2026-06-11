@@ -7,6 +7,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const nextConfig = {
   experimental: {
     serverActions: true,
+    serverComponentsExternalPackages: ['resend', 'postal-mime'],
   },
   // 👇 Add path alias so "@/..." resolves to the project root
   webpack: (config, { isServer }) => {

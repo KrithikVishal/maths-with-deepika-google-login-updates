@@ -423,6 +423,12 @@ export async function getKidCourses(): Promise<LmsCourse[]> {
   return mapCourseRows(data);
 }
 
+export async function getStudentCourses(): Promise<LmsCourse[]> {
+  const motherCourses = await getMotherCourses();
+  const kidCourses = await getKidCourses();
+  return [...motherCourses, ...kidCourses];
+}
+
 export async function getMotherVideo(videoId: string) {
   const modules = await getMotherCourseModules();
   const videos = modules.flatMap((module) => module.videos.map((video) => ({ ...video, module })));
@@ -435,6 +441,29 @@ export async function getMotherVideo(videoId: string) {
   return {
     video: videos[index],
     modules,
+    previousVideo: videos[index - 1] ?? null,
+    nextVideo: videos[index + 1] ?? null,
+  };
+}
+
+export async function getStudentVideo(videoId: string) {
+  const courses = await getStudentCourses();
+  const videos = courses.flatMap((course) =>
+    course.modules.flatMap((module) => module.videos.map((video) => ({ ...video, module, course }))),
+  );
+  const index = videos.findIndex((video) => video.id === videoId);
+
+  if (index === -1) {
+    return null;
+  }
+
+  // To keep the module list clean on the side, we will pass just the course's modules
+  // for the current video, rather than all modules from all courses.
+  const currentCourse = videos[index].course;
+
+  return {
+    video: videos[index],
+    modules: currentCourse?.modules ?? [],
     previousVideo: videos[index - 1] ?? null,
     nextVideo: videos[index + 1] ?? null,
   };

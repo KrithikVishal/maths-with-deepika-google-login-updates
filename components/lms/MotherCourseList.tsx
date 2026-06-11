@@ -8,11 +8,13 @@ export function MotherCourseList({
   accessLevel,
   progress = {},
   resources = [],
+  dashboardPath,
 }: {
   courses: LmsCourse[];
   accessLevel: AccessLevel;
   progress?: Record<string, VideoProgress>;
   resources?: CourseResource[];
+  dashboardPath?: string;
 }) {
   return (
     <div className="grid gap-6">
@@ -30,7 +32,7 @@ export function MotherCourseList({
           </div>
 
           {course.modules.length ? (
-            <MotherModuleList modules={course.modules} accessLevel={accessLevel} progress={progress} resources={resources} />
+            <MotherModuleList modules={course.modules} accessLevel={accessLevel} progress={progress} resources={resources} dashboardPath={dashboardPath} />
           ) : (
             <div className="rounded-2xl bg-beige/65 p-5">
               <BookOpenCheck className="h-7 w-7 text-coral" />

@@ -48,18 +48,20 @@ function profileFromGoogleUser(user: {
 export async function GET(request: Request) {
   const requestUrl = new URL(request.url);
   const code = requestUrl.searchParams.get("code");
-  const expectedRoleParam = requestUrl.searchParams.get("expected_role") ?? "mother";
-  const expectedRole = isUserRole(expectedRoleParam) ? expectedRoleParam : "mother";
+  const expectedRoleParam = requestUrl.searchParams.get("expected_role") ?? "student";
+  
+  // If "student", default new signups to "mother"
+  const expectedRole = expectedRoleParam === "student" ? "mother" : (isUserRole(expectedRoleParam) ? expectedRoleParam : "mother");
 
   if (!code) {
-    return NextResponse.redirect(loginUrl(request, expectedRole, "oauth"));
+    return NextResponse.redirect(loginUrl(request, expectedRoleParam as UserRole, "oauth"));
   }
 
   const supabase = await createSupabaseServerClient();
   const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
 
   if (exchangeError) {
-    return NextResponse.redirect(loginUrl(request, expectedRole, "oauth"));
+    return NextResponse.redirect(loginUrl(request, expectedRoleParam as UserRole, "oauth"));
   }
 
   const {
@@ -67,7 +69,7 @@ export async function GET(request: Request) {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    return NextResponse.redirect(loginUrl(request, expectedRole, "oauth"));
+    return NextResponse.redirect(loginUrl(request, expectedRoleParam as UserRole, "oauth"));
   }
 
   const { data: profile } = await supabase
@@ -78,13 +80,13 @@ export async function GET(request: Request) {
 
   let activeProfile = profile;
 
-  if (!activeProfile && expectedRole !== "admin") {
+  if (!activeProfile && expectedRoleParam !== "admin") {
     const admin = createSupabaseAdminClient();
-    const profilePayload = profileFromGoogleUser(user, expectedRole);
+    const profilePayload = profileFromGoogleUser(user, expectedRole as Exclude<UserRole, "admin">);
 
     if (!profilePayload.email) {
       await supabase.auth.signOut();
-      return NextResponse.redirect(loginUrl(request, expectedRole, "oauth-email"));
+      return NextResponse.redirect(loginUrl(request, expectedRoleParam as UserRole, "oauth-email"));
     }
 
     // Ensure the username is unique to prevent unique constraint violations on signup
@@ -115,25 +117,36 @@ export async function GET(request: Request) {
 
     if (profileError || !createdProfile) {
       await supabase.auth.signOut();
-      return NextResponse.redirect(loginUrl(request, expectedRole, "profile"));
+      return NextResponse.redirect(loginUrl(request, expectedRoleParam as UserRole, "profile"));
     }
 
     activeProfile = createdProfile;
+
+    // Send welcome email since it's a new registration via Google
+    if (activeProfile && activeProfile.email && activeProfile.full_name) {
+      const { sendWelcomeEmail } = await import("@/lib/email");
+      await sendWelcomeEmail({ to: activeProfile.email, name: activeProfile.full_name });
+    }
   }
 
   if (!activeProfile) {
     await supabase.auth.signOut();
-    return NextResponse.redirect(loginUrl(request, expectedRole, "profile"));
+    return NextResponse.redirect(loginUrl(request, expectedRoleParam as UserRole, "profile"));
   }
 
   if (activeProfile.status !== "active") {
     await supabase.auth.signOut();
-    return NextResponse.redirect(loginUrl(request, expectedRole, "inactive"));
+    return NextResponse.redirect(loginUrl(request, expectedRoleParam as UserRole, "inactive"));
   }
 
-  if (activeProfile.role !== expectedRole) {
+  if (expectedRoleParam === "admin" && activeProfile.role !== "admin") {
     await supabase.auth.signOut();
-    return NextResponse.redirect(loginUrl(request, expectedRole, "role-mismatch"));
+    return NextResponse.redirect(loginUrl(request, "admin", "role-mismatch"));
+  }
+  
+  if (expectedRoleParam === "student" && activeProfile.role === "admin") {
+    await supabase.auth.signOut();
+    return NextResponse.redirect(loginUrl(request, "student" as any, "role-mismatch"));
   }
 
   return NextResponse.redirect(new URL(roleDashboard[activeProfile.role], request.url));

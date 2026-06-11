@@ -25,8 +25,7 @@ export function Footer() {
         <div>
           <h3 className="mb-3 text-sm font-bold text-blueDeep">Learning</h3>
           <div className="grid gap-2 text-sm">
-            <Link href="/login?role=mother" className="text-ink/70 hover:text-blueDeep">Mother Login</Link>
-            <Link href="/login?role=kid" className="text-ink/70 hover:text-blueDeep">Kid Login</Link>
+            <Link href="/login" className="text-ink/70 hover:text-blueDeep">Student Login</Link>
           </div>
         </div>
       </div>

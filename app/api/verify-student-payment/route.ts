@@ -19,16 +19,25 @@ export async function POST(request: Request) {
 
   const supabase = createSupabaseAdminClient();
   // Update payment status to success and store payment_id
-  const { error } = await supabase
+  const { error, data: paymentData } = await supabase
     .from("payments")
     .update({ status: "success", razorpay_payment_id })
-    .eq("razorpay_order_id", razorpay_order_id);
+    .eq("razorpay_order_id", razorpay_order_id)
+    .select()
+    .single();
+
+  if (paymentData && paymentData.user_id && paymentData.payment_type) {
+    const { data: profile } = await supabase.from("profiles").update({ access_level: paymentData.payment_type }).eq("id", paymentData.user_id).select().single();
+    
+    if (profile && profile.email && profile.full_name) {
+      const { sendPaymentConfirmationEmail } = await import("@/lib/email");
+      await sendPaymentConfirmationEmail({ to: profile.email, name: profile.full_name, amount: paymentData.amount || 0, paymentType: paymentData.payment_type });
+    }
+  }
 
   if (error) {
     return NextResponse.json({ ok: false, error: error.message }, { status: 500 });
   }
-
-  // You can trigger notifications here if desired
 
   return NextResponse.json({ ok: true });
 }

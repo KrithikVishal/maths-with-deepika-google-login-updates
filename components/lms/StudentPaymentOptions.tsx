@@ -4,7 +4,7 @@ import { useState } from "react";
 import { CreditCard, ShieldCheck, Sparkles } from "lucide-react";
 import { AccessLevel } from "@/lib/types";
 
-export function MotherPaymentOptions({ accessLevel }: { accessLevel: AccessLevel }) {
+export function StudentPaymentOptions({ accessLevel, userProfile }: { accessLevel: AccessLevel; userProfile?: { email: string; full_name: string; phone?: string | null } }) {
   const [loading, setLoading] = useState(false);
 
   const loadRazorpayScript = () => {
@@ -23,48 +23,50 @@ export function MotherPaymentOptions({ accessLevel }: { accessLevel: AccessLevel
   const handlePayment = async (paymentType: "partial" | "full") => {
     setLoading(true);
     try {
-      // 1️⃣ Create order on server
       const form = new FormData();
       form.append("payment_type", paymentType);
-      const orderRes = await fetch("/api/create-mother-order", {
+      const orderRes = await fetch("/api/create-student-order", {
         method: "POST",
         body: form,
       });
       const { orderId, amount } = await orderRes.json();
 
-      // 2️⃣ Load Razorpay script
       await loadRazorpayScript();
 
-      // 3️⃣ Open Razorpay checkout
       const rzp = new (window as any).Razorpay({
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
         amount,
         currency: "INR",
-        name: "M2M Learning",
+        name: "Student Learning",
         description: paymentType === "full" ? "Full access" : "Partial access",
         order_id: orderId,
         handler: async function (response: any) {
-          // Verify payment on server
-          await fetch("/api/verify-mother-payment", {
+          await fetch("/api/verify-student-payment", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(response),
           });
-          // Simple UI refresh – in a real app you would revalidate path or update state
           window.location.reload();
         },
         prefill: {
-          // Ideally you would fill with real user data from your auth context
-          email: "", // leave blank for demo
-          name: "",
-          contact: "",
+          email: userProfile?.email || "",
+          name: userProfile?.full_name || "",
+          contact: userProfile?.phone || "",
         },
         theme: { color: "#3399cc" },
+        modal: {
+          ondismiss: function () {
+            setLoading(false);
+          },
+        },
+      });
+      rzp.on("payment.failed", function (response: any) {
+        console.error("Payment failed", response.error.description);
+        setLoading(false);
       });
       rzp.open();
     } catch (err) {
       console.error("Payment error", err);
-    } finally {
       setLoading(false);
     }
   };
@@ -75,7 +77,7 @@ export function MotherPaymentOptions({ accessLevel }: { accessLevel: AccessLevel
         <ShieldCheck className="h-8 w-8 text-gold" />
         <h3 className="mt-4 text-xl font-bold">Full access is active</h3>
         <p className="mt-3 text-sm leading-6 text-white/78">
-          All M2M lessons, modules, worksheets, and future revision resources are unlocked.
+          All lessons, modules, topics, worksheets, and future revision resources are unlocked.
         </p>
       </div>
     );
