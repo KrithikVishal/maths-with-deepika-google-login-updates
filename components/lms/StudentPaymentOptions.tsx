@@ -29,23 +29,31 @@ export function StudentPaymentOptions({ accessLevel, userProfile }: { accessLeve
         method: "POST",
         body: form,
       });
-      const { orderId, amount } = await orderRes.json();
+      const orderData = await orderRes.json();
+      if (!orderRes.ok || !orderData.orderId) {
+        throw new Error(orderData.error || "Failed to create order");
+      }
+      const { orderId, amount } = orderData;
 
       await loadRazorpayScript();
 
-      const rzp = new (window as any).Razorpay({
+      const options = {
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
         amount,
-        currency: "INR",
-        name: "Student Learning",
-        description: paymentType === "full" ? "Full access" : "Partial access",
-        order_id: orderId,
         handler: async function (response: any) {
-          await fetch("/api/verify-student-payment", {
+          const verifyRes = await fetch("/api/verify-student-payment", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(response),
           });
+          const verifyData = await verifyRes.json();
+          if (!verifyData.ok) {
+            console.error("Payment verification failed:", verifyData.error);
+            alert("Payment verification failed. Please contact support.");
+            setLoading(false);
+            return;
+          }
+          // Reload only after successful payment verification
           window.location.reload();
         },
         prefill: {
@@ -59,7 +67,9 @@ export function StudentPaymentOptions({ accessLevel, userProfile }: { accessLeve
             setLoading(false);
           },
         },
-      });
+      };
+
+      const rzp = new (window as any).Razorpay(options);
       rzp.on("payment.failed", function (response: any) {
         console.error("Payment failed", response.error.description);
         setLoading(false);

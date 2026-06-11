@@ -63,7 +63,7 @@ export default async function StudentVideoPage({ params }: { params: Promise<{ i
             <div className="overflow-hidden rounded-[2rem] bg-blueDeep shadow-soft">
               <div className="grid aspect-video place-items-center text-white">
                 {lesson.video.video_url ? (
-                  <iframe src={toEmbedUrl(lesson.video.video_url)} title={lesson.video.title} className="h-full w-full" allowFullScreen />
+                  <iframe src={toEmbedUrl(lesson.video.video_url)} title={lesson.video.title} className="h-full w-full" allowFullScreen sandbox="allow-scripts allow-same-origin allow-presentation" />
                 ) : (
                   <div className="px-6 text-center">
                     <PlayCircle className="mx-auto h-16 w-16 text-gold" />
@@ -104,7 +104,7 @@ export default async function StudentVideoPage({ params }: { params: Promise<{ i
             </div>
 
             <div className="flex flex-wrap items-center justify-between gap-3 rounded-soft bg-beige/65 p-5">
-              {lesson.previousVideo ? (
+              {lesson.previousVideo && canAccess(lesson.previousVideo.required_access, accessLevel) ? (
                 <Link href={`/student-dashboard/video/${lesson.previousVideo.id}`} className="focus-ring inline-flex items-center gap-2 rounded-full bg-white px-5 py-3 text-sm font-semibold text-blueDeep shadow-sm ring-1 ring-blueDeep/15 hover:bg-beige">
                   <ArrowLeft className="h-4 w-4" />
                   Previous lesson

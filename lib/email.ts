@@ -15,6 +15,14 @@ const resendApiKey = process.env.RESEND_API_KEY;
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
 const FROM_EMAIL = "Maths With Deepika <onboarding@resend.dev>";
 
+function escapeHtml(value: string | null | undefined): string {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
 async function sendRealEmail(payload: EmailPayload & { html: string }) {
   if (!resend) {
     console.info("📨 [MOCK EMAIL]", payload.subject, "to", payload.to);
@@ -36,9 +44,10 @@ async function sendRealEmail(payload: EmailPayload & { html: string }) {
 }
 
 export async function sendWelcomeEmail(payload: EmailPayload) {
+  const safeName = escapeHtml(payload.name) || "Learner";
   const html = `
     <div style="font-family: sans-serif; padding: 20px;">
-      <h1 style="color: #1B2A53;">Welcome, ${payload.name || "Learner"}!</h1>
+      <h1 style="color: #1B2A53;">Welcome, ${safeName}!</h1>
       <p>We're thrilled to have you join our learning community.</p>
       <p>Log in to your Student Dashboard to pick up right where you left off, unlock badges, and master math!</p>
       <br/>
@@ -50,10 +59,11 @@ export async function sendWelcomeEmail(payload: EmailPayload) {
 }
 
 export async function sendPaymentConfirmationEmail(payload: EmailPayload) {
+  const safeName = escapeHtml(payload.name) || "Learner";
   const html = `
     <div style="font-family: sans-serif; padding: 20px;">
       <h1 style="color: #1B2A53;">Thank you for your payment!</h1>
-      <p>Hi ${payload.name || "Learner"},</p>
+      <p>Hi ${safeName},</p>
       <p>We successfully received your payment of ₹${payload.amount || "..."} for <strong>${payload.paymentType || "full"} access</strong>.</p>
       <p>Your student dashboard has been updated to reflect your new access level.</p>
       <br/>

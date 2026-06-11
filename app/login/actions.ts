@@ -64,7 +64,7 @@ export async function loginAction(_state: LoginState, formData: FormData): Promi
   
   if (expectedRole === "student" && profile.role === "admin") {
     await supabase.auth.signOut();
-    return { message: "Please use the admin login page." };
+    return { message: "You appear to be an admin — please sign in using the admin login page." };
   }
 
   redirect(roleDashboard[profile.role]);
@@ -163,8 +163,12 @@ export async function registerStudentAction(_state: LoginState, formData: FormDa
       return { message: "Account created. Please log in with your new details." };
     }
 
-    const { sendWelcomeEmail } = await import("@/lib/email");
-    await sendWelcomeEmail({ to: email, name: fullName });
+    // Fire-and-forget: email errors must not fail a successful registration
+    import("@/lib/email").then(({ sendWelcomeEmail }) => {
+      void sendWelcomeEmail({ to: email, name: fullName }).catch((err) =>
+        console.error("sendWelcomeEmail failed:", err)
+      );
+    });
 
   } catch {
     return { message: "Registration is not configured yet. Please add Supabase environment values." };

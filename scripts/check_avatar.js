@@ -2,8 +2,12 @@ require("dotenv").config({ path: ".env.local" });
 const { createClient } = require("@supabase/supabase-js");
 
 async function main() {
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    console.error("Missing required environment variables: NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY");
+    process.exit(1);
+  }
   const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY);
-  
+
   // We can't directly execute raw SQL, but we can call a function or try to insert a dummy row.
   // Actually, we can use the `postgres` package if it's installed, or just fetch the Postgres connection string.
   // Let's check if the column exists by selecting it.

@@ -19,13 +19,17 @@ export function AvatarPicker({
   const [isPending, startTransition] = useTransition();
 
   const handleSelect = (avatar: string) => {
-    startTransition(() => {
+    startTransition(async () => {
       const form = new FormData();
       form.append("avatar_url", avatar);
       form.append("profile_id", profileId);
-      updateAvatarAction(form).then(() => {
+      try {
+        await updateAvatarAction(form);
+      } catch (err) {
+        console.error("Failed to update avatar:", err);
+      } finally {
         setIsOpen(false);
-      });
+      }
     });
   };
 

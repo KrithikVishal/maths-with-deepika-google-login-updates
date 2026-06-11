@@ -3,6 +3,8 @@
 import { useMemo } from "react";
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
+// Note: lib/orders.ts exports an OrderRow for e-commerce orders with a different shape.
+// This component's OrderRow describes revenue-chart-specific data; keeping it local is intentional.
 type OrderRow = {
   createdAt: string;
   total: number;
@@ -15,21 +17,22 @@ export function RevenueChart({ orders }: { orders: OrderRow[] }) {
     // Filter paid orders
     const paidOrders = orders.filter((o) => o.paymentStatus === "paid");
 
-    // Group by date
+    // Group by UTC date (YYYY-MM-DD) to avoid timezone-based day collisions across years
     const grouped = paidOrders.reduce((acc, order) => {
-      const date = new Date(order.createdAt).toLocaleDateString("en-US", { month: "short", day: "numeric" });
+      const date = new Date(order.createdAt).toISOString().slice(0, 10); // "YYYY-MM-DD"
       acc[date] = (acc[date] || 0) + order.total;
       return acc;
     }, {} as Record<string, number>);
 
-    // Get last 30 days
+    // Get last 30 days in UTC
     const result = [];
+    const now = Date.now();
     for (let i = 29; i >= 0; i--) {
-      const d = new Date();
-      d.setDate(d.getDate() - i);
-      const dateStr = d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+      const d = new Date(now - i * 24 * 60 * 60 * 1000);
+      const dateStr = d.toISOString().slice(0, 10); // "YYYY-MM-DD"
+      const label = d.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
       result.push({
-        date: dateStr,
+        date: label,
         revenue: grouped[dateStr] || 0,
       });
     }
@@ -37,7 +40,7 @@ export function RevenueChart({ orders }: { orders: OrderRow[] }) {
     return result;
   }, [orders]);
 
-  if (orders.length === 0) {
+  if (!orders.some((o) => o.paymentStatus === "paid")) {
     return <div className="p-10 text-center text-ink/60">No revenue data yet.</div>;
   }
 

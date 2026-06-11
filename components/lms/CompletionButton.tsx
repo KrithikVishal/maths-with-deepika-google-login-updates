@@ -18,35 +18,39 @@ export function CompletionButton({
   const [isPending, startTransition] = useTransition();
 
   const handleAction = (formData: FormData) => {
-    if (!isCompleted) {
-      // Fire confetti
-      const end = Date.now() + 1.5 * 1000;
-      const colors = ["#F4B731", "#E67E73", "#1B2A53"];
+    startTransition(async () => {
+      try {
+        await markCompleteAction(formData);
 
-      (function frame() {
-        confetti({
-          particleCount: 5,
-          angle: 60,
-          spread: 55,
-          origin: { x: 0 },
-          colors: colors,
-        });
-        confetti({
-          particleCount: 5,
-          angle: 120,
-          spread: 55,
-          origin: { x: 1 },
-          colors: colors,
-        });
+        if (!isCompleted) {
+          // Fire confetti only after the action succeeds
+          const end = Date.now() + 1.5 * 1000;
+          const colors = ["#F4B731", "#E67E73", "#1B2A53"];
 
-        if (Date.now() < end) {
-          requestAnimationFrame(frame);
+          (function frame() {
+            confetti({
+              particleCount: 5,
+              angle: 60,
+              spread: 55,
+              origin: { x: 0 },
+              colors: colors,
+            });
+            confetti({
+              particleCount: 5,
+              angle: 120,
+              spread: 55,
+              origin: { x: 1 },
+              colors: colors,
+            });
+
+            if (Date.now() < end) {
+              requestAnimationFrame(frame);
+            }
+          })();
         }
-      })();
-    }
-
-    startTransition(() => {
-      markCompleteAction(formData);
+      } catch (err) {
+        console.error("Failed to mark lesson complete:", err);
+      }
     });
   };
 
