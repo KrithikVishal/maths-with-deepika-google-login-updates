@@ -1,5 +1,5 @@
 import { BookOpenCheck, FileText, PlayCircle, Plus, Trash2 } from "lucide-react";
-import { addCourseAction, addModuleAction, addResourceAction, addVideoAction, deleteLmsItemAction } from "@/app/admin/dashboard/actions";
+import { addCourseAction, addModuleAction, addResourceAction, addVideoAction, deleteLmsItemAction } from "@/app/actions/admin";
 import { CourseResource, LmsCourse } from "@/lib/lms";
 
 export function CourseManagement({ courses, resources }: { courses: LmsCourse[]; resources: CourseResource[] }) {

@@ -2,7 +2,7 @@
 
 export function HomeMagicEffects() {
   return (
-    <style>{`
+    <style dangerouslySetInnerHTML={{ __html: `
       @media (hover: hover) and (pointer: fine) {
         body,
         body * {
@@ -87,6 +87,6 @@ export function HomeMagicEffects() {
           transform: none !important;
         }
       }
-    `}</style>
+    `}} />
   );
 }

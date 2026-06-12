@@ -1,7 +1,7 @@
 "use client";
 
 import { Search, UserPlus } from "lucide-react";
-import { addMemberAction, toggleMemberStatusAction, updateMemberAction } from "@/app/admin/dashboard/actions";
+import { addMemberAction, toggleMemberStatusAction, updateMemberAction } from "@/app/actions/admin";
 import { accessLevels, Profile, roles, statuses } from "@/lib/types";
 
 export function MemberManagement({
