@@ -10,7 +10,7 @@ export function DashboardCard({
   children?: React.ReactNode;
 }) {
   return (
-    <section className="rounded-soft border border-blueDeep/10 bg-white p-6 shadow-soft">
+    <section className="rounded-soft border border-borderSoft bg-white p-6 shadow-soft">
       <div className="flex items-start justify-between gap-4">
         <div>
           <h3 className="text-sm font-bold text-blueDeep">{title}</h3>

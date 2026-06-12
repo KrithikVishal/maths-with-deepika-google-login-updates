@@ -101,15 +101,15 @@ const bootcampVideoFeedback = [
 export default function BootcampPage() {
   return (
     <PageShell>
-      <a href="#available-bootcamps" className="focus-ring fixed bottom-4 left-1/2 z-50 -translate-x-1/2 rounded-full bg-coral px-5 py-3 text-sm font-bold text-white shadow-soft transition hover:bg-[#ee5f52]">
+      <a href="#available-bootcamps" className="focus-ring fixed bottom-4 left-1/2 z-50 max-w-[calc(100vw-2rem)] -translate-x-1/2 rounded-full bg-coral px-5 py-3 text-center text-sm font-bold text-white shadow-soft transition hover:brightness-95">
         Explore Available Bootcamps
       </a>
 
       <section className="soft-gradient">
-        <div className="mx-auto grid min-h-[calc(100vh-72px)] max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:px-8">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-12 sm:px-6 sm:py-14 lg:min-h-[calc(100vh-72px)] lg:grid-cols-[1fr_0.9fr] lg:px-8 lg:py-16">
           <div>
             <p className="mb-3 text-sm font-bold uppercase tracking-[0.16em] text-coral">5-Day Maths Bootcamps</p>
-            <h1 className="max-w-3xl text-4xl font-bold leading-tight text-blueDeep sm:text-5xl">What if your child could understand one maths topic clearly in just 5 days?</h1>
+            <h1 className="max-w-3xl text-3xl font-bold leading-tight text-blueDeep sm:text-4xl lg:text-5xl">What if your child could understand one maths topic clearly in just 5 days?</h1>
             <div className="mt-6 max-w-2xl space-y-5 text-base leading-8 text-ink/75">
               <p>If your child gets confused in maths, it may not always be because the topic is “too hard.”</p>
               <p>Sometimes, they just need the right explanation, the right practice, and a little confidence to try again.</p>
@@ -118,7 +118,7 @@ export default function BootcampPage() {
             <Button href="#available-bootcamps" className="mt-8" icon>Explore Available Bootcamps</Button>
             <p className="mt-4 text-sm font-semibold text-blueDeep">Recorded lessons + printable worksheets + interactive online worksheets + lifetime access</p>
           </div>
-          <div className="rounded-[2rem] border border-blueDeep/10 bg-white p-5 shadow-soft">
+          <div className="rounded-[2rem] border border-borderSoft bg-white p-5 shadow-soft">
             <div className="rounded-[1.5rem] bg-beige/70 p-6">
               <PlayCircle className="h-9 w-9 text-coral" />
               <h2 className="mt-5 text-2xl font-bold leading-snug text-blueDeep">Five gentle days. One clear topic. More confidence to try again.</h2>
@@ -144,7 +144,7 @@ export default function BootcampPage() {
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {dailyIncludes.map(([title, Icon]) => (
-              <div key={title as string} className="rounded-soft border border-blueDeep/10 bg-white p-5 shadow-soft">
+              <div key={title as string} className="rounded-soft border border-borderSoft bg-white p-5 shadow-soft">
                 <Icon className="h-7 w-7 text-coral" />
                 <p className="mt-4 text-sm font-bold leading-6 text-blueDeep">{title as string}</p>
               </div>
@@ -183,7 +183,7 @@ export default function BootcampPage() {
           {bootcampFeatures.map((feature) => {
             const Icon = feature.icon;
             return (
-              <div key={feature.title} className={`rounded-soft border border-blueDeep/10 bg-white p-6 shadow-soft ${feature.wide ? "md:col-span-2" : ""}`}>
+              <div key={feature.title} className={`rounded-soft border border-borderSoft bg-white p-6 shadow-soft ${feature.wide ? "md:col-span-2" : ""}`}>
                 <Icon className="h-7 w-7 text-coral" />
                 <h3 className="mt-4 text-xl font-bold text-blueDeep">{feature.title}</h3>
                 <p className="mt-3 text-sm leading-7 text-ink/70">{feature.text}</p>
@@ -230,7 +230,7 @@ export default function BootcampPage() {
             const Icon = topicIcons[topic.icon];
 
             return (
-              <div key={topic.title} className="rounded-soft border border-blueDeep/10 bg-white p-6 shadow-soft">
+              <div key={topic.title} className="rounded-soft border border-borderSoft bg-white p-6 shadow-soft">
                 <div className="grid h-14 w-14 place-items-center rounded-2xl bg-coral/10">
                   <Icon className="h-7 w-7 text-coral" />
                 </div>
@@ -250,11 +250,11 @@ export default function BootcampPage() {
           <p>Many children have already joined my bootcamps and enjoyed learning maths in a simpler and more engaging way.</p>
           <p>Parents have shared how their children became more interested in worksheets, understood topics better, and felt more confident while practising.</p>
         </div>
-        <div className="mt-8 rounded-[2rem] bg-white p-5 shadow-soft ring-1 ring-blueDeep/10 md:p-6">
+        <div className="mt-8 rounded-[2rem] bg-white p-5 shadow-soft ring-1 ring-borderSoft md:p-6">
           <h3 className="text-2xl font-bold text-blueDeep">Video feedback</h3>
-          <div className="mt-5 grid gap-5 md:grid-cols-3">
+          <div className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {bootcampVideoFeedback.map((src, index) => (
-              <article key={src} className="overflow-hidden rounded-[1.5rem] bg-beige/60 ring-1 ring-blueDeep/10">
+              <article key={src} className="overflow-hidden rounded-[1.5rem] bg-beige/60 ring-1 ring-borderSoft">
                 <video className="aspect-video w-full bg-white object-cover" controls preload="metadata" playsInline>
                   <source src={src} type="video/mp4" />
                 </video>
@@ -271,7 +271,7 @@ export default function BootcampPage() {
             <h3 className="text-2xl font-bold text-blueDeep">Certificate feedback</h3>
             <div className="mt-5 grid gap-5 sm:grid-cols-3 lg:grid-cols-1">
               {bootcampCertificateFeedback.map((src, index) => (
-                <article key={src} className="overflow-hidden rounded-[1.5rem] bg-white shadow-soft ring-1 ring-blueDeep/10">
+                <article key={src} className="overflow-hidden rounded-[1.5rem] bg-white shadow-soft ring-1 ring-borderSoft">
                   <div className="relative aspect-[4/3] bg-white">
                     <Image
                       src={src}
@@ -289,7 +289,7 @@ export default function BootcampPage() {
             <h3 className="text-2xl font-bold text-blueDeep">Parent messages</h3>
             <div className="mt-5 grid gap-5 sm:grid-cols-3 lg:grid-cols-1">
               {bootcampImageFeedback.map((src, index) => (
-                <article key={src} className="overflow-hidden rounded-[1.5rem] bg-white shadow-soft ring-1 ring-blueDeep/10">
+                <article key={src} className="overflow-hidden rounded-[1.5rem] bg-white shadow-soft ring-1 ring-borderSoft">
                   <div className="relative aspect-[4/3] bg-white">
                     <Image
                       src={src}

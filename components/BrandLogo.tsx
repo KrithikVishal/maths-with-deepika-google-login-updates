@@ -8,7 +8,7 @@ type BrandLogoProps = {
 
 export function BrandLogo({ compact = false, className = "" }: BrandLogoProps) {
   const mark = (
-    <span className="grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-2xl bg-beige ring-1 ring-blueDeep/10">
+    <span className="grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-2xl bg-beige ring-1 ring-borderSoft">
       <Image src="/logo.svg" alt="" width={44} height={44} className="h-full w-full object-cover" priority />
     </span>
   );

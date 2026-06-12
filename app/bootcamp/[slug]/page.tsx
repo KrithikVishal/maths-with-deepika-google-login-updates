@@ -54,17 +54,17 @@ export default async function BootcampDetailPage({ params }: { params: Promise<{
           <div className="grid gap-10 lg:grid-cols-[1fr_0.82fr]">
             <div>
               <p className="mb-3 text-sm font-bold uppercase tracking-[0.16em] text-coral">5-Day Maths Bootcamp</p>
-              <h1 className="max-w-3xl text-4xl font-bold leading-tight text-blueDeep sm:text-5xl">{topic.title}</h1>
+              <h1 className="max-w-3xl text-3xl font-bold leading-tight text-blueDeep sm:text-4xl lg:text-5xl">{topic.title}</h1>
               <p className="mt-5 max-w-2xl text-base leading-8 text-ink/72">{topic.description}</p>
               <div className="mt-6 grid gap-3 sm:grid-cols-3">
                 {["Recorded lessons", "Worksheets", "Lifetime access"].map((item) => (
-                  <div key={item} className="rounded-2xl bg-white px-4 py-3 text-sm font-bold text-blueDeep shadow-sm ring-1 ring-blueDeep/10">
+                  <div key={item} className="rounded-2xl bg-white px-4 py-3 text-sm font-bold text-blueDeep shadow-sm ring-1 ring-borderSoft">
                     {item}
                   </div>
                 ))}
               </div>
             </div>
-            <div className="rounded-[2rem] border border-blueDeep/10 bg-white p-5 shadow-soft">
+            <div className="rounded-[2rem] border border-borderSoft bg-white p-5 shadow-soft">
               <div className="rounded-[1.5rem] bg-beige/70 p-6">
                 <Sparkles className="h-9 w-9 text-coral" />
                 <h2 className="mt-4 text-2xl font-bold leading-snug text-blueDeep">One focused topic. Five gentle learning days.</h2>
@@ -79,7 +79,7 @@ export default async function BootcampDetailPage({ params }: { params: Promise<{
         <div className="grid gap-8 lg:grid-cols-[1fr_0.48fr]">
           <div className="grid gap-5">
             {topic.modules.map((module, index) => (
-              <article key={module.title} className="rounded-soft border border-blueDeep/10 bg-white p-6 shadow-soft">
+              <article key={module.title} className="rounded-soft border border-borderSoft bg-white p-6 shadow-soft">
                 <div className="flex gap-4">
                   <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-coral/10 text-sm font-bold text-coral">
                     {index + 1}
@@ -111,7 +111,7 @@ export default async function BootcampDetailPage({ params }: { params: Promise<{
           </div>
 
           <aside className="lg:sticky lg:top-24 lg:self-start">
-            <div className="rounded-[2rem] bg-white p-6 shadow-soft ring-1 ring-blueDeep/10">
+            <div className="rounded-[2rem] bg-white p-6 shadow-soft ring-1 ring-borderSoft">
               <p className="text-sm font-bold uppercase tracking-[0.14em] text-coral">Payment</p>
               <h2 className="mt-3 text-2xl font-bold text-blueDeep">Enroll in this bootcamp</h2>
               <p className="mt-3 text-sm leading-6 text-ink/65">Get recorded lessons, worksheets, answer keys, interactive practice, and lifetime access.</p>
@@ -121,7 +121,7 @@ export default async function BootcampDetailPage({ params }: { params: Promise<{
               </div>
               <div className="mt-5 grid gap-3">
                 {["5-day topic learning", "Printable + interactive worksheets", "Lifetime access"].map((item) => (
-                  <div key={item} className="flex items-center gap-3 rounded-2xl bg-white p-3 text-sm font-bold text-blueDeep ring-1 ring-blueDeep/10">
+                  <div key={item} className="flex items-center gap-3 rounded-2xl bg-white p-3 text-sm font-bold text-blueDeep ring-1 ring-borderSoft">
                     <CheckCircle2 className="h-5 w-5 text-coral" />
                     {item}
                   </div>

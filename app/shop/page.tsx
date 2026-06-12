@@ -58,7 +58,7 @@ export default function ShopPage() {
         <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <p className="mb-3 text-sm font-bold uppercase tracking-[0.16em] text-coral">Programs & Products</p>
-            <h1 className="text-4xl font-bold leading-tight tracking-tight text-blueDeep sm:text-5xl">
+            <h1 className="text-3xl font-bold leading-tight tracking-tight text-blueDeep sm:text-4xl lg:text-5xl">
               Explore Our Programs & Products
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-7 text-ink/72">
@@ -82,7 +82,7 @@ export default function ShopPage() {
               <article
                 id={id}
                 key={title}
-                className="group flex h-full scroll-mt-24 flex-col rounded-soft bg-white p-6 shadow-soft ring-1 ring-blueDeep/10 transition hover:-translate-y-1 hover:shadow-lg"
+                className="group flex h-full scroll-mt-24 flex-col rounded-soft bg-white p-6 shadow-soft ring-1 ring-borderSoft transition hover:-translate-y-1 hover:shadow-[0_22px_50px_rgba(16,42,86,0.12)]"
               >
                 <div className="rounded-[1.5rem] bg-gradient-to-br from-beige to-white p-4">
                   <div className="flex min-h-32 flex-col justify-between rounded-2xl bg-white p-4 shadow-sm">

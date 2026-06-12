@@ -8,18 +8,16 @@ export function MotherCourseList({
   accessLevel,
   progress = {},
   resources = [],
-  dashboardPath,
 }: {
   courses: LmsCourse[];
   accessLevel: AccessLevel;
   progress?: Record<string, VideoProgress>;
   resources?: CourseResource[];
-  dashboardPath?: string;
 }) {
   return (
     <div className="grid gap-6">
       {courses.map((course) => (
-        <article key={course.id} className="rounded-[2rem] bg-white p-5 shadow-soft ring-1 ring-blueDeep/10 md:p-6">
+        <article key={course.id} className="rounded-[2rem] bg-white p-5 shadow-soft ring-1 ring-borderSoft md:p-6">
           <div className="mb-5 flex flex-wrap items-start justify-between gap-4">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.14em] text-coral">{course.course_type}</p>
@@ -32,7 +30,7 @@ export function MotherCourseList({
           </div>
 
           {course.modules.length ? (
-            <MotherModuleList modules={course.modules} accessLevel={accessLevel} progress={progress} resources={resources} dashboardPath={dashboardPath} />
+            <MotherModuleList modules={course.modules} accessLevel={accessLevel} progress={progress} resources={resources} />
           ) : (
             <div className="rounded-2xl bg-beige/65 p-5">
               <BookOpenCheck className="h-7 w-7 text-coral" />

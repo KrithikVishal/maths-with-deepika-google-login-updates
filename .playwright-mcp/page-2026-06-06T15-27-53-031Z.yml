@@ -1,0 +1,58 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Maths with Deepika home" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e6]: Maths with Deepika
+      - link "Cart" [ref=e8] [cursor=pointer]:
+        - /url: /cart
+        - img [ref=e9]
+      - button "Open menu" [ref=e13] [cursor=pointer]:
+        - img [ref=e14]
+  - main [ref=e15]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - paragraph [ref=e19]: Student login
+        - heading "Welcome back to your learning space" [level=2] [ref=e20]
+        - paragraph [ref=e21]: Login to continue to your learning dashboard.
+      - generic [ref=e23]:
+        - generic [ref=e24]:
+          - img [ref=e25]
+          - heading "Student Login" [level=3] [ref=e29]
+          - textbox "Email" [ref=e30]: krithikvishal01@gmail.com
+          - textbox "Password" [ref=e31]: password
+          - button "Login" [ref=e32] [cursor=pointer]
+          - generic [ref=e33]: Or
+          - button "Continue with Google" [ref=e36] [cursor=pointer]:
+            - img [ref=e37]
+            - text: Continue with Google
+        - generic [ref=e40]:
+          - img [ref=e41]
+          - heading "Need an account?" [level=3] [ref=e44]
+          - paragraph [ref=e45]: Students can create an account and start learning. Existing students can use the login details shared by the admin.
+          - button "Create New Account" [ref=e46] [cursor=pointer]
+  - contentinfo [ref=e47]:
+    - generic [ref=e48]:
+      - generic [ref=e49]:
+        - link "Maths with Deepika home" [ref=e50] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e52]: Maths with Deepika
+        - paragraph [ref=e53]: A gentle learning space for mothers and kids to make maths clear, joyful, and confidence-building.
+      - generic [ref=e54]:
+        - heading "Explore" [level=3] [ref=e55]
+        - generic [ref=e56]:
+          - link "Home" [ref=e57] [cursor=pointer]:
+            - /url: /
+          - link "About" [ref=e58] [cursor=pointer]:
+            - /url: /about
+          - link "For Mothers" [ref=e59] [cursor=pointer]:
+            - /url: /for-mothers
+          - link "For Kids" [ref=e60] [cursor=pointer]:
+            - /url: /for-kids
+          - link "Shop" [ref=e61] [cursor=pointer]:
+            - /url: /shop
+      - generic [ref=e62]:
+        - heading "Learning" [level=3] [ref=e63]
+        - link "Student Login" [ref=e65] [cursor=pointer]:
+          - /url: /login
+  - alert [ref=e66]

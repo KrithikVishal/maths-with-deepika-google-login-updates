@@ -15,7 +15,7 @@ export function LessonCard({ lesson }: { lesson: { title: string; duration: stri
   }
 
   return (
-    <article className={`rounded-soft border p-4 transition ${lesson.locked ? "border-blueDeep/10 bg-beige/50" : "border-blueDeep/10 bg-white shadow-sm hover:shadow-soft"}`}>
+    <article className={`rounded-soft border p-4 transition ${lesson.locked ? "border-borderSoft bg-beige/50" : "border-borderSoft bg-white shadow-sm hover:shadow-soft"}`}>
       <div className="grid gap-4 sm:grid-cols-[136px_1fr]">
         <div className="grid aspect-video place-items-center rounded-2xl bg-blueDeep/10 text-blueDeep">
           {lesson.locked ? <Lock className="h-7 w-7" /> : <Play className="h-7 w-7" />}
@@ -35,11 +35,11 @@ export function LessonCard({ lesson }: { lesson: { title: string; duration: stri
             <ProgressBar value={lesson.progress} />
           </div>
           <div className="mt-4 flex flex-wrap gap-2">
-            <button disabled={lesson.locked} onClick={() => downloadFile("PDF")} className="focus-ring inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-xs font-bold text-blueDeep ring-1 ring-blueDeep/15 disabled:cursor-not-allowed disabled:opacity-45">
+            <button disabled={lesson.locked} onClick={() => downloadFile("PDF")} className="focus-ring inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-xs font-bold text-blueDeep ring-1 ring-borderSoft disabled:cursor-not-allowed disabled:opacity-45">
               <Download className="h-3.5 w-3.5" />
               PDF
             </button>
-            <button disabled={lesson.locked} onClick={() => downloadFile("Worksheet")} className="focus-ring inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-xs font-bold text-blueDeep ring-1 ring-blueDeep/15 disabled:cursor-not-allowed disabled:opacity-45">
+            <button disabled={lesson.locked} onClick={() => downloadFile("Worksheet")} className="focus-ring inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-xs font-bold text-blueDeep ring-1 ring-borderSoft disabled:cursor-not-allowed disabled:opacity-45">
               <Download className="h-3.5 w-3.5" />
               Worksheet
             </button>

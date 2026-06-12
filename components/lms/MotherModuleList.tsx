@@ -9,15 +9,12 @@ export function MotherModuleList({
   accessLevel,
   progress = {},
   resources = [],
-  dashboardPath,
 }: {
   modules: CourseModule[];
   accessLevel: AccessLevel;
   progress?: Record<string, VideoProgress>;
   resources?: CourseResource[];
-  dashboardPath?: string;
 }) {
-  const basePath = dashboardPath || "/mother-dashboard";
   return (
     <div className="grid gap-5">
       {modules.map((module, index) => {
@@ -26,7 +23,7 @@ export function MotherModuleList({
         const moduleLocked = unlockedCount === 0;
 
         return (
-          <details key={module.id} className="group rounded-soft bg-white p-5 shadow-soft ring-1 ring-blueDeep/10" open={index === 0}>
+          <details key={module.id} className="group rounded-soft bg-white p-5 shadow-soft ring-1 ring-borderSoft" open={index === 0}>
             <summary className="flex cursor-pointer list-none items-start justify-between gap-4">
               <div>
                 <div className="flex flex-wrap items-center gap-2">
@@ -50,7 +47,7 @@ export function MotherModuleList({
                 const videoResources = resources.filter((resource) => resource.video_id === video.id || resource.module_id === module.id);
 
                 return (
-                  <article key={video.id} className={`rounded-[1.5rem] border p-4 ${unlocked ? "border-blueDeep/10 bg-white" : "border-blueDeep/5 bg-beige/45"}`}>
+                  <article key={video.id} className={`rounded-[1.5rem] border p-4 ${unlocked ? "border-borderSoft bg-white" : "border-blueDeep/5 bg-beige/45"}`}>
                     <div className="grid gap-4 sm:grid-cols-[128px_1fr]">
                       <div className={`grid aspect-video place-items-center rounded-2xl ${unlocked ? "bg-blueDeep/10 text-blueDeep" : "bg-white/70 text-ink/45"}`}>
                         {unlocked ? <PlayCircle className="h-8 w-8" /> : <Lock className="h-8 w-8" />}
@@ -69,18 +66,18 @@ export function MotherModuleList({
                         <p className="mt-3 text-sm leading-6 text-ink/65">{video.description}</p>
                         <div className="mt-4 flex flex-wrap gap-2">
                           {unlocked ? (
-                            <Link href={`${basePath}/video/${video.id}`} className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-blueDeep px-4 py-2.5 text-xs font-bold text-white transition hover:bg-[#183174]">
+                            <Link href={`/mother-dashboard/video/${video.id}`} className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-blueDeep px-4 py-2.5 text-xs font-bold text-white transition hover:bg-[#102A56]">
                               <PlayCircle className="h-3.5 w-3.5" />
                               Watch lesson
                             </Link>
                           ) : (
-                            <a href="#payment-status" className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-white px-4 py-2.5 text-xs font-bold text-blueDeep ring-1 ring-blueDeep/15 transition hover:bg-beige">
+                            <a href="#payment-status" className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-white px-4 py-2.5 text-xs font-bold text-blueDeep ring-1 ring-borderSoft transition hover:bg-beige">
                               <Lock className="h-3.5 w-3.5" />
                               Upgrade to unlock
                             </a>
                           )}
                           <button
-                            className="focus-ring inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-xs font-bold text-blueDeep ring-1 ring-blueDeep/15 disabled:cursor-not-allowed disabled:opacity-45"
+                            className="focus-ring inline-flex items-center gap-2 rounded-full bg-white px-4 py-2.5 text-xs font-bold text-blueDeep ring-1 ring-borderSoft disabled:cursor-not-allowed disabled:opacity-45"
                             disabled={!unlocked}
                           >
                             <FileText className="h-3.5 w-3.5" />

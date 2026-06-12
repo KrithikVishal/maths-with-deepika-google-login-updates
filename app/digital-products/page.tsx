@@ -113,7 +113,7 @@ export default function DigitalProductsPage() {
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_0.85fr] lg:px-8 lg:py-20">
           <div>
             <p className="mb-4 text-sm font-bold uppercase tracking-[0.16em] text-coral">Maths Starter Kit</p>
-            <h1 className="max-w-3xl text-4xl font-bold leading-tight tracking-tight text-blueDeep sm:text-5xl">
+            <h1 className="max-w-3xl text-3xl font-bold leading-tight tracking-tight text-blueDeep sm:text-4xl lg:text-5xl">
               What if your child could start enjoying maths in just 15 minutes a day?
             </h1>
             <div className="mt-6 max-w-2xl space-y-4 text-base leading-8 text-ink/72">
@@ -133,10 +133,10 @@ export default function DigitalProductsPage() {
             </div>
           </div>
 
-          <div className="rounded-[2rem] border border-blueDeep/10 bg-white p-5 shadow-soft">
+          <div className="rounded-[2rem] border border-borderSoft bg-white p-5 shadow-soft">
             <div className="rounded-[1.5rem] bg-beige/70 p-6">
               <div className="rounded-3xl bg-white p-5 shadow-sm">
-                <div className="flex items-center justify-between gap-4 border-b border-blueDeep/10 pb-4">
+                <div className="flex items-center justify-between gap-4 border-b border-borderSoft pb-4">
                   <div>
                     <p className="text-sm font-bold text-coral">Digital activity kit</p>
                     <h2 className="mt-1 text-2xl font-bold text-blueDeep">15 minutes a day</h2>
@@ -166,7 +166,7 @@ export default function DigitalProductsPage() {
 
       <Section eyebrow="Why I created it" title="Why I Created Maths Starter Kit">
         <div className="grid gap-8 lg:grid-cols-[1fr_0.7fr]">
-          <div className="rounded-[2rem] bg-white p-6 shadow-soft ring-1 ring-blueDeep/10 sm:p-8">
+          <div className="rounded-[2rem] bg-white p-6 shadow-soft ring-1 ring-borderSoft sm:p-8">
             <div className="space-y-5 text-base leading-8 text-ink/72">
               <p>Many young children lose interest in maths because practice feels repetitive, boring, or too much like homework.</p>
               <p>I wanted to create something simple, colourful, and engaging.</p>
@@ -188,13 +188,13 @@ export default function DigitalProductsPage() {
       <Section tone="beige" eyebrow="Inside the kit" title="What's Inside the Kit?" text="Inside Maths Starter Kit, your child gets:">
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {kitItems.map(([title, Icon]) => (
-            <article key={title as string} className="flex h-full flex-col rounded-soft bg-white p-6 shadow-soft ring-1 ring-blueDeep/10">
+            <article key={title as string} className="flex h-full flex-col rounded-soft bg-white p-6 shadow-soft ring-1 ring-borderSoft">
               <Icon className="h-8 w-8 text-coral" />
               <h3 className="mt-4 text-lg font-bold leading-7 text-blueDeep">{title}</h3>
             </article>
           ))}
         </div>
-        <div className="mt-8 rounded-[2rem] bg-white p-6 text-base leading-8 text-ink/72 shadow-soft ring-1 ring-blueDeep/10">
+        <div className="mt-8 rounded-[2rem] bg-white p-6 text-base leading-8 text-ink/72 shadow-soft ring-1 ring-borderSoft">
           Each worksheet is created with a mix of child psychology, engaging design, and practical maths concepts, so children don't feel like they are doing boring homework.
         </div>
       </Section>
@@ -202,7 +202,7 @@ export default function DigitalProductsPage() {
       <Section eyebrow="Benefits" title="How This Helps Your Child">
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {benefits.map(({ title, text, icon: Icon }) => (
-            <article key={title} className="flex h-full flex-col rounded-soft bg-white p-6 shadow-soft ring-1 ring-blueDeep/10">
+            <article key={title} className="flex h-full flex-col rounded-soft bg-white p-6 shadow-soft ring-1 ring-borderSoft">
               <Icon className="h-8 w-8 text-coral" />
               <h3 className="mt-4 text-lg font-bold text-blueDeep">{title}</h3>
               <p className="mt-3 flex-1 text-sm leading-6 text-ink/68">{text}</p>
@@ -217,7 +217,7 @@ export default function DigitalProductsPage() {
           {fitChecklist.map((item, index) => (
             <div
               key={item}
-              className={`flex gap-3 rounded-soft bg-white p-5 shadow-soft ring-1 ring-blueDeep/10 ${index === fitChecklist.length - 1 ? "md:col-span-2 md:mx-auto md:w-full md:max-w-xl lg:col-span-1 lg:col-start-2" : ""}`}
+              className={`flex gap-3 rounded-soft bg-white p-5 shadow-soft ring-1 ring-borderSoft ${index === fitChecklist.length - 1 ? "md:col-span-2 md:mx-auto md:w-full md:max-w-xl lg:col-span-1 lg:col-start-2" : ""}`}
             >
               <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-coral" />
               <p className="text-sm leading-6 text-ink/70">{item}</p>
@@ -227,7 +227,7 @@ export default function DigitalProductsPage() {
       </Section>
 
       <Section eyebrow="Parent comfort" title="Why Parents Love It">
-        <div className="grid gap-8 rounded-[2rem] bg-beige/65 p-6 shadow-soft ring-1 ring-blueDeep/10 lg:grid-cols-[0.8fr_1fr] lg:items-center lg:p-8">
+        <div className="grid gap-8 rounded-[2rem] bg-beige/65 p-6 shadow-soft ring-1 ring-borderSoft lg:grid-cols-[0.8fr_1fr] lg:items-center lg:p-8">
           <div className="rounded-[1.5rem] bg-white p-8 text-center shadow-sm">
             <Heart className="mx-auto h-9 w-9 text-coral" />
             <p className="mt-5 text-3xl font-bold leading-tight text-blueDeep">"Can I do one more worksheet?"</p>
@@ -247,7 +247,7 @@ export default function DigitalProductsPage() {
         <p className="max-w-3xl text-base leading-8 text-ink/75">A few parent messages and videos showing how children are using Maths Starter Kit at home.</p>
         <div className="mt-8 grid gap-6 lg:grid-cols-2">
           {starterKitVideos.map((src, index) => (
-            <article key={src} className="overflow-hidden rounded-[1.5rem] bg-white shadow-soft ring-1 ring-blueDeep/10">
+            <article key={src} className="overflow-hidden rounded-[1.5rem] bg-white shadow-soft ring-1 ring-borderSoft">
               <video
                 className="aspect-video w-full bg-beige object-cover"
                 controls
@@ -266,7 +266,7 @@ export default function DigitalProductsPage() {
         <div className="mt-8 h-px w-full bg-gradient-to-r from-transparent via-blueDeep/15 to-transparent" />
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {starterKitTestimonials.map((src, index) => (
-            <article key={src} className="overflow-hidden rounded-[1.5rem] bg-white shadow-soft ring-1 ring-blueDeep/10">
+            <article key={src} className="overflow-hidden rounded-[1.5rem] bg-white shadow-soft ring-1 ring-borderSoft">
               <div className="relative aspect-[4/3] bg-white">
                 <Image
                   src={src}
@@ -293,7 +293,7 @@ export default function DigitalProductsPage() {
 
       <section id="get-starter-kit" className="scroll-mt-24 bg-beige/55">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <div className="grid gap-8 rounded-[2rem] bg-white p-6 shadow-soft ring-1 ring-blueDeep/10 lg:grid-cols-[1fr_auto] lg:items-center lg:p-8">
+          <div className="grid gap-8 rounded-[2rem] bg-white p-6 shadow-soft ring-1 ring-borderSoft lg:grid-cols-[1fr_auto] lg:items-center lg:p-8">
             <div className="max-w-3xl">
               <p className="mb-3 text-sm font-bold uppercase tracking-[0.16em] text-coral">Start gently</p>
               <h2 className="text-3xl font-bold tracking-tight text-blueDeep sm:text-4xl">Ready to make maths practice joyful for your child?</h2>

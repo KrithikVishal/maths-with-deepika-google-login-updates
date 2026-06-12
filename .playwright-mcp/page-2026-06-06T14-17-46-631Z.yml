@@ -1,0 +1,361 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Maths with Deepika home" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e6]: Maths with Deepika
+      - link "Cart" [ref=e8] [cursor=pointer]:
+        - /url: /cart
+        - img [ref=e9]
+      - button "Open menu" [ref=e13] [cursor=pointer]:
+        - img [ref=e14]
+  - main [ref=e15]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - paragraph [ref=e19]: Kids LMS
+        - heading "Hi Krithik, ready for a short lesson?" [level=2] [ref=e20]
+        - paragraph [ref=e21]: Choose a topic, watch a small lesson, and practise gently with worksheets when they are ready.
+      - button "Logout" [ref=e24] [cursor=pointer]:
+        - img [ref=e25]
+        - text: Logout
+      - generic [ref=e28]:
+        - generic [ref=e29]:
+          - generic [ref=e31]:
+            - heading "Course access" [level=3] [ref=e32]
+            - paragraph [ref=e33]: Partial Access
+            - paragraph [ref=e34]: M2M learning access
+          - img [ref=e36]
+        - generic [ref=e38]:
+          - generic [ref=e40]:
+            - heading "Unlocked lessons" [level=3] [ref=e41]
+            - paragraph [ref=e42]: "3"
+            - paragraph [ref=e43]: 6 total lessons
+          - img [ref=e45]
+        - generic [ref=e48]:
+          - generic [ref=e50]:
+            - heading "Locked lessons" [level=3] [ref=e51]
+            - paragraph [ref=e52]: "3"
+            - paragraph [ref=e53]: Upgrade to unlock more
+          - img [ref=e55]
+        - generic [ref=e58]:
+          - generic [ref=e60]:
+            - heading "Course progress" [level=3] [ref=e61]
+            - paragraph [ref=e62]: 50%
+            - paragraph [ref=e63]: Access-based progress
+          - generic [ref=e64]:
+            - img [ref=e65]
+            - generic [ref=e70]:
+              - generic [ref=e71]: Progress
+              - generic [ref=e72]: 50%
+    - generic [ref=e76]:
+      - generic [ref=e77]:
+        - paragraph [ref=e78]: Continue learning
+        - heading "Pick a topic and keep going" [level=2] [ref=e79]
+      - generic [ref=e80]:
+        - generic [ref=e81]:
+          - generic [ref=e82]:
+            - img [ref=e84]
+            - generic [ref=e87]:
+              - heading "Greater, Less, and Equal" [level=3] [ref=e88]
+              - paragraph [ref=e89]: Continue with the next unlocked topic lesson.
+          - generic [ref=e92]:
+            - generic [ref=e93]: Overall topic progress
+            - generic [ref=e94]: 50%
+          - link "Continue Lesson" [ref=e97] [cursor=pointer]:
+            - /url: /kid-dashboard/video/kid-greater-less-equal
+        - generic [ref=e99]:
+          - generic [ref=e100]:
+            - img [ref=e101]
+            - generic [ref=e103]:
+              - heading "Upgrade for all topics" [level=3] [ref=e104]
+              - paragraph [ref=e105]: Razorpay will be connected here later. For now, these buttons simulate successful payment and update kid LMS access.
+          - generic [ref=e106]:
+            - generic [ref=e107]:
+              - img [ref=e108]
+              - heading "Partial payment" [level=4] [ref=e111]
+              - paragraph [ref=e112]: Unlock selected starter topic videos.
+              - button "Partial Access Active" [disabled] [ref=e113]
+            - generic [ref=e114]:
+              - img [ref=e115]
+              - heading "Full payment" [level=4] [ref=e118]
+              - paragraph [ref=e119]: Unlock all topic courses, videos, and resources.
+              - button "Pay Full" [ref=e120] [cursor=pointer]
+    - generic [ref=e122]:
+      - generic [ref=e123]:
+        - paragraph [ref=e124]: Updates
+        - heading "Recent updates" [level=2] [ref=e125]
+      - generic [ref=e126]:
+        - generic [ref=e128]:
+          - img [ref=e130]
+          - generic [ref=e133]:
+            - heading "Notifications" [level=3] [ref=e134]
+            - paragraph [ref=e135]: 6 unread updates
+        - generic [ref=e136]:
+          - generic [ref=e138]:
+            - generic [ref=e139]:
+              - text: Payment
+              - paragraph [ref=e140]: Partial topic access unlocked
+              - paragraph [ref=e141]: Your maths topic lessons are ready. You can continue from your dashboard.
+            - button "Mark as read" [ref=e143] [cursor=pointer]:
+              - img [ref=e144]
+          - generic [ref=e148]:
+            - generic [ref=e149]:
+              - text: Payment
+              - paragraph [ref=e150]: Full topic access unlocked
+              - paragraph [ref=e151]: Your maths topic lessons are ready. You can continue from your dashboard.
+            - button "Mark as read" [ref=e153] [cursor=pointer]:
+              - img [ref=e154]
+          - generic [ref=e158]:
+            - generic [ref=e159]:
+              - text: Payment
+              - paragraph [ref=e160]: Partial topic access unlocked
+              - paragraph [ref=e161]: Your maths topic lessons are ready. You can continue from your dashboard.
+            - button "Mark as read" [ref=e163] [cursor=pointer]:
+              - img [ref=e164]
+          - generic [ref=e168]:
+            - generic [ref=e169]:
+              - text: Payment
+              - paragraph [ref=e170]: Payment received
+              - paragraph [ref=e171]: Your payment was successful. Thank you.
+            - button "Mark as read" [ref=e173] [cursor=pointer]:
+              - img [ref=e174]
+          - generic [ref=e178]:
+            - generic [ref=e179]:
+              - text: Order
+              - paragraph [ref=e180]: Your order has been placed
+              - paragraph [ref=e181]: Order a53ca1a9-d6c0-48a7-b40b-edd031f268b1 is confirmed. Tracking details will appear after shipping.
+            - button "Mark as read" [ref=e183] [cursor=pointer]:
+              - img [ref=e184]
+          - generic [ref=e188]:
+            - generic [ref=e189]:
+              - text: Payment
+              - paragraph [ref=e190]: Payment received
+              - paragraph [ref=e191]: Your payment was successful. Thank you.
+            - button "Mark as read" [ref=e193] [cursor=pointer]:
+              - img [ref=e194]
+    - generic [ref=e198]:
+      - generic [ref=e199]:
+        - paragraph [ref=e200]: Topic courses
+        - heading "Your Maths Topics" [level=2] [ref=e201]
+      - generic [ref=e202]:
+        - article [ref=e203]:
+          - generic [ref=e204]:
+            - img [ref=e206]
+            - generic [ref=e209]: 2/2 unlocked
+          - heading "Addition, Subtraction & Number Comparison" [level=3] [ref=e210]
+          - paragraph [ref=e211]: A topic course for basic number operations and comparison.
+          - generic [ref=e214]:
+            - generic [ref=e215]: Topic access
+            - generic [ref=e216]: 100%
+          - generic [ref=e220]:
+            - paragraph [ref=e221]: Number Comparison Basics
+            - generic [ref=e222]:
+              - generic [ref=e223]:
+                - generic [ref=e224]:
+                  - generic [ref=e225]:
+                    - paragraph [ref=e226]: Greater, Less, and Equal
+                    - paragraph [ref=e227]: 10 min lesson
+                  - generic [ref=e228]:
+                    - img [ref=e229]
+                    - text: Open
+                - generic [ref=e232]:
+                  - link "Watch" [ref=e233] [cursor=pointer]:
+                    - /url: /kid-dashboard/video/kid-greater-less-equal
+                    - img [ref=e234]
+                    - text: Watch
+                  - button "Worksheet" [ref=e237] [cursor=pointer]:
+                    - img [ref=e238]
+                    - text: Worksheet
+              - generic [ref=e241]:
+                - generic [ref=e242]:
+                  - generic [ref=e243]:
+                    - paragraph [ref=e244]: Addition Through Story Questions
+                    - paragraph [ref=e245]: 12 min lesson
+                  - generic [ref=e246]:
+                    - img [ref=e247]
+                    - text: Open
+                - generic [ref=e250]:
+                  - link "Watch" [ref=e251] [cursor=pointer]:
+                    - /url: /kid-dashboard/video/kid-addition-stories
+                    - img [ref=e252]
+                    - text: Watch
+                  - button "Worksheet" [ref=e255] [cursor=pointer]:
+                    - img [ref=e256]
+                    - text: Worksheet
+        - article [ref=e259]:
+          - generic [ref=e260]:
+            - img [ref=e262]
+            - generic [ref=e265]: 1/2 unlocked
+          - heading "Multiplication, Division & Fractions Basics" [level=3] [ref=e266]
+          - paragraph [ref=e267]: A topic course for multiplication, division, and early fractions.
+          - generic [ref=e270]:
+            - generic [ref=e271]: Topic access
+            - generic [ref=e272]: 50%
+          - generic [ref=e276]:
+            - paragraph [ref=e277]: Multiplication Basics
+            - generic [ref=e278]:
+              - generic [ref=e279]:
+                - generic [ref=e280]:
+                  - generic [ref=e281]:
+                    - paragraph [ref=e282]: Repeated Addition
+                    - paragraph [ref=e283]: 11 min lesson
+                  - generic [ref=e284]:
+                    - img [ref=e285]
+                    - text: Open
+                - generic [ref=e288]:
+                  - link "Watch" [ref=e289] [cursor=pointer]:
+                    - /url: /kid-dashboard/video/kid-repeated-addition
+                    - img [ref=e290]
+                    - text: Watch
+                  - button "Worksheet" [ref=e293] [cursor=pointer]:
+                    - img [ref=e294]
+                    - text: Worksheet
+              - generic [ref=e297]:
+                - generic [ref=e298]:
+                  - generic [ref=e299]:
+                    - paragraph [ref=e300]: Fractions First Look
+                    - paragraph [ref=e301]: 13 min lesson
+                  - generic [ref=e302]:
+                    - img [ref=e303]
+                    - text: Locked
+                - generic [ref=e306]:
+                  - link "Upgrade" [ref=e307] [cursor=pointer]:
+                    - /url: "#kid-payment-status"
+                    - img [ref=e308]
+                    - text: Upgrade
+                  - button "Worksheet" [disabled] [ref=e311]:
+                    - img [ref=e312]
+                    - text: Worksheet
+        - article [ref=e315]:
+          - generic [ref=e316]:
+            - img [ref=e318]
+            - generic [ref=e321]: Locked
+          - heading "Factors, Multiples, LCM & HCF" [level=3] [ref=e322]
+          - paragraph [ref=e323]: A focused topic course for factors, multiples, LCM, and HCF.
+          - generic [ref=e326]:
+            - generic [ref=e327]: Topic access
+            - generic [ref=e328]: 0%
+          - generic [ref=e331]:
+            - paragraph [ref=e332]: Factors and Multiples
+            - generic [ref=e334]:
+              - generic [ref=e335]:
+                - generic [ref=e336]:
+                  - paragraph [ref=e337]: Factors Made Clear
+                  - paragraph [ref=e338]: 14 min lesson
+                - generic [ref=e339]:
+                  - img [ref=e340]
+                  - text: Locked
+              - generic [ref=e343]:
+                - link "Upgrade" [ref=e344] [cursor=pointer]:
+                  - /url: "#kid-payment-status"
+                  - img [ref=e345]
+                  - text: Upgrade
+                - button "Worksheet" [disabled] [ref=e348]:
+                  - img [ref=e349]
+                  - text: Worksheet
+        - article [ref=e352]:
+          - generic [ref=e353]:
+            - img [ref=e355]
+            - generic [ref=e358]: Locked
+          - heading "Algebra & Linear Equations" [level=3] [ref=e359]
+          - paragraph [ref=e360]: A step-by-step topic course for beginning algebra and simple equations.
+          - generic [ref=e363]:
+            - generic [ref=e364]: Topic access
+            - generic [ref=e365]: 0%
+          - generic [ref=e368]:
+            - paragraph [ref=e369]: Algebra Basics
+            - generic [ref=e371]:
+              - generic [ref=e372]:
+                - generic [ref=e373]:
+                  - paragraph [ref=e374]: What is a Variable?
+                  - paragraph [ref=e375]: 15 min lesson
+                - generic [ref=e376]:
+                  - img [ref=e377]
+                  - text: Locked
+              - generic [ref=e380]:
+                - link "Upgrade" [ref=e381] [cursor=pointer]:
+                  - /url: "#kid-payment-status"
+                  - img [ref=e382]
+                  - text: Upgrade
+                - button "Worksheet" [disabled] [ref=e385]:
+                  - img [ref=e386]
+                  - text: Worksheet
+    - generic [ref=e390]:
+      - generic [ref=e391]:
+        - paragraph [ref=e392]: Practice support
+        - heading "Worksheets, downloads, and small wins" [level=2] [ref=e393]
+      - generic [ref=e394]:
+        - generic [ref=e395]:
+          - heading "Worksheets and downloads" [level=3] [ref=e398]
+          - generic [ref=e400]:
+            - generic [ref=e401]:
+              - img [ref=e402]
+              - generic [ref=e405]:
+                - paragraph [ref=e406]: Topic worksheets
+                - paragraph [ref=e407]: Download placeholder
+            - generic [ref=e408]:
+              - img [ref=e409]
+              - generic [ref=e412]:
+                - paragraph [ref=e413]: Practice sheets
+                - paragraph [ref=e414]: Download placeholder
+            - generic [ref=e415]:
+              - img [ref=e416]
+              - generic [ref=e419]:
+                - paragraph [ref=e420]: Answer keys
+                - paragraph [ref=e421]: Download placeholder
+        - generic [ref=e422]:
+          - heading "Recently watched" [level=3] [ref=e425]
+          - generic [ref=e427]:
+            - generic [ref=e428]:
+              - img [ref=e429]
+              - text: Greater, Less, and Equal
+            - generic [ref=e432]:
+              - img [ref=e433]
+              - text: Addition Through Story Questions
+            - generic [ref=e436]:
+              - img [ref=e437]
+              - text: Repeated Addition
+        - generic [ref=e440]:
+          - heading "Completed lessons" [level=3] [ref=e443]
+          - generic [ref=e446]: Completed lessons will appear here after practice.
+    - generic [ref=e448]:
+      - generic [ref=e449]:
+        - paragraph [ref=e450]: Orders
+        - heading "My Orders" [level=2] [ref=e451]
+      - generic [ref=e452]:
+        - heading "Recent orders" [level=3] [ref=e455]
+        - generic [ref=e457]:
+          - generic [ref=e460]:
+            - paragraph [ref=e461]: a53ca1a9-d6c0-48a7-b40b-edd031f268b1
+            - paragraph [ref=e462]: Placed · paid · ₹1
+          - generic [ref=e465]:
+            - paragraph [ref=e466]: 2f884fc4-41be-40fb-9a82-62d739722ec6
+            - paragraph [ref=e467]: Placed · paid · ₹1
+  - contentinfo [ref=e468]:
+    - generic [ref=e469]:
+      - generic [ref=e470]:
+        - link "Maths with Deepika home" [ref=e471] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e473]: Maths with Deepika
+        - paragraph [ref=e474]: A gentle learning space for mothers and kids to make maths clear, joyful, and confidence-building.
+      - generic [ref=e475]:
+        - heading "Explore" [level=3] [ref=e476]
+        - generic [ref=e477]:
+          - link "Home" [ref=e478] [cursor=pointer]:
+            - /url: /
+          - link "About" [ref=e479] [cursor=pointer]:
+            - /url: /about
+          - link "For Mothers" [ref=e480] [cursor=pointer]:
+            - /url: /for-mothers
+          - link "For Kids" [ref=e481] [cursor=pointer]:
+            - /url: /for-kids
+          - link "Shop" [ref=e482] [cursor=pointer]:
+            - /url: /shop
+      - generic [ref=e483]:
+        - heading "Learning" [level=3] [ref=e484]
+        - generic [ref=e485]:
+          - link "Mother Login" [ref=e486] [cursor=pointer]:
+            - /url: /login?role=mother
+          - link "Kid Login" [ref=e487] [cursor=pointer]:
+            - /url: /login?role=kid
+  - alert [ref=e488]

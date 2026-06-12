@@ -9,7 +9,7 @@ export function Accordion({ items }: { items: Array<{ title: string; content: Re
   return (
     <div className="grid gap-3">
       {items.map((item, index) => (
-        <div key={item.title} className="overflow-hidden rounded-soft border border-blueDeep/10 bg-white shadow-sm">
+        <div key={item.title} className="jolly-card-motion overflow-hidden rounded-soft border border-borderSoft bg-white shadow-sm">
           <button
             className="focus-ring flex w-full items-center justify-between gap-4 px-5 py-4 text-left font-bold text-blueDeep"
             onClick={() => setOpen(open === index ? -1 : index)}
@@ -18,7 +18,11 @@ export function Accordion({ items }: { items: Array<{ title: string; content: Re
             {item.title}
             <ChevronDown className={`h-5 w-5 shrink-0 text-coral transition ${open === index ? "rotate-180" : ""}`} />
           </button>
-          {open === index ? <div className="border-t border-blueDeep/10 px-5 py-4 text-sm leading-7 text-ink/70">{item.content}</div> : null}
+          <div className={`grid transition-all duration-300 ease-out ${open === index ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+            <div className="overflow-hidden">
+              <div className="border-t border-borderSoft px-5 py-4 text-sm leading-7 text-ink/70">{item.content}</div>
+            </div>
+          </div>
         </div>
       ))}
     </div>

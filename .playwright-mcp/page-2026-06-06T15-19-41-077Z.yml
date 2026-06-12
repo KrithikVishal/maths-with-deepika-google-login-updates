@@ -1,0 +1,72 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Maths with Deepika home" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - text: Maths with Deepika
+      - navigation [ref=e6]:
+        - link "Home" [ref=e7] [cursor=pointer]:
+          - /url: /
+        - link "About" [ref=e8] [cursor=pointer]:
+          - /url: /about
+        - link "For Mothers" [ref=e9] [cursor=pointer]:
+          - /url: /for-mothers
+        - link "For Kids" [ref=e10] [cursor=pointer]:
+          - /url: /for-kids
+        - link "Shop" [ref=e11] [cursor=pointer]:
+          - /url: /shop
+        - link "Student Login" [ref=e12] [cursor=pointer]:
+          - /url: /login
+        - link "Contact" [ref=e13] [cursor=pointer]:
+          - /url: /contact
+      - link "Cart" [ref=e15] [cursor=pointer]:
+        - /url: /cart
+        - img [ref=e16]
+      - button "Open menu" [ref=e20]:
+        - img [ref=e21]
+  - main [ref=e22]:
+    - generic [ref=e24]:
+      - generic [ref=e25]:
+        - paragraph [ref=e26]: Student login
+        - heading "Welcome back to your learning space" [level=2] [ref=e27]
+        - paragraph [ref=e28]: Login to continue to your learning dashboard.
+      - generic [ref=e30]:
+        - generic [ref=e31]:
+          - img [ref=e32]
+          - heading "Student Login" [level=3] [ref=e36]
+          - textbox "Email" [ref=e37]: krithikvishal01@gmail.com
+          - textbox "Password" [ref=e38]: password
+          - button "Login" [ref=e39]
+          - generic [ref=e40]: Or
+          - button "Continue with Google" [ref=e41]:
+            - img [ref=e42]
+            - text: Continue with Google
+        - generic [ref=e45]:
+          - img [ref=e46]
+          - heading "Need an account?" [level=3] [ref=e49]
+          - paragraph [ref=e50]: Students can create an account and start learning. Existing students can use the login details shared by the admin.
+          - button "Create New Account" [ref=e51]
+  - contentinfo [ref=e52]:
+    - generic [ref=e53]:
+      - generic [ref=e54]:
+        - link "Maths with Deepika home" [ref=e55] [cursor=pointer]:
+          - /url: /
+          - text: Maths with Deepika
+        - paragraph [ref=e57]: A gentle learning space for mothers and kids to make maths clear, joyful, and confidence-building.
+      - generic [ref=e58]:
+        - heading "Explore" [level=3] [ref=e59]
+        - generic [ref=e60]:
+          - link "Home" [ref=e61] [cursor=pointer]:
+            - /url: /
+          - link "About" [ref=e62] [cursor=pointer]:
+            - /url: /about
+          - link "For Mothers" [ref=e63] [cursor=pointer]:
+            - /url: /for-mothers
+          - link "For Kids" [ref=e64] [cursor=pointer]:
+            - /url: /for-kids
+          - link "Shop" [ref=e65] [cursor=pointer]:
+            - /url: /shop
+      - generic [ref=e66]:
+        - heading "Learning" [level=3] [ref=e67]
+        - link "Student Login" [ref=e69] [cursor=pointer]:
+          - /url: /login

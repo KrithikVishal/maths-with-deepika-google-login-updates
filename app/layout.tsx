@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { HomeMagicEffects } from "@/components/HomeMagicEffects";
 import { CartProvider } from "@/components/cart/CartProvider";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import "./globals.css";
@@ -37,6 +38,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="en">
       <body className="font-sans antialiased">
+        <HomeMagicEffects />
         <CartProvider storageScope={cartStorageScope}>{children}</CartProvider>
       </body>
     </html>

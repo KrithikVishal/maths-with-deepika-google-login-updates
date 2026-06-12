@@ -10,14 +10,14 @@ type ButtonProps = {
 };
 
 const styles = {
-  primary: "bg-blueDeep text-white hover:bg-[#183174]",
-  secondary: "bg-coral text-white hover:bg-[#ee5f52]",
-  ghost: "bg-white text-blueDeep ring-1 ring-blueDeep/15 hover:bg-beige",
-  danger: "bg-alert text-white hover:bg-[#a92122]",
+  primary: "bg-coral text-white hover:brightness-95",
+  secondary: "bg-blueDeep text-white hover:bg-navy",
+  ghost: "bg-white text-blueDeep ring-1 ring-borderSoft hover:bg-beige",
+  danger: "bg-coral text-white hover:brightness-95",
 };
 
 export function Button({ href, children, variant = "primary", icon = false, className = "" }: ButtonProps) {
-  const classes = `focus-ring inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold shadow-sm transition ${styles[variant]} ${className}`;
+  const classes = `focus-ring inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-base font-bold leading-none transition-all duration-300 ${styles[variant]} ${className}`;
   const content = (
     <>
       {children}

@@ -52,7 +52,7 @@ export function OrderConfirmation({ orderId }: { orderId: string }) {
       </div>
       <div className="mt-6 flex flex-wrap gap-3">
         <Button href="/mother/dashboard">View Dashboard</Button>
-        <Link href="/shop" className="focus-ring inline-flex items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-blueDeep shadow-sm ring-1 ring-blueDeep/15 transition hover:bg-beige">
+        <Link href="/shop" className="focus-ring inline-flex items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-semibold text-blueDeep shadow-sm ring-1 ring-borderSoft transition hover:bg-beige">
           Continue Shopping
         </Link>
       </div>

@@ -6,7 +6,6 @@ import { LogoutButton } from "@/components/auth/LogoutButton";
 import { CourseManagement } from "@/components/admin/CourseManagement";
 import { MemberManagement } from "@/components/admin/MemberManagement";
 import { AdminOrderManagement, ExportOrdersButton } from "@/components/orders/AdminOrderManagement";
-import { RevenueChart } from "@/components/admin/RevenueChart";
 import { PageShell } from "@/components/PageShell";
 import { ProgressBar } from "@/components/ProgressBar";
 import { Section } from "@/components/Section";
@@ -164,10 +163,6 @@ export default async function AdminDashboard({
         </div>
         <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_0.8fr]">
           <div className="rounded-soft bg-white p-6 shadow-soft">
-            <h3 className="mb-4 text-xl font-bold text-blueDeep">Revenue (Last 30 days)</h3>
-            <RevenueChart orders={realOrders} />
-          </div>
-          <div className="rounded-soft bg-white p-6 shadow-soft">
             <h3 className="text-xl font-bold text-blueDeep">Recent activity</h3>
             <div className="mt-4 grid gap-3">
               {recentActivity.length === 0 ? (
@@ -226,7 +221,7 @@ export default async function AdminDashboard({
           </DashboardCard>
           <DashboardCard title="Tracking ID management">
             <p className="text-sm leading-6 text-ink/65">Add Delhivery tracking IDs from each order card above.</p>
-            <button className="focus-ring mt-3 w-full rounded-full bg-white px-5 py-3 text-sm font-semibold text-blueDeep shadow-sm ring-1 ring-blueDeep/15" type="button">
+            <button className="focus-ring mt-3 w-full rounded-full bg-white px-5 py-3 text-sm font-semibold text-blueDeep shadow-sm ring-1 ring-borderSoft" type="button">
               Ready in Orders
             </button>
           </DashboardCard>
@@ -249,7 +244,7 @@ export default async function AdminDashboard({
               </div>
             ) : null}
             {(paymentRows ?? []).map((payment) => (
-              <div key={payment.id} className="grid gap-3 rounded-2xl border border-blueDeep/10 p-4 text-sm md:grid-cols-[1fr_0.7fr_0.7fr_0.7fr]">
+              <div key={payment.id} className="grid gap-3 rounded-2xl border border-borderSoft p-4 text-sm md:grid-cols-[1fr_0.7fr_0.7fr_0.7fr]">
                 <div>
                   <p className="font-bold text-blueDeep">{payment.profiles?.full_name ?? "Learner"}</p>
                   <p className="text-ink/60">{payment.profiles?.email ?? payment.user_id}</p>

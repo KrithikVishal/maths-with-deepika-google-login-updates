@@ -1,0 +1,109 @@
+[    6025ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/admin/dashboard:0
+[    6396ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ webpack-internal:///./node_modules/react-dom/cjs/react-dom-client.development.js:28004
+[    6464ms] Error: Cannot find module './vendor-chunks/postal-mime.js'
+Require stack:
+- C:\For Me\Projects\maths-with-deepika-google-login-updates\.next\server\webpack-runtime.js
+- C:\For Me\Projects\maths-with-deepika-google-login-updates\.next\server\app\admin\dashboard\page.js
+- C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\server\require.js
+- C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\server\load-components.js
+- C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\build\utils.js
+- C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\server\dev\hot-middleware.js
+- C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\server\lib\router-server.js
+- C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\server\lib\start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1519:15)
+    at <unknown> (file://C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\server\require-hook.js:54:36)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1073:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1097:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1124:12)
+    at Module._load (node:internal/modules/cjs/loader:1296:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1619:12)
+    at mod.require (file://C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\server\require-hook.js:64:28)
+    at require (node:internal/modules/helpers:191:16)
+    at __webpack_require__.f.require (file://C:\For Me\Projects\maths-with-deepika-google-login-updates\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (file://C:\For Me\Projects\maths-with-deepika-google-login-updates\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (file://C:\For Me\Projects\maths-with-deepika-google-login-updates\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (file://C:\For Me\Projects\maths-with-deepika-google-login-updates\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (file://C:\For Me\Projects\maths-with-deepika-google-login-updates\.next\server\app\admin\dashboard\page.js:906:47)
+    at Object.<anonymous> (file://C:\For Me\Projects\maths-with-deepika-google-login-updates\.next\server\app\admin\dashboard\page.js:909:3)
+    at Module._compile (node:internal/modules/cjs/loader:1873:14)
+    at Object..js (node:internal/modules/cjs/loader:2013:10)
+    at Module.load (node:internal/modules/cjs/loader:1596:32)
+    at Module._load (node:internal/modules/cjs/loader:1398:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1619:12)
+    at mod.require (file://C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\server\require-hook.js:64:28)
+    at require (node:internal/modules/helpers:191:16)
+    at requirePage (file://C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\server\require.js:109:84)
+    at <unknown> (file://C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\server\load-components.js:59:84)
+    at async loadComponentsImpl (file://C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\server\load-components.js:59:26)
+    at async DevServer.findPageComponentsImpl (file://C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\server\next-server.js:439:36)
+[    6462ms] [LOG] [HMR] connected @ webpack-internal:///./node_modules/next/dist/client/dev/error-overlay/websocket.js:45
+[  112957ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/admin/dashboard:0
+[  113278ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ webpack-internal:///./node_modules/react-dom/cjs/react-dom-client.development.js:28004
+[  113344ms] Error: Cannot find module './vendor-chunks/postal-mime.js'
+Require stack:
+- C:\For Me\Projects\maths-with-deepika-google-login-updates\.next\server\webpack-runtime.js
+- C:\For Me\Projects\maths-with-deepika-google-login-updates\.next\server\app\admin\dashboard\page.js
+- C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\server\require.js
+- C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\server\load-components.js
+- C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\build\utils.js
+- C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\server\dev\hot-middleware.js
+- C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\server\lib\router-server.js
+- C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\server\lib\start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1519:15)
+    at <unknown> (file://C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\server\require-hook.js:54:36)
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1073:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1097:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1124:12)
+    at Module._load (node:internal/modules/cjs/loader:1296:5)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1619:12)
+    at mod.require (file://C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\server\require-hook.js:64:28)
+    at require (node:internal/modules/helpers:191:16)
+    at __webpack_require__.f.require (file://C:\For Me\Projects\maths-with-deepika-google-login-updates\.next\server\webpack-runtime.js:198:28)
+    at <unknown> (file://C:\For Me\Projects\maths-with-deepika-google-login-updates\.next\server\webpack-runtime.js:111:40)
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (file://C:\For Me\Projects\maths-with-deepika-google-login-updates\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (file://C:\For Me\Projects\maths-with-deepika-google-login-updates\.next\server\webpack-runtime.js:162:22)
+    at <unknown> (file://C:\For Me\Projects\maths-with-deepika-google-login-updates\.next\server\app\admin\dashboard\page.js:906:47)
+    at Object.<anonymous> (file://C:\For Me\Projects\maths-with-deepika-google-login-updates\.next\server\app\admin\dashboard\page.js:909:3)
+    at Module._compile (node:internal/modules/cjs/loader:1873:14)
+    at Object..js (node:internal/modules/cjs/loader:2013:10)
+    at Module.load (node:internal/modules/cjs/loader:1596:32)
+    at Module._load (node:internal/modules/cjs/loader:1398:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1619:12)
+    at mod.require (file://C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\server\require-hook.js:64:28)
+    at require (node:internal/modules/helpers:191:16)
+    at requirePage (file://C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\server\require.js:109:84)
+    at <unknown> (file://C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\server\load-components.js:59:84)
+    at async loadComponentsImpl (file://C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\server\load-components.js:59:26)
+    at async DevServer.findPageComponentsImpl (file://C:\For Me\Projects\maths-with-deepika-google-login-updates\node_modules\next\dist\server\next-server.js:439:36)
+[  113344ms] [LOG] [HMR] connected @ webpack-internal:///./node_modules/next/dist/client/dev/error-overlay/websocket.js:45
+[  157453ms] [LOG] [HMR] connected @ webpack-internal:///./node_modules/next/dist/client/dev/error-overlay/websocket.js:45
+[  158925ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///./node_modules/next/dist/client/dev/error-overlay/hot-dev-client.js:196
+[  165689ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///./node_modules/next/dist/client/dev/error-overlay/hot-dev-client.js:196
+[  171098ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/_next/static/webpack/a0ee00b4ba1f1525.webpack.hot-update.json:0
+[  171098ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ webpack-internal:///./node_modules/next/dist/client/dev/error-overlay/hot-dev-client.js:297
+[  173729ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///./node_modules/next/dist/client/dev/error-overlay/hot-dev-client.js:196
+[  175067ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ webpack-internal:///./node_modules/next/dist/client/dev/error-overlay/hot-dev-client.js:295
+[  175822ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom-experimental/cjs/react-dom.development.js:38409
+[  177652ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom-experimental/cjs/react-dom.development.js:38409
+[  186904ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/hot-reloader-client.js:150
+[  187971ms] [INFO] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom-experimental/cjs/react-dom.development.js:38409
+[  281285ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/hot-reloader-client.js:150

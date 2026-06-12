@@ -41,7 +41,7 @@ const offers = [
 
 function QuoteCard({ children }: { children: React.ReactNode }) {
   return (
-    <div className="rounded-soft border border-blueDeep/10 bg-white p-5 shadow-soft">
+    <div className="rounded-soft border border-borderSoft bg-white p-5 shadow-soft">
       <Sparkles className="h-6 w-6 text-gold" />
       <p className="mt-4 text-lg font-bold leading-7 text-blueDeep">{children}</p>
     </div>
@@ -63,7 +63,7 @@ export default function AboutPage() {
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:px-8">
           <div>
             <p className="mb-3 text-sm font-bold uppercase tracking-[0.16em] text-coral">About Me</p>
-            <h1 className="text-4xl font-bold tracking-tight text-blueDeep sm:text-5xl">My Story</h1>
+            <h1 className="text-3xl font-bold tracking-tight text-blueDeep sm:text-4xl lg:text-5xl">My Story</h1>
             <div className="mt-6 max-w-2xl space-y-4 text-lg leading-8 text-ink/75">
               <p>I know what it feels like to lose yourself.</p>
               <p>And I also know what it feels like to rebuild your confidence one small step at a time.</p>
@@ -100,7 +100,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="rounded-[2rem] border border-blueDeep/10 bg-white p-6 shadow-soft md:p-8">
+            <div className="rounded-[2rem] border border-borderSoft bg-white p-6 shadow-soft md:p-8">
               <p className="text-sm font-bold uppercase tracking-[0.16em] text-coral">Somewhere along the way</p>
               <div className="mt-2 space-y-5 text-base leading-8 text-ink/75">
                 <p>But after marriage and motherhood, slowly, things changed.</p>
@@ -115,7 +115,7 @@ export default function AboutPage() {
           </div>
 
           <div className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
-            <div className="rounded-[2rem] border border-blueDeep/10 bg-white p-6 shadow-soft md:p-8">
+            <div className="rounded-[2rem] border border-borderSoft bg-white p-6 shadow-soft md:p-8">
               <div className="space-y-5 text-base leading-8 text-ink/75">
                 <p>After having two babies, I realised that I was not really living my own life.</p>
                 <p>There was a time when I didn’t feel confident about my career, my body, my appearance, my communication, or even myself. I compared myself with others. I questioned my worth. I felt like I had lost the person I used to be.</p>
@@ -151,7 +151,7 @@ export default function AboutPage() {
     </div>
   </div>
 
-  <div className="rounded-[2rem] border border-blueDeep/10 bg-white p-6 shadow-soft md:p-8 lg:p-10">
+  <div className="rounded-[2rem] border border-borderSoft bg-white p-6 shadow-soft md:p-8 lg:p-10">
     <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
       <div className="space-y-4 text-base leading-8 text-ink/75">
         <p>Even one like felt big.</p>
@@ -187,7 +187,7 @@ export default function AboutPage() {
       <Section eyebrow="Purpose" title="Why I Created Maths with Deepika">
         <p className="mb-8 max-w-3xl text-base leading-8 text-ink/75">Maths with Deepika was born from two strong missions.</p>
         <div className="grid gap-6 lg:grid-cols-2">
-          <div className="rounded-[2rem] border border-blueDeep/10 bg-white p-6 shadow-soft">
+          <div className="rounded-[2rem] border border-borderSoft bg-white p-6 shadow-soft">
             <div className="grid h-12 w-12 place-items-center rounded-2xl bg-coral/10 text-coral">
               <BookOpen className="h-6 w-6" />
             </div>
@@ -206,7 +206,7 @@ export default function AboutPage() {
             </div>
             <div className="mt-5 rounded-2xl bg-gold/20 p-4 text-xl font-bold text-blueDeep">“Maths easy dhaan!”</div>
           </div>
-          <div className="rounded-[2rem] border border-blueDeep/10 bg-white p-6 shadow-soft">
+          <div className="rounded-[2rem] border border-borderSoft bg-white p-6 shadow-soft">
             <div className="grid h-12 w-12 place-items-center rounded-2xl bg-coral/10 text-coral">
               <Users className="h-6 w-6" />
             </div>
@@ -231,7 +231,7 @@ export default function AboutPage() {
         <div className="max-w-3xl space-y-5 text-base leading-8 text-ink/75">
           <p>My dream is to build Maths with Deepika as a trustworthy, genuine, creative, and supportive maths brand.</p>
         </div>
-        <div className="mt-8 grid gap-5 md:grid-cols-3">
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {[
             "My child is in safe hands.",
             "Maybe I can start again too.",
@@ -252,7 +252,7 @@ export default function AboutPage() {
           {offers.map((item) => {
             const Icon = item.icon;
             return (
-              <div key={item.title} className="rounded-soft border border-blueDeep/10 bg-white p-6 shadow-soft">
+              <div key={item.title} className="rounded-soft border border-borderSoft bg-white p-6 shadow-soft">
                 <div className="flex items-start gap-4">
                   <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-coral/10 text-coral">
                     <Icon className="h-6 w-6" />
