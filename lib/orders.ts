@@ -55,7 +55,7 @@ export function mapOrderRow(row: OrderRow): StoredOrder {
     id: row.id,
     createdAt: row.created_at,
     status: normalizeOrderStatus(row),
-    paymentStatus: row.payment_status ?? "paid",
+    paymentStatus: row.payment_status ?? "pending",
     trackingId: row.tracking_id ?? undefined,
     courierName: row.courier_name ?? undefined,
     trackingUrl: getTrackingUrl(row.courier_name, row.tracking_id, row.tracking_url),

@@ -32,6 +32,21 @@ export async function markVideoCompleteAction(formData: FormData) {
     message: "Lovely progress. Your lesson completion has been saved.",
   });
 
-  revalidatePath(role === "mother" ? "/mother/dashboard" : "/kid-dashboard");
-  revalidatePath(role === "mother" ? `/mother-dashboard/video/${videoId}` : `/kid-dashboard/video/${videoId}`);
+  revalidatePath("/student-dashboard");
+  revalidatePath(`/student-dashboard/video/${videoId}`);
+}
+
+export async function updateAvatarAction(formData: FormData) {
+  const avatarUrl = String(formData.get("avatar_url") ?? "");
+  const profileId = String(formData.get("profile_id") ?? "");
+
+  if (!avatarUrl || !profileId) return;
+
+  const profile = await requireRole(["mother", "kid"]);
+  if (profile.id !== profileId) return; // Basic security check
+
+  const supabase = createSupabaseAdminClient();
+  await supabase.from("profiles").update({ avatar_url: avatarUrl }).eq("id", profile.id);
+
+  revalidatePath("/student-dashboard");
 }

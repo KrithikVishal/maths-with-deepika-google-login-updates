@@ -32,23 +32,59 @@ function readJson<T>(key: string, fallback: T): T {
   }
 }
 
-export function CartProvider({ children }: { children: React.ReactNode }) {
+function scopedKey(key: string, scope: string) {
+  return `${key}:${scope}`;
+}
+
+function mergeCartItems(primary: CartItem[], secondary: CartItem[]) {
+  const merged = [...primary];
+
+  secondary.forEach((item) => {
+    const found = merged.find((current) => current.id === item.id && current.variantId === item.variantId);
+    if (!found) {
+      merged.push(item);
+      return;
+    }
+
+    found.quantity = Math.min(found.quantity + item.quantity, found.stock);
+  });
+
+  return merged;
+}
+
+export function CartProvider({ children, storageScope = "public" }: { children: React.ReactNode; storageScope?: string }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [orders, setOrders] = useState<StoredOrder[]>([]);
   const [lastAdded, setLastAdded] = useState<string>();
+  const [hydrated, setHydrated] = useState(false);
+  const cartKey = useMemo(() => scopedKey(CART_KEY, storageScope), [storageScope]);
+  const ordersKey = useMemo(() => scopedKey(ORDERS_KEY, storageScope), [storageScope]);
 
   useEffect(() => {
-    setItems(readJson<CartItem[]>(CART_KEY, []));
-    setOrders(readJson<StoredOrder[]>(ORDERS_KEY, []));
-  }, []);
+    setHydrated(false);
+    const scopedCart = readJson<CartItem[]>(cartKey, []);
+    const publicCartKey = scopedKey(CART_KEY, "public");
+    const publicCart = storageScope !== "public" ? readJson<CartItem[]>(publicCartKey, []) : [];
+    const nextCart = publicCart.length ? mergeCartItems(scopedCart, publicCart) : scopedCart;
+
+    setItems(nextCart);
+    setOrders(readJson<StoredOrder[]>(ordersKey, []));
+    if (storageScope !== "public" && publicCart.length) {
+      window.localStorage.removeItem(publicCartKey);
+      window.localStorage.setItem(cartKey, JSON.stringify(nextCart));
+    }
+    setHydrated(true);
+  }, [cartKey, ordersKey, storageScope]);
 
   useEffect(() => {
-    window.localStorage.setItem(CART_KEY, JSON.stringify(items));
-  }, [items]);
+    if (!hydrated) return;
+    window.localStorage.setItem(cartKey, JSON.stringify(items));
+  }, [cartKey, hydrated, items]);
 
   useEffect(() => {
-    window.localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
-  }, [orders]);
+    if (!hydrated) return;
+    window.localStorage.setItem(ordersKey, JSON.stringify(orders));
+  }, [hydrated, ordersKey, orders]);
 
   const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const count = items.reduce((sum, item) => sum + item.quantity, 0);

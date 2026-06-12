@@ -166,6 +166,26 @@ add column if not exists order_id uuid;
 alter table public.payments
 add column if not exists payment_context text default 'course' check (payment_context in ('course', 'product', 'digital'));
 
+alter table public.payments
+alter column user_id drop not null;
+
+create unique index if not exists payments_razorpay_payment_id_unique
+on public.payments (razorpay_payment_id)
+where razorpay_payment_id is not null;
+
+insert into public.products (id, title, product_type, price, stock_quantity, status)
+values
+  ('practice-book', 'Vedic Maths Practice Book', 'physical', 699, 24, 'active'),
+  ('flash-cards', 'Flash Cards', 'physical', 399, 18, 'active'),
+  ('kids-learning-kit', 'Kids Learning Kit', 'physical', 1299, 4, 'active'),
+  ('activity-worksheets-bundle', 'Activity Worksheets Bundle', 'physical', 549, 0, 'inactive'),
+  ('razorpay-test-product-1inr', 'Razorpay Test Product', 'physical', 1, 100, 'active'),
+  ('jolly-maths-pack-1-book', 'Jolly Maths Pack - Any 1 Book', 'physical', 799, 40, 'active'),
+  ('jolly-maths-pack-2-books', 'Jolly Maths Pack - Any 2 Books', 'physical', 1499, 40, 'active'),
+  ('jolly-maths-pack-3-books', 'Jolly Maths Pack - Any 3 Books', 'physical', 2199, 40, 'active'),
+  ('jolly-maths-pack-4-books', 'Jolly Maths Pack - Any 4 Books', 'physical', 2799, 40, 'active')
+on conflict (id) do nothing;
+
 create table if not exists public.video_progress (
   id uuid primary key default gen_random_uuid(),
   user_id uuid not null references auth.users(id) on delete cascade,
@@ -207,10 +227,14 @@ create table if not exists public.products (
   description text,
   product_type text not null default 'physical' check (product_type in ('physical', 'digital', 'course')),
   price numeric not null default 0,
+  stock_quantity integer not null default 0,
   status text not null default 'active' check (status in ('active', 'inactive')),
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+alter table public.products
+add column if not exists stock_quantity integer not null default 0;
 
 create table if not exists public.product_variants (
   id text primary key,
@@ -224,6 +248,24 @@ create table if not exists public.product_variants (
   updated_at timestamptz not null default now()
 );
 
+alter table public.product_variants
+add column if not exists title text not null default '';
+
+alter table public.product_variants
+add column if not exists price numeric not null default 0;
+
+alter table public.product_variants
+add column if not exists stock_quantity integer not null default 0;
+
+alter table public.product_variants
+add column if not exists sku text;
+
+alter table public.product_variants
+add column if not exists status text not null default 'active';
+
+alter table public.product_variants
+add column if not exists created_at timestamptz not null default now();
+
 create table if not exists public.cart_items (
   id uuid primary key default gen_random_uuid(),
   user_id uuid not null references auth.users(id) on delete cascade,
@@ -233,6 +275,47 @@ create table if not exists public.cart_items (
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+create table if not exists public.checkout_snapshots (
+  id uuid primary key default gen_random_uuid(),
+  razorpay_order_id text not null,
+  amount integer not null,
+  currency text not null default 'INR',
+  payload jsonb not null,
+  used_at timestamptz,
+  expires_at timestamptz not null default (now() + interval '24 hours'),
+  created_at timestamptz not null default now()
+);
+
+create index if not exists checkout_snapshots_razorpay_order_id_idx
+on public.checkout_snapshots (razorpay_order_id);
+
+create index if not exists checkout_snapshots_unused_idx
+on public.checkout_snapshots (id, razorpay_order_id)
+where used_at is null;
+
+create index if not exists checkout_snapshots_expires_at_idx
+on public.checkout_snapshots (expires_at);
+
+create or replace function public.cleanup_checkout_snapshots(p_retention interval default interval '7 days')
+returns integer
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  v_deleted_count integer;
+begin
+  delete from public.checkout_snapshots
+  where expires_at < now() - p_retention;
+
+  get diagnostics v_deleted_count = row_count;
+  return v_deleted_count;
+end;
+$$;
+
+revoke execute on function public.cleanup_checkout_snapshots(interval) from public;
+grant execute on function public.cleanup_checkout_snapshots(interval) to service_role;
 
 drop trigger if exists courses_set_updated_at on public.courses;
 create trigger courses_set_updated_at
@@ -556,6 +639,203 @@ execute function public.set_updated_at();
 
 alter table public.orders enable row level security;
 alter table public.order_items enable row level security;
+
+drop function if exists public.create_paid_product_order(uuid, text, text, text, numeric, numeric, numeric, numeric, jsonb, jsonb);
+
+create or replace function public.create_paid_product_order(
+  p_user_id uuid,
+  p_razorpay_order_id text,
+  p_razorpay_payment_id text,
+  p_payment_context text,
+  p_amount numeric,
+  p_subtotal numeric,
+  p_shipping numeric,
+  p_total numeric,
+  p_customer jsonb,
+  p_items jsonb,
+  p_checkout_snapshot_id uuid default null
+)
+returns uuid
+language plpgsql
+security definer
+set search_path = public
+as $$
+declare
+  v_payment_id uuid;
+  v_existing_order_id uuid;
+  v_order_id uuid;
+  v_item jsonb;
+  v_product_id text;
+  v_variant_id text;
+  v_quantity integer;
+  v_price numeric;
+begin
+  if p_razorpay_payment_id is not null then
+    select order_id into v_existing_order_id
+    from public.payments
+    where razorpay_payment_id = p_razorpay_payment_id;
+
+    if v_existing_order_id is not null then
+      return v_existing_order_id;
+    end if;
+  end if;
+
+  if p_checkout_snapshot_id is not null then
+    perform 1
+    from public.checkout_snapshots
+    where id = p_checkout_snapshot_id
+      and razorpay_order_id = p_razorpay_order_id
+      and used_at is null
+      and expires_at >= now()
+    for update;
+
+    if not found then
+      raise exception 'Checkout session expired or already used';
+    end if;
+  end if;
+
+  insert into public.payments (
+    user_id,
+    order_id,
+    payment_context,
+    audience,
+    payment_type,
+    amount,
+    razorpay_order_id,
+    razorpay_payment_id,
+    status
+  )
+  values (
+    p_user_id,
+    null,
+    coalesce(p_payment_context, 'product'),
+    'mother',
+    'full',
+    p_amount,
+    p_razorpay_order_id,
+    p_razorpay_payment_id,
+    'success'
+  )
+  returning id into v_payment_id;
+
+  insert into public.orders (
+    user_id,
+    customer_name,
+    customer_email,
+    customer_phone,
+    shipping_address,
+    city,
+    state,
+    pincode,
+    notes,
+    status,
+    order_status,
+    payment_status,
+    subtotal,
+    shipping,
+    total
+  )
+  values (
+    p_user_id,
+    p_customer ->> 'fullName',
+    p_customer ->> 'email',
+    p_customer ->> 'phone',
+    p_customer ->> 'address',
+    p_customer ->> 'city',
+    p_customer ->> 'state',
+    p_customer ->> 'pincode',
+    nullif(p_customer ->> 'notes', ''),
+    'Placed',
+    'placed',
+    'paid',
+    p_subtotal,
+    p_shipping,
+    p_total
+  )
+  returning id into v_order_id;
+
+  for v_item in select * from jsonb_array_elements(p_items)
+  loop
+    v_product_id := v_item ->> 'id';
+    v_variant_id := nullif(v_item ->> 'variantId', '');
+    v_quantity := (v_item ->> 'quantity')::integer;
+    v_price := (v_item ->> 'price')::numeric;
+
+    if v_quantity < 1 then
+      raise exception 'Invalid quantity for product %', v_product_id;
+    end if;
+
+    if v_variant_id is not null then
+      update public.product_variants
+      set stock_quantity = stock_quantity - v_quantity,
+          updated_at = now()
+      where id = v_variant_id
+        and status = 'active'
+        and stock_quantity >= v_quantity;
+    else
+      update public.products
+      set stock_quantity = stock_quantity - v_quantity,
+          updated_at = now()
+      where id = v_product_id
+        and status = 'active'
+        and stock_quantity >= v_quantity;
+    end if;
+
+    if not found then
+      raise exception 'Insufficient stock for product %', v_product_id;
+    end if;
+
+    insert into public.order_items (
+      order_id,
+      product_id,
+      variant_id,
+      product_name,
+      variant_name,
+      price,
+      quantity,
+      total
+    )
+    values (
+      v_order_id,
+      v_product_id,
+      v_variant_id,
+      v_item ->> 'name',
+      nullif(v_item ->> 'variantName', ''),
+      v_price,
+      v_quantity,
+      v_price * v_quantity
+    );
+  end loop;
+
+  update public.payments
+  set order_id = v_order_id
+  where id = v_payment_id;
+
+  if p_checkout_snapshot_id is not null then
+    update public.checkout_snapshots
+    set used_at = now()
+    where id = p_checkout_snapshot_id;
+  end if;
+
+  return v_order_id;
+exception
+  when unique_violation then
+    if p_razorpay_payment_id is not null then
+      select order_id into v_existing_order_id
+      from public.payments
+      where razorpay_payment_id = p_razorpay_payment_id;
+
+      if v_existing_order_id is not null then
+        return v_existing_order_id;
+      end if;
+    end if;
+
+    raise;
+end;
+$$;
+
+revoke execute on function public.create_paid_product_order(uuid, text, text, text, numeric, numeric, numeric, numeric, jsonb, jsonb, uuid) from public;
+grant execute on function public.create_paid_product_order(uuid, text, text, text, numeric, numeric, numeric, numeric, jsonb, jsonb, uuid) to service_role;
 
 drop policy if exists "Users can read own orders" on public.orders;
 create policy "Users can read own orders"

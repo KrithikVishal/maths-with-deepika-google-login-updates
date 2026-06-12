@@ -1,6 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { headers } from "next/headers";
 import { createSupabaseAdminClient, createSupabaseServerClient } from "@/lib/supabase/server";
 import { Profile, roleDashboard, UserRole } from "@/lib/types";
 
@@ -8,16 +9,20 @@ export type LoginState = {
   message?: string;
 };
 
+function isExpectedRoleValid(value: string): boolean {
+  return ["admin", "mother", "kid", "student"].includes(value);
+}
+
 export async function loginAction(_state: LoginState, formData: FormData): Promise<LoginState> {
   const email = String(formData.get("email") ?? "").trim().toLowerCase();
   const password = String(formData.get("password") ?? "");
-  const expectedRole = String(formData.get("expected_role") ?? "mother") as UserRole;
+  const expectedRole = String(formData.get("expected_role") ?? "student");
 
   if (!email || !password) {
     return { message: "Please enter your email and password." };
   }
 
-  if (!["admin", "mother", "kid"].includes(expectedRole)) {
+  if (!isExpectedRoleValid(expectedRole)) {
     return { message: "Please choose a valid login type." };
   }
 
@@ -52,15 +57,46 @@ export async function loginAction(_state: LoginState, formData: FormData): Promi
     return { message: "This account is inactive. Please contact the admin." };
   }
 
-  if (profile.role !== expectedRole) {
+  if (expectedRole === "admin" && profile.role !== "admin") {
     await supabase.auth.signOut();
-    if (profile.role === "admin") {
-      return { message: "Please use the admin login page." };
-    }
-    return { message: `This account is registered as ${profile.role}. Please choose the correct login type.` };
+    return { message: "Please use the admin login page." };
+  }
+  
+  if (expectedRole === "student" && profile.role === "admin") {
+    await supabase.auth.signOut();
+    return { message: "You appear to be an admin — please sign in using the admin login page." };
   }
 
   redirect(roleDashboard[profile.role]);
+}
+
+export async function googleLoginAction(formData: FormData) {
+  const expectedRole = String(formData.get("expected_role") ?? "student");
+
+  if (!isExpectedRoleValid(expectedRole)) {
+    redirect("/login?error=role");
+  }
+
+  const requestHeaders = await headers();
+  const origin = requestHeaders.get("origin") ?? process.env.NEXT_PUBLIC_SITE_URL;
+
+  if (!origin) {
+    redirect(expectedRole === "admin" ? "/admin-login?error=auth-config" : `/login?error=auth-config`);
+  }
+
+  const supabase = await createSupabaseServerClient();
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: `${origin}/auth/callback?expected_role=${expectedRole}`,
+    },
+  });
+
+  if (error || !data.url) {
+    redirect(expectedRole === "admin" ? "/admin-login?error=oauth" : `/login?error=oauth`);
+  }
+
+  redirect(data.url);
 }
 
 export async function registerStudentAction(_state: LoginState, formData: FormData): Promise<LoginState> {
@@ -126,6 +162,14 @@ export async function registerStudentAction(_state: LoginState, formData: FormDa
     if (signInError) {
       return { message: "Account created. Please log in with your new details." };
     }
+
+    // Fire-and-forget: email errors must not fail a successful registration
+    import("@/lib/email").then(({ sendWelcomeEmail }) => {
+      void sendWelcomeEmail({ to: email, name: fullName }).catch((err) =>
+        console.error("sendWelcomeEmail failed:", err)
+      );
+    });
+
   } catch {
     return { message: "Registration is not configured yet. Please add Supabase environment values." };
   }
